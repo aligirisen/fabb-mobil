@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
-import '../../../utilities/app_colors.dart';
+import '../../../theme/app_colors.dart';
 import '../controller/city_district_page_controller.dart';
 import 'city_district_shimmer.dart';
 

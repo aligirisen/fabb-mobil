@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sizer/sizer.dart';
 import 'app/routes/app_pages.dart';
-import 'app/utilities/app_strings.dart';
+import 'app/theme/app_strings.dart';
 
 void main() async {
   await GetStorage.init();

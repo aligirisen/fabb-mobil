@@ -1,5 +1,5 @@
-import 'package:fabb_mobil/app/utilities/app_colors.dart';
-import 'package:fabb_mobil/app/utilities/app_strings.dart';
+import 'package:fabb_mobil/app/theme/app_colors.dart';
+import 'package:fabb_mobil/app/theme/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 

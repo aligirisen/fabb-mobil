@@ -4,7 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import "package:shimmer/shimmer.dart";
-import '../../../utilities/app_colors.dart';
+import '../../../theme/app_colors.dart';
 import '../controller/news_page_controller.dart';
 
 class NewsPageView extends StatelessWidget {

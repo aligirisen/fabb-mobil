@@ -1,9 +1,9 @@
-import 'package:fabb_mobil/app/utilities/app_images.dart';
+import 'package:fabb_mobil/app/theme/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../utilities/app_colors.dart';
-import '../../../utilities/app_strings.dart';
+import '../../../theme/app_colors.dart';
+import '../../../theme/app_strings.dart';
 
 class FirstInformingPageView extends StatelessWidget {
   const FirstInformingPageView({super.key});
@@ -46,6 +46,18 @@ class FirstInformingPageView extends StatelessWidget {
                 fontSize: 16,
               ),
             ),
+            SizedBox(
+              height: 40,
+            ),
+            Row(
+              children: [
+                Icon(
+                  Icons.circle,
+                  color: AppColors.dotActiveColor,
+                  size: 10,
+                ),
+              ],
+            )
           ]),
         ),
       ),
