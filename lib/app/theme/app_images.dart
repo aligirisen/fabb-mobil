@@ -2,5 +2,5 @@ import 'package:flutter/material.dart';
 
 class AppImages {
   static AssetImage firstInfoImage =
-      const AssetImage('lib/images/firstinfo.png');
+      const AssetImage('assets/images/firstinfo.png');
 }
