@@ -10,6 +10,7 @@ class AuthController extends GetxController {
   RegExp letterRegExpress = RegExp(r".*[A-Za-z].*");
   RxBool isPasswordHidden = true.obs;
   RxString falseLogin = ''.obs;
+  RxString firstnName = ''.obs;
 
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   late TextEditingController emailController, passwordController;
