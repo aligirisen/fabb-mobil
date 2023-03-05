@@ -20,7 +20,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.firstinfo,
-      page: () => const FirstInformingPageView(),
+      page: () => OnboardingPageView(),
     ),
     GetPage(
       name: _Paths.secondinfo,

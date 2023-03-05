@@ -46,7 +46,7 @@ class SignupView extends GetView<AuthController> {
         onTap: () {
           Get.toNamed('/login');
         },
-        child: Padding(
+        child: const Padding(
           padding: EdgeInsets.only(top: 10),
           child: Text(
             'Already have an account? Login',
@@ -61,21 +61,21 @@ class SignupView extends GetView<AuthController> {
       onTap: () {
         Get.defaultDialog(
             title: "Done!",
-            titleStyle: TextStyle(color: Colors.white),
-            backgroundColor: Color.fromARGB(255, 41, 41, 41),
-            content: Text('Succesfully created an account.',
+            titleStyle: const TextStyle(color: Colors.white),
+            backgroundColor: const Color.fromARGB(255, 41, 41, 41),
+            content: const Text('Succesfully created an account.',
                 style: TextStyle(color: Colors.white)));
         //Get.toNamed('/login');
       },
       child: Container(
-        margin: EdgeInsets.only(top: 30),
+        margin: const EdgeInsets.only(top: 30),
         alignment: Alignment.center,
         height: 50,
         width: 160,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            color: Color.fromARGB(255, 54, 54, 54)),
-        child: Text(
+            color: const Color.fromARGB(255, 54, 54, 54)),
+        child: const Text(
           "SIGN UP",
           style: TextStyle(fontSize: 18, color: Colors.white),
         ),
@@ -85,27 +85,27 @@ class SignupView extends GetView<AuthController> {
 
   Container signupTextFormField(String hintText, IconData icon) {
     return Container(
-      margin: EdgeInsets.only(top: 20),
-      padding: EdgeInsets.all(20),
+      margin: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.all(20),
       height: 9.h,
       width: 90.w,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           color: Colors.transparent,
-          border: Border.all(color: Color.fromARGB(255, 106, 106, 106))),
+          border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
       child: TextFormField(
         onChanged: (value) {},
         decoration: InputDecoration(
             icon: Icon(icon),
-            border: UnderlineInputBorder(),
+            border: const UnderlineInputBorder(),
             hintText: hintText,
-            hintStyle: TextStyle(fontSize: 13)),
+            hintStyle: const TextStyle(fontSize: 13)),
       ),
     );
   }
 
   Text signupPageTitle() {
-    return Text('SIGN UP',
+    return const Text('SIGN UP',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300));
   }
 }

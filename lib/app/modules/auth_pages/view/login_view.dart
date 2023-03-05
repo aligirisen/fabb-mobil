@@ -24,8 +24,8 @@ class LoginView extends GetView<AuthController> {
           Container(
               height: Get.height,
               width: Get.width,
-              padding: EdgeInsets.symmetric(horizontal: 60),
-              margin: EdgeInsets.only(top: 50),
+              padding: const EdgeInsets.symmetric(horizontal: 60),
+              margin: const EdgeInsets.only(top: 50),
               child: SingleChildScrollView(
                   child: Form(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -38,7 +38,7 @@ class LoginView extends GetView<AuthController> {
                             Obx(
                               () => passwordTextFormField(),
                             ),
-                            LoginButton(),
+                            loginButton(),
                             orCreateAccountText()
                           ])))),
         ]),
@@ -53,7 +53,7 @@ class LoginView extends GetView<AuthController> {
         },
         child: Padding(
           padding: EdgeInsets.only(top: 2.h),
-          child: Text(
+          child: const Text(
             'or Create an account',
             style:
                 TextStyle(fontSize: 13, color: Color.fromARGB(255, 81, 81, 81)),
@@ -61,7 +61,7 @@ class LoginView extends GetView<AuthController> {
         ));
   }
 
-  GestureDetector LoginButton() {
+  GestureDetector loginButton() {
     return GestureDetector(
       onTap: () {
         if (controller.checkLogin()) {
@@ -69,9 +69,9 @@ class LoginView extends GetView<AuthController> {
         } else {
           Get.defaultDialog(
               title: "Try again",
-              titleStyle: TextStyle(color: Colors.white),
-              backgroundColor: Color.fromARGB(255, 41, 41, 41),
-              content: Text('Invalid email or password.',
+              titleStyle: const TextStyle(color: Colors.white),
+              backgroundColor: const Color.fromARGB(255, 41, 41, 41),
+              content: const Text('Invalid email or password.',
                   style: TextStyle(color: Colors.white)));
         }
       },
@@ -82,8 +82,8 @@ class LoginView extends GetView<AuthController> {
         width: 70.w,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            color: Color.fromARGB(255, 54, 54, 54)),
-        child: Text(
+            color: const Color.fromARGB(255, 54, 54, 54)),
+        child: const Text(
           "LOGIN NOW",
           style: TextStyle(fontSize: 18, color: Colors.white),
         ),
@@ -100,7 +100,7 @@ class LoginView extends GetView<AuthController> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           color: Colors.transparent,
-          border: Border.all(color: Color.fromARGB(255, 106, 106, 106))),
+          border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
       child: TextFormField(
         controller: controller.passwordController,
         onSaved: (value) {
@@ -111,10 +111,10 @@ class LoginView extends GetView<AuthController> {
         },
         obscureText: controller.isPasswordHidden.value,
         decoration: InputDecoration(
-            icon: Icon(Icons.lock),
-            border: UnderlineInputBorder(),
+            icon: const Icon(Icons.lock),
+            border: const UnderlineInputBorder(),
             hintText: 'Password',
-            hintStyle: TextStyle(fontSize: 13),
+            hintStyle: const TextStyle(fontSize: 13),
             suffix: InkWell(
               child: Icon(
                 controller.isPasswordHidden.value
@@ -141,7 +141,7 @@ class LoginView extends GetView<AuthController> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           color: Colors.transparent,
-          border: Border.all(color: Color.fromARGB(255, 106, 106, 106))),
+          border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
       child: TextFormField(
         controller: controller.emailController,
         onSaved: (value) {
@@ -161,7 +161,7 @@ class LoginView extends GetView<AuthController> {
   }
 
   Text appTitle() {
-    return Text('FABB',
+    return const Text('FABB',
         style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700));
   }
 }
