@@ -10,6 +10,7 @@ class LoginController extends GetxController {
   RegExp letterRegExpress = RegExp(r".*[A-Za-z].*");
   RxBool isPasswordHidden = true.obs;
   RxString falseLogin = ''.obs;
+  RxString firstnName = ''.obs;
 
   //global key, create account butonuna basıldığında Get.deleteall(controller)
 
