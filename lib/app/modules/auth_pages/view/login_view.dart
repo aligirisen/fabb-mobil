@@ -1,10 +1,12 @@
-import 'package:fabb_mobil/app/modules/auth_pages/controller/auth_controller.dart';
+import 'package:fabb_mobil/app/modules/auth_pages/controller/login_controller.dart';
 import 'package:fabb_mobil/app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-class LoginView extends GetView<AuthController> {
+import '../../../theme/app_images.dart';
+
+class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
 
   @override
@@ -16,11 +18,11 @@ class LoginView extends GetView<AuthController> {
           backgroundColor: AppColors.mainColor,
         ),
         body: Stack(children: [
-          // Container(
-          //   height: Get.height,
-          //   width: Get.width,
-          //   child: Image.asset('assets/images/login_background.png'),
-          // ),
+          Container(
+            width: Get.width,
+            height: 100.h,
+            child: Image(image: AppImages.loginBackground, fit: BoxFit.fill),
+          ),
           Container(
               height: Get.height,
               width: Get.width,

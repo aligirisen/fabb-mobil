@@ -1,11 +1,14 @@
-import 'package:fabb_mobil/app/modules/auth_pages/controller/auth_controller.dart';
+import 'package:fabb_mobil/app/modules/auth_pages/controller/login_controller.dart';
 import 'package:fabb_mobil/app/theme/app_colors.dart';
+import 'package:fabb_mobil/app/theme/app_images.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-class SignupView extends GetView<AuthController> {
+import '../controller/signup_controller.dart';
+
+class SignupView extends GetView<SignupController> {
   const SignupView({super.key});
 
   @override
@@ -16,27 +19,34 @@ class SignupView extends GetView<AuthController> {
         appBar: AppBar(
           backgroundColor: AppColors.mainColor,
         ),
-        body: Container(
-            alignment: Alignment.center,
-            height: Get.height,
+        body: Stack(children: [
+          Container(
             width: Get.width,
-            padding: const EdgeInsets.symmetric(horizontal: 60),
-            color: Colors.white,
-            child: SingleChildScrollView(
-              child: Form(
-                  child: Column(
-                children: [
-                  signupPageTitle(),
-                  signupTextFormField('First Name', Icons.person),
-                  signupTextFormField('Last Name', Icons.person),
-                  signupTextFormField('Phone Number', Icons.phone),
-                  signupTextFormField('E-mail', Icons.mail),
-                  signupTextFormField('Password', Icons.lock),
-                  signupButton(),
-                  alreadyHaveAnAccountText()
-                ],
+            height: 100.h,
+            child: Image(image: AppImages.loginBackground, fit: BoxFit.fill),
+          ),
+          Container(
+              alignment: Alignment.center,
+              height: Get.height,
+              width: Get.width,
+              padding: const EdgeInsets.symmetric(horizontal: 60),
+              //color: Colors.white,
+              child: SingleChildScrollView(
+                child: Form(
+                    child: Column(
+                  children: [
+                    signupPageTitle(),
+                    signupTextFormField('First Name', Icons.person),
+                    signupTextFormField('Last Name', Icons.person),
+                    signupTextFormField('Phone Number', Icons.phone),
+                    signupTextFormField('E-mail', Icons.mail),
+                    signupTextFormField('Password', Icons.lock),
+                    signupButton(),
+                    alreadyHaveAnAccountText()
+                  ],
+                )),
               )),
-            )),
+        ]),
       ),
     );
   }
@@ -94,6 +104,7 @@ class SignupView extends GetView<AuthController> {
           color: Colors.transparent,
           border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
       child: TextFormField(
+        controller: controller.infoController,
         onChanged: (value) {},
         decoration: InputDecoration(
             icon: Icon(icon),

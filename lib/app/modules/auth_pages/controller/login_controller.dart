@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-class AuthController extends GetxController {
+class LoginController extends GetxController {
   String password = '';
   String email = '';
   RxString displayText = 'Enter a password'.obs;
@@ -11,7 +11,9 @@ class AuthController extends GetxController {
   RxBool isPasswordHidden = true.obs;
   RxString falseLogin = ''.obs;
 
-  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  //global key, create account butonuna basıldığında Get.deleteall(controller)
+
+  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   late TextEditingController emailController, passwordController;
 
   @override
