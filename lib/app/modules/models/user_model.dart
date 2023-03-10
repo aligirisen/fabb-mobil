@@ -10,7 +10,7 @@ class user_model {
   final List incident;
   final List liked_incidents;
   final List disliked_incidents;
-  final Location location;
+  final Location? location;
 
   user_model({
     required this.account_id,
@@ -22,6 +22,6 @@ class user_model {
     required this.incident,
     required this.liked_incidents,
     required this.disliked_incidents,
-    required this.location,
+    this.location,
   });
 }
