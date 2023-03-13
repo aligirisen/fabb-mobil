@@ -47,6 +47,14 @@ class user_provider {
       print("Failed to Post Data. Error: ${response.statusCode}");
     }
   }
+
+  Future<bool> login(String email, String password) async {
+    final response = await http.post(
+      Uri.parse('https://192.168.1.106:5111/user/login'),
+      body: {'email': email, 'password': password},
+    );
+    return response.statusCode == 200;
+  }
 }
 
 
@@ -96,6 +104,24 @@ class MyController extends GetxController {
     name.value = '';
     email.value = '';
   }
+
+
+
+    LOGIN PROVIDERINI ÇALIŞTIRACAK ELEMAN
+  void _onLoginButtonPressed() async {
+  final email = _emailController.text;
+  final password = _passwordController.text;
+
+  final success = await login(email, password);
+
+  if (success) {
+    Navigator.pushReplacementNamed(context, '/main');
+  } else {
+    setState(() {
+      _errorMessage = 'Invalid email or password';
+    });
+  }
+}
   
 }
 
