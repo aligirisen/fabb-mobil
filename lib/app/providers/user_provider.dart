@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class user_provider {
@@ -6,6 +7,7 @@ class user_provider {
   final user_id = '';
 
   Future<void> fetchUserData(String user_id) async {
+    // get
     final response = await http.get(Uri.parse('$base_url/user/$user_id'));
 
     if (response.statusCode == 200) {
@@ -18,15 +20,14 @@ class user_provider {
   }
 
   void postRegister() async {
+    // register
     String url = "https://192.168.1.106:5111/user/signup";
 
-    // Define the headers
     Map<String, String> headers = {
       "Content-Type": "application/json",
       "Accept": "application/json"
     };
 
-    // Define the body
     Map<String, dynamic> body = {
       "email": "mobil@gmail.com",
       "password": "deneme",
@@ -49,16 +50,15 @@ class user_provider {
   }
 
   Future<bool> login(String email, String password) async {
-    final response = await http.post(
-      Uri.parse('https://192.168.1.106:5111/user/login'),
-      body: {'email': email, 'password': password},
-    );
+    // login
+    final response = await http.get(
+        Uri.parse('$base_url/user/signin?email=$email&password=$password'));
     return response.statusCode == 200;
   }
 }
 
 
-/* Yukarıdaki get methodu çalışır halde.
+/* Yukarıdaki methodlar çalışır halde.
 
 
 controller'la bağlanacak
@@ -122,6 +122,22 @@ class MyController extends GetxController {
     });
   }
 }
+
+void _onLoginButtonPressed(final email, final password) async {
+  final password = _passwordController.text;
+
+  final success = await login(email, password);
+
+  if (success) {
+    Navigator.pushReplacementNamed(context, '/main');
+  } else {
+    setState(() {
+      _errorMessage = 'Invalid email or password';
+    });
+  }
+}
+
+
   
 }
 
