@@ -1,10 +1,25 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class user_provider {
+class AuthController {
+  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  TextEditingController? emailController, passwordController;
+
+  RxString displayText = 'Enter a password'.obs;
+  RxDouble passwordStrength = 0.0.obs;
+  RegExp numRegExpress = RegExp(r".*[0-9].*");
+  RegExp letterRegExpress = RegExp(r".*[A-Za-z].*");
+  RxBool isPasswordHidden = true.obs;
+  RxString falseLogin = ''.obs;
+  RxString firstnName = ''.obs;
+
   final base_url = 'https://192.168.1.106:5111';
-  final user_id = '';
+  final user_id = '-NQ0aJDZwrov9UsJ8Q2d';
+
+  RxString password = ''.obs;
+  RxString email = ''.obs;
 
   Future<void> fetchUserData(String user_id) async {
     // get
@@ -51,9 +66,44 @@ class user_provider {
 
   Future<bool> login(String email, String password) async {
     // login
+
+    const base_url = 'https://fabb-backend.onrender.com';
     final response = await http.get(
         Uri.parse('$base_url/user/signin?email=$email&password=$password'));
-    return response.statusCode == 200;
+
+    if (response.statusCode == 200) {
+      final jsonData = json.decode(response.body);
+      print(jsonData);
+      return true;
+    } else {
+      print(response.statusCode);
+      throw Exception('Failed to load user data from API');
+      return false;
+    }
+  }
+
+  String? validateEmail(String value) {
+    if (!GetUtils.isEmail(value)) {
+      return "Provide valid email";
+    }
+    return null;
+  }
+
+  String? validatePassword(String value) {
+    if (value.length < 6) {
+      return "Password must be longer than 6 characters";
+    }
+    return null;
+  }
+
+  bool checkLogin() {
+    final isValid = loginFormKey.currentState!.validate();
+    if (!isValid) {
+      return false;
+    } else {
+      loginFormKey.currentState!.save();
+      return true;
+    }
   }
 }
 

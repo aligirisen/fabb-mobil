@@ -1,12 +1,14 @@
+import 'package:fabb_mobil/app/controllers/auth_controller.dart';
 import 'package:fabb_mobil/app/modules/auth_pages/controller/login_controller.dart';
 import 'package:fabb_mobil/app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../theme/app_images.dart';
 
-class LoginView extends GetView<LoginController> {
+class LoginView extends GetView<AuthController> {
   const LoginView({super.key});
 
   @override
@@ -66,7 +68,12 @@ class LoginView extends GetView<LoginController> {
   GestureDetector loginButton() {
     return GestureDetector(
       onTap: () {
-        if (controller.checkLogin()) {
+        print(
+            "password : ${controller.password.value} \nemail : ${controller.email.value}");
+        if (controller.checkLogin() &&
+            controller.login(
+                    controller.email.value, controller.password.value) ==
+                true) {
           Get.toNamed('/signup');
         } else {
           Get.defaultDialog(
@@ -106,10 +113,13 @@ class LoginView extends GetView<LoginController> {
       child: TextFormField(
         controller: controller.passwordController,
         onSaved: (value) {
-          controller.password = value!;
+          controller.password.value = value!;
         },
         validator: (value) {
           return controller.validatePassword(value!);
+        },
+        onChanged: (value) {
+          controller.password.value = value;
         },
         obscureText: controller.isPasswordHidden.value,
         decoration: InputDecoration(
@@ -147,12 +157,14 @@ class LoginView extends GetView<LoginController> {
       child: TextFormField(
         controller: controller.emailController,
         onSaved: (value) {
-          controller.email = value!;
+          controller.email.value = value!;
         },
         validator: (value) {
           return controller.validateEmail(value!);
         },
-        onChanged: (value) {},
+        onChanged: (value) {
+          controller.email.value = value;
+        },
         decoration: const InputDecoration(
             icon: Icon(Icons.person),
             border: UnderlineInputBorder(),
