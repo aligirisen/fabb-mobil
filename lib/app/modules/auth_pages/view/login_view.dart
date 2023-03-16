@@ -44,6 +44,17 @@ class LoginView extends GetView<AuthController> {
                             loginButton(),
                             orCreateAccountText()
                           ])))),
+          Padding(
+            padding: EdgeInsets.only(right: 18.w, bottom: 20.h),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Text(
+                "Continue as\nGuest",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+            ),
+          ),
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(
@@ -131,7 +142,9 @@ class LoginView extends GetView<AuthController> {
               Text(
                 "LOGIN NOW",
                 style: TextStyle(
-                    fontSize: 18, color: Color.fromARGB(255, 53, 53, 53)),
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 21, 54, 70)),
               ),
               SizedBox(
                 width: 10.w,
