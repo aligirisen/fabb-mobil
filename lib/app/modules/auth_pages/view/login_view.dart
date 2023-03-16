@@ -70,10 +70,9 @@ class LoginView extends GetView<AuthController> {
       onTap: () {
         print(
             "password : ${controller.password.value} \nemail : ${controller.email.value}");
-        if (controller.checkLogin() &&
-            controller.login(
-                    controller.email.value, controller.password.value) ==
-                true) {
+        if (controller.login(
+                controller.email.value, controller.password.value) ==
+            true) {
           Get.toNamed('/signup');
         } else {
           Get.defaultDialog(

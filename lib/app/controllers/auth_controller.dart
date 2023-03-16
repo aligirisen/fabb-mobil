@@ -67,7 +67,7 @@ class AuthController {
   Future<bool> login(String email, String password) async {
     // login
 
-    const base_url = 'https://fabb-backend.onrender.com';
+    const base_url = 'http://192.168.50.20:5111';
     final response = await http.get(
         Uri.parse('$base_url/user/signin?email=$email&password=$password'));
 
@@ -78,7 +78,7 @@ class AuthController {
     } else {
       print(response.statusCode);
       throw Exception('Failed to load user data from API');
-      return false;
+      //return false;
     }
   }
 
@@ -90,7 +90,7 @@ class AuthController {
   }
 
   String? validatePassword(String value) {
-    if (value.length < 6) {
+    if (value.length < 5) {
       return "Password must be longer than 6 characters";
     }
     return null;
