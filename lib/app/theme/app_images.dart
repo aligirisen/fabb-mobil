@@ -9,4 +9,5 @@ class AppImages {
       Image(image: AssetImage('assets/images/thirdinfo.png'));
   static AssetImage loginBackground =
       const AssetImage('assets/images/login_background.png');
+  static AssetImage logo = const AssetImage('assets/images/logo.png');
 }

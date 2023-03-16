@@ -1,9 +1,6 @@
 import 'package:fabb_mobil/app/controllers/auth_controller.dart';
-import 'package:fabb_mobil/app/modules/auth_pages/controller/login_controller.dart';
-import 'package:fabb_mobil/app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../theme/app_images.dart';
@@ -16,11 +13,12 @@ class LoginView extends GetView<AuthController> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.mainColor,
-        ),
+        resizeToAvoidBottomInset: false,
+        // appBar: AppBar(
+        //   backgroundColor: AppColors.mainColor,
+        // ),
         body: Stack(children: [
-          Container(
+          SizedBox(
             width: Get.width,
             height: 100.h,
             child: Image(image: AppImages.loginBackground, fit: BoxFit.fill),
@@ -28,25 +26,50 @@ class LoginView extends GetView<AuthController> {
           Container(
               height: Get.height,
               width: Get.width,
-              padding: const EdgeInsets.symmetric(horizontal: 60),
-              margin: const EdgeInsets.only(top: 50),
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              margin: EdgeInsets.only(top: 23.h),
               child: SingleChildScrollView(
                   child: Form(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       key: controller.loginFormKey,
                       child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            appTitle(),
+                            //appTitle(),
                             emailTextFormField(),
                             Obx(
                               () => passwordTextFormField(),
                             ),
+                            forgotPassword(),
                             loginButton(),
                             orCreateAccountText()
                           ])))),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Container(
+              margin: EdgeInsets.only(bottom: 2.h),
+              height: 10.h,
+              child: Image(image: AppImages.logo),
+            ),
+          )
         ]),
       ),
+    );
+  }
+
+  Row forgotPassword() {
+    return Row(
+      children: [
+        SizedBox(
+          width: 35.w,
+        ),
+        GestureDetector(
+            onTap: () {},
+            child: Text(
+              "Forgot password?",
+              style: TextStyle(color: Colors.grey, fontSize: 12),
+            )),
+      ],
     );
   }
 
@@ -56,11 +79,10 @@ class LoginView extends GetView<AuthController> {
           Get.toNamed('/signup');
         },
         child: Padding(
-          padding: EdgeInsets.only(top: 2.h),
+          padding: EdgeInsets.only(top: 2.h, left: 45.w),
           child: const Text(
             'or Create an account',
-            style:
-                TextStyle(fontSize: 13, color: Color.fromARGB(255, 81, 81, 81)),
+            style: TextStyle(fontSize: 13, color: Colors.white),
           ),
         ));
   }
@@ -84,31 +106,46 @@ class LoginView extends GetView<AuthController> {
         }
       },
       child: Container(
-        alignment: Alignment.center,
-        margin: EdgeInsets.only(top: 4.h),
-        height: 7.h,
-        width: 70.w,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            color: const Color.fromARGB(255, 54, 54, 54)),
-        child: const Text(
-          "LOGIN NOW",
-          style: TextStyle(fontSize: 18, color: Colors.white),
-        ),
-      ),
+          alignment: Alignment.center,
+          margin: EdgeInsets.only(top: 10.h),
+          height: 8.h,
+          width: 90.w,
+          decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromARGB(255, 66, 66, 66).withOpacity(0.6),
+                  spreadRadius: 1,
+                  blurRadius: 2,
+                  offset: Offset(0, 2), // changes position of shadow
+                ),
+              ],
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: Color.fromARGB(255, 157, 157, 157),
+                width: 1,
+              ),
+              color: Color.fromARGB(255, 255, 255, 255)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                "LOGIN NOW",
+                style: TextStyle(
+                    fontSize: 18, color: Color.fromARGB(255, 53, 53, 53)),
+              ),
+              SizedBox(
+                width: 10.w,
+              ),
+              Icon(Icons.arrow_right)
+            ],
+          )),
     );
   }
 
-  Container passwordTextFormField() {
-    return Container(
-      margin: EdgeInsets.only(top: 3.h),
-      padding: EdgeInsets.all(3.h),
+  SizedBox passwordTextFormField() {
+    return SizedBox(
       height: 10.h,
-      width: 90.w,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: Colors.transparent,
-          border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
+      width: 60.w,
       child: TextFormField(
         controller: controller.passwordController,
         onSaved: (value) {
@@ -143,16 +180,10 @@ class LoginView extends GetView<AuthController> {
     );
   }
 
-  Container emailTextFormField() {
-    return Container(
-      margin: EdgeInsets.only(top: 3.h),
-      padding: EdgeInsets.all(3.h),
+  SizedBox emailTextFormField() {
+    return SizedBox(
       height: 10.h,
-      width: 90.w,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: Colors.transparent,
-          border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
+      width: 60.w,
       child: TextFormField(
         controller: controller.emailController,
         onSaved: (value) {
