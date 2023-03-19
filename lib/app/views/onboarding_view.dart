@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:swipe/swipe.dart';
-import 'package:fabb_mobil/app/modules/info pages/controller/onboarding_controller.dart';
+import 'package:fabb_mobil/app/controllers/onboarding_controller.dart';
 
 class OnboardingPageView extends StatelessWidget {
   final controller = OnboardingController();

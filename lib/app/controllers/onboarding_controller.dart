@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../theme/app_images.dart';
-import '../../../theme/app_strings.dart';
-import '../models/onborading_infor_model.dart';
+import '../models/onborading_model.dart';
+import '../theme/app_images.dart';
+import '../theme/app_strings.dart';
 
 class OnboardingController extends GetxController {
   var selectedPageIndex = 0.obs;
@@ -13,25 +13,26 @@ class OnboardingController extends GetxController {
   forwardAction() {
     if (isLastPage) {
       Get.toNamed('login');
-    } else
+    } else {
       pageController.nextPage(duration: 300.milliseconds, curve: Curves.ease);
+    }
   }
 
-  List<OnboardingInfo> onboardingPages = [
-    OnboardingInfo(
+  List<OnboardingModel> onboardingPages = [
+    OnboardingModel(
       AppImages.firstBoardingImage,
-      AppStrings.appTitle,
+      AppStrings.firstInfoTitle,
       AppStrings.firstInfoText,
     ),
-    OnboardingInfo(
+    OnboardingModel(
       AppImages.secondBoardingImage,
-      AppStrings.appTitle,
-      AppStrings.firstInfoText,
+      AppStrings.secondInfoTitle,
+      AppStrings.secondInfoText,
     ),
-    OnboardingInfo(
+    OnboardingModel(
       AppImages.thirdBoardingImage,
-      AppStrings.appTitle,
-      AppStrings.firstInfoText,
+      AppStrings.thirdInfoTitle,
+      AppStrings.thirdInfoText,
     ),
   ];
 }

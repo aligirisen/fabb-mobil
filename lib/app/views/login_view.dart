@@ -1,11 +1,10 @@
-import 'package:fabb_mobil/app/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import '../services/auth_service.dart';
+import '../theme/app_images.dart';
 
-import '../../../theme/app_images.dart';
-
-class LoginView extends GetView<AuthController> {
+class LoginView extends GetView<AuthService> {
   const LoginView({super.key});
 
   @override
