@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import '../bindings/auth_binding.dart';
-import '../views/login_view.dart';
-import '../views/onboarding_view.dart';
-import '../views/signup_view.dart';
+import '../modules/1-auth pages/bindings/auth_binding.dart';
+import '../modules/1-auth pages/views/login_view.dart';
+import '../modules/1-auth pages/views/signup_view.dart';
+import '../modules/0-onboarding/views/onboarding_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
