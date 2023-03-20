@@ -1,7 +1,6 @@
 import 'package:fabb_mobil/app/theme/app_images.dart';
 import 'package:fabb_mobil/app/theme/app_strings.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../controllers/signup_controller.dart';
