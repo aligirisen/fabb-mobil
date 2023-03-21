@@ -1,4 +1,5 @@
 import 'package:fabb_mobil/app/models/user_model.dart';
+import 'package:fabb_mobil/app/modules/1-auth%20pages/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -10,15 +11,24 @@ class SignupController extends GetxController {
   RxString email = ''.obs;
   RxString password = ''.obs;
 
-  get fullname => null;
-
-  UserModel createUserModel() {
+  UserModel createUser() {
     return UserModel(
-      fullName: fullname,
+      fullName: firstname.value + lastname.value,
       phoneNumber: phonenumber.value,
       email: email.value,
       password: password.value,
     );
+  }
+
+  Future<bool> register() async {
+    print(AuthService().postRegister(createUser()));
+    bool isRegistered = await AuthService().postRegister(createUser());
+
+    if (isRegistered) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   late TextEditingController infoController;
@@ -48,6 +58,4 @@ class SignupController extends GetxController {
     }
     return null;
   }
-
-  void register() {}
 }

@@ -9,7 +9,6 @@ class LoginController extends GetxController {
   RegExp letterRegExpress = RegExp(r".*[A-Za-z].*");
   RxBool isPasswordHidden = true.obs;
   RxString falseLogin = ''.obs;
-  RxString firstnName = ''.obs;
 
   RxString password = ''.obs;
   RxString email = ''.obs;

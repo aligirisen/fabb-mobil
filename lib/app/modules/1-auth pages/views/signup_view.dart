@@ -2,6 +2,7 @@ import 'package:fabb_mobil/app/theme/app_images.dart';
 import 'package:fabb_mobil/app/theme/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:sizer/sizer.dart';
 import '../controllers/signup_controller.dart';
 
@@ -75,13 +76,17 @@ class SignupView extends GetView<SignupController> {
 
   GestureDetector signupButton() {
     return GestureDetector(
-      onTap: () {
-        Get.defaultDialog(
-            title: "Done!",
-            titleStyle: const TextStyle(color: Colors.white),
-            backgroundColor: const Color.fromARGB(255, 41, 41, 41),
-            content: const Text('Succesfully created an account.',
-                style: TextStyle(color: Colors.white)));
+      onTap: () async {
+        if (!await controller.register()) {
+          print("Not Found");
+        } else {
+          Get.defaultDialog(
+              title: "Done!",
+              titleStyle: const TextStyle(color: Colors.white),
+              backgroundColor: const Color.fromARGB(255, 41, 41, 41),
+              content: const Text('Succesfully created an account.',
+                  style: TextStyle(color: Colors.white)));
+        }
         //Get.toNamed('/login');
       },
       child: Container(
@@ -135,13 +140,10 @@ class SignupView extends GetView<SignupController> {
           border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
       child: TextFormField(
         onSaved: (value) {
-          controller.fullname.value = value!;
-        },
-        validator: (value) {
-          return controller.validateEmail(value!);
+          controller.firstname.value = value!;
         },
         onChanged: (value) {
-          controller.fullname.value = value;
+          controller.firstname.value = value;
         },
         decoration: const InputDecoration(
             border: InputBorder.none,
@@ -162,7 +164,12 @@ class SignupView extends GetView<SignupController> {
           color: Colors.transparent,
           border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
       child: TextFormField(
-        onChanged: (value) {},
+        onSaved: (value) {
+          controller.lastname.value = value!;
+        },
+        onChanged: (value) {
+          controller.lastname.value = value;
+        },
         decoration: const InputDecoration(
             border: InputBorder.none,
             hintText: 'Last Name',
@@ -182,7 +189,12 @@ class SignupView extends GetView<SignupController> {
           color: Colors.transparent,
           border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
       child: TextFormField(
-        onChanged: (value) {},
+        onSaved: (value) {
+          controller.phonenumber.value = value!;
+        },
+        onChanged: (value) {
+          controller.phonenumber.value = value;
+        },
         decoration: const InputDecoration(
             border: InputBorder.none,
             hintText: 'Phone Number',
@@ -202,7 +214,12 @@ class SignupView extends GetView<SignupController> {
           color: Colors.transparent,
           border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
       child: TextFormField(
-        onChanged: (value) {},
+        onSaved: (value) {
+          controller.email.value = value!;
+        },
+        onChanged: (value) {
+          controller.email.value = value;
+        },
         decoration: const InputDecoration(
             border: InputBorder.none,
             hintText: 'E-mail',
@@ -222,7 +239,12 @@ class SignupView extends GetView<SignupController> {
           color: Colors.transparent,
           border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
       child: TextFormField(
-        onChanged: (value) {},
+        onSaved: (value) {
+          controller.password.value = value!;
+        },
+        onChanged: (value) {
+          controller.password.value = value;
+        },
         decoration: const InputDecoration(
             border: InputBorder.none,
             hintText: 'Password',
