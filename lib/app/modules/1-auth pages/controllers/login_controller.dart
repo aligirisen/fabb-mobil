@@ -1,9 +1,8 @@
+import 'package:fabb_mobil/app/modules/1-auth%20pages/services/auth_service.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
-  String password = '';
-  String email = '';
   RxString displayText = 'Enter a password'.obs;
   RxDouble passwordStrength = 0.0.obs;
   RegExp numRegExpress = RegExp(r".*[0-9].*");
@@ -11,6 +10,9 @@ class LoginController extends GetxController {
   RxBool isPasswordHidden = true.obs;
   RxString falseLogin = ''.obs;
   RxString firstnName = ''.obs;
+
+  RxString password = ''.obs;
+  RxString email = ''.obs;
 
   //global key, create account butonuna basıldığında Get.deleteall(controller)
 
@@ -51,6 +53,15 @@ class LoginController extends GetxController {
     } else {
       loginFormKey.currentState!.save();
       return true;
+    }
+  }
+
+  Future<bool> loginService(String email, String password) async {
+    bool isLogged = await AuthService().login(email, password);
+    if (isLogged == true) {
+      return true;
+    } else {
+      return false;
     }
   }
 }
