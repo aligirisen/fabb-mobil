@@ -1,187 +1,217 @@
 import 'dart:html';
 
-class user_model {
-  final String account_id;
-  final DateTime? date_of_birth;
-  final String user_id;
-  final String full_name;
-  final String phone_number;
+class UserModel {
+  final String? accountId;
+  final DateTime? dateOfBirth;
+  final String? userId;
+  final String fullName;
+  final String phoneNumber;
   final String email;
+  final String password;
   final List? incident;
-  final List? liked_incidents;
-  final List? disliked_incidents;
+  final List? likedIncidents;
+  final List? dislikedIncidents;
   final Location? location;
 
-  user_model({
-    required this.account_id,
-    this.date_of_birth,
-    required this.user_id,
-    required this.full_name,
-    required this.phone_number,
+  UserModel({
+    this.accountId,
+    this.dateOfBirth,
+    this.userId,
+    required this.fullName,
+    required this.phoneNumber,
     required this.email,
+    required this.password,
     this.incident,
-    this.liked_incidents,
-    this.disliked_incidents,
+    this.likedIncidents,
+    this.dislikedIncidents,
     this.location,
   });
-  String get accountId => account_id;
-  DateTime? get dateOfBirth => date_of_birth;
-  String get userId => user_id;
-  String get fullName => full_name;
-  String get phoneNumber => phone_number;
+
+  String? get accountid => accountId;
+  DateTime? get dateofbirth => dateOfBirth;
+  String? get userid => userId;
+  String get fullname => fullName;
+  String get phonenumber => phoneNumber;
   String get emailAddress => email;
+  String get passwords => password;
   List? get incidents => incident;
-  List? get likedIncidents => liked_incidents;
-  List? get dislikedIncidents => disliked_incidents;
+  List? get likedincidents => likedIncidents;
+  List? get dislikedincidents => dislikedIncidents;
   Location? get userLocation => location;
 
-  user_model setAccountId(String accountId) {
-    return user_model(
-      account_id: accountId,
-      date_of_birth: date_of_birth,
-      user_id: user_id,
-      full_name: full_name,
-      phone_number: phone_number,
+  UserModel setAccountId(String accountId) {
+    return UserModel(
+      accountId: accountId,
+      dateOfBirth: dateOfBirth,
+      userId: userId,
+      fullName: fullName,
+      phoneNumber: phoneNumber,
       email: email,
+      password: password,
       incident: incident,
-      liked_incidents: liked_incidents,
-      disliked_incidents: disliked_incidents,
+      likedIncidents: likedIncidents,
+      dislikedIncidents: dislikedIncidents,
       location: location,
     );
   }
 
-  user_model setDateOfBirth(DateTime dateofBirth) {
-    return user_model(
-      account_id: account_id,
-      date_of_birth: dateofBirth,
-      user_id: user_id,
-      full_name: full_name,
-      phone_number: phone_number,
+  UserModel setDateOfBirth(DateTime dateofBirth) {
+    return UserModel(
+      accountId: accountId,
+      dateOfBirth: dateofBirth,
+      userId: userId,
+      fullName: fullName,
+      phoneNumber: phoneNumber,
       email: email,
+      password: password,
       incident: incident,
-      liked_incidents: liked_incidents,
-      disliked_incidents: disliked_incidents,
+      likedIncidents: likedIncidents,
+      dislikedIncidents: dislikedIncidents,
       location: location,
     );
   }
 
-  user_model setUserId(String userId) {
-    return user_model(
-      account_id: accountId,
-      date_of_birth: date_of_birth,
-      user_id: userId,
-      full_name: full_name,
-      phone_number: phone_number,
+  UserModel setUserId(String userId) {
+    return UserModel(
+      accountId: accountId,
+      dateOfBirth: dateOfBirth,
+      userId: userId,
+      fullName: fullName,
+      phoneNumber: phoneNumber,
       email: email,
+      password: password,
       incident: incident,
-      liked_incidents: liked_incidents,
-      disliked_incidents: disliked_incidents,
+      likedIncidents: likedIncidents,
+      dislikedIncidents: dislikedIncidents,
       location: location,
     );
   }
 
-  user_model setFullName(String fullName) {
-    return user_model(
-      account_id: accountId,
-      date_of_birth: date_of_birth,
-      user_id: user_id,
-      full_name: fullName,
-      phone_number: phone_number,
+  UserModel setFullName(String fullName) {
+    return UserModel(
+      accountId: accountId,
+      dateOfBirth: dateOfBirth,
+      userId: userId,
+      fullName: fullName,
+      phoneNumber: phoneNumber,
       email: email,
+      password: password,
       incident: incident,
-      liked_incidents: liked_incidents,
-      disliked_incidents: disliked_incidents,
+      likedIncidents: likedIncidents,
+      dislikedIncidents: dislikedIncidents,
       location: location,
     );
   }
 
-  user_model setPhoneNumber(String phoneNumber) {
-    return user_model(
-      account_id: accountId,
-      date_of_birth: date_of_birth,
-      user_id: user_id,
-      full_name: full_name,
-      phone_number: phoneNumber,
+  UserModel setPhoneNumber(String phoneNumber) {
+    return UserModel(
+      accountId: accountId,
+      dateOfBirth: dateOfBirth,
+      userId: userId,
+      fullName: fullName,
+      phoneNumber: phoneNumber,
       email: email,
+      password: password,
       incident: incident,
-      liked_incidents: liked_incidents,
-      disliked_incidents: disliked_incidents,
+      likedIncidents: likedIncidents,
+      dislikedIncidents: dislikedIncidents,
       location: location,
     );
   }
 
-  user_model setEmail(String _email) {
-    return user_model(
-      account_id: accountId,
-      date_of_birth: date_of_birth,
-      user_id: user_id,
-      full_name: full_name,
-      phone_number: phone_number,
+  UserModel setEmail(String _email) {
+    return UserModel(
+      accountId: accountId,
+      dateOfBirth: dateOfBirth,
+      userId: userId,
+      fullName: fullName,
+      phoneNumber: phoneNumber,
       email: _email,
+      password: password,
       incident: incident,
-      liked_incidents: liked_incidents,
-      disliked_incidents: disliked_incidents,
+      likedIncidents: likedIncidents,
+      dislikedIncidents: dislikedIncidents,
       location: location,
     );
   }
 
-  user_model setIncident(List _incident) {
-    return user_model(
-      account_id: accountId,
-      date_of_birth: date_of_birth,
-      user_id: user_id,
-      full_name: full_name,
-      phone_number: phone_number,
+  UserModel setIncident(List _incident) {
+    return UserModel(
+      accountId: accountId,
+      dateOfBirth: dateOfBirth,
+      userId: userId,
+      fullName: fullName,
+      phoneNumber: phoneNumber,
       email: email,
+      password: password,
       incident: _incident,
-      liked_incidents: liked_incidents,
-      disliked_incidents: disliked_incidents,
+      likedIncidents: likedIncidents,
+      dislikedIncidents: dislikedIncidents,
       location: location,
     );
   }
 
-  user_model setLikedIncidents(List likedIncidents) {
-    return user_model(
-      account_id: accountId,
-      date_of_birth: date_of_birth,
-      user_id: user_id,
-      full_name: full_name,
-      phone_number: phone_number,
+  UserModel setLikedIncidents(List likedIncidents) {
+    return UserModel(
+      accountId: accountId,
+      dateOfBirth: dateOfBirth,
+      userId: userId,
+      fullName: fullName,
+      phoneNumber: phoneNumber,
       email: email,
+      password: password,
       incident: incident,
-      liked_incidents: likedIncidents,
-      disliked_incidents: disliked_incidents,
+      likedIncidents: likedIncidents,
+      dislikedIncidents: dislikedIncidents,
       location: location,
     );
   }
 
-  user_model setDislikedIncidents(List dislikedIncidents) {
-    return user_model(
-      account_id: accountId,
-      date_of_birth: date_of_birth,
-      user_id: user_id,
-      full_name: full_name,
-      phone_number: phone_number,
+  UserModel setDislikedIncidents(List dislikedIncidents) {
+    return UserModel(
+      accountId: accountId,
+      dateOfBirth: dateOfBirth,
+      userId: userId,
+      fullName: fullName,
+      phoneNumber: phoneNumber,
       email: email,
+      password: password,
       incident: incident,
-      liked_incidents: liked_incidents,
-      disliked_incidents: dislikedIncidents,
+      likedIncidents: likedIncidents,
+      dislikedIncidents: dislikedIncidents,
       location: location,
     );
   }
 
-  user_model setLocation(Location _location) {
-    return user_model(
-      account_id: accountId,
-      date_of_birth: date_of_birth,
-      user_id: user_id,
-      full_name: full_name,
-      phone_number: phone_number,
+  UserModel setLocation(Location _location) {
+    return UserModel(
+      accountId: accountId,
+      dateOfBirth: dateOfBirth,
+      userId: userId,
+      fullName: fullName,
+      phoneNumber: phoneNumber,
       email: email,
+      password: password,
       incident: incident,
-      liked_incidents: liked_incidents,
-      disliked_incidents: disliked_incidents,
+      likedIncidents: likedIncidents,
+      dislikedIncidents: dislikedIncidents,
       location: _location,
+    );
+  }
+
+  UserModel setPassword(String _password) {
+    return UserModel(
+      accountId: accountId,
+      dateOfBirth: dateOfBirth,
+      userId: userId,
+      fullName: fullName,
+      phoneNumber: phoneNumber,
+      email: email,
+      password: _password,
+      incident: incident,
+      likedIncidents: likedIncidents,
+      dislikedIncidents: dislikedIncidents,
+      location: location,
     );
   }
 }
