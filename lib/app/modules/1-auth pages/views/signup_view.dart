@@ -134,6 +134,7 @@ class SignupView extends GetView<SignupController> {
           color: Colors.transparent,
           border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
       child: TextFormField(
+        //onSaved: ,
         onChanged: (value) {},
         decoration: const InputDecoration(
             border: InputBorder.none,

@@ -1,10 +1,11 @@
+import 'package:fabb_mobil/app/modules/1-auth%20pages/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../services/auth_service.dart';
 import '../../../theme/app_images.dart';
 
-class LoginView extends GetView<AuthService> {
+class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
 
   @override
@@ -99,12 +100,9 @@ class LoginView extends GetView<AuthService> {
 
   GestureDetector loginButton() {
     return GestureDetector(
-      onTap: () {
-        print(
-            "password : ${controller.password.value} \nemail : ${controller.email.value}");
-        if (controller.login(
-                controller.email.value, controller.password.value) ==
-            true) {
+      onTap: () async {
+        if (await controller.loginService(
+            controller.email.value, controller.password.value)) {
           Get.toNamed('/signup');
         } else {
           Get.defaultDialog(

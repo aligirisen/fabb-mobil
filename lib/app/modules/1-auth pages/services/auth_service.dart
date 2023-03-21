@@ -7,19 +7,8 @@ class AuthService {
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   TextEditingController? emailController, passwordController;
 
-  RxString displayText = 'Enter a password'.obs;
-  RxDouble passwordStrength = 0.0.obs;
-  RegExp numRegExpress = RegExp(r".*[0-9].*");
-  RegExp letterRegExpress = RegExp(r".*[A-Za-z].*");
-  RxBool isPasswordHidden = true.obs;
-  RxString falseLogin = ''.obs;
-  RxString firstnName = ''.obs;
-
   final base_url = 'https://192.168.1.106:5111';
   final user_id = '-NQ0aJDZwrov9UsJ8Q2d';
-
-  RxString password = ''.obs;
-  RxString email = ''.obs;
 
   Future<void> fetchUserData(String user_id) async {
     // get
@@ -67,7 +56,7 @@ class AuthService {
   Future<bool> login(String email, String password) async {
     // login
 
-    const base_url = 'http://192.168.50.20:5111';
+    const base_url = 'http://192.168.1.106:5111';
     final response = await http.get(
         Uri.parse('$base_url/user/signin?email=$email&password=$password'));
 
@@ -77,32 +66,7 @@ class AuthService {
       return true;
     } else {
       print(response.statusCode);
-      throw Exception('Failed to load user data from API');
-      //return false;
-    }
-  }
-
-  String? validateEmail(String value) {
-    if (!GetUtils.isEmail(value)) {
-      return "Provide valid email";
-    }
-    return null;
-  }
-
-  String? validatePassword(String value) {
-    if (value.length < 5) {
-      return "Password must be longer than 6 characters";
-    }
-    return null;
-  }
-
-  bool checkLogin() {
-    final isValid = loginFormKey.currentState!.validate();
-    if (!isValid) {
       return false;
-    } else {
-      loginFormKey.currentState!.save();
-      return true;
     }
   }
 }
