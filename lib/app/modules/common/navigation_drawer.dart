@@ -1,37 +1,42 @@
+import 'package:fabb_mobil/app/theme/app_colors.dart';
+import 'package:fabb_mobil/app/theme/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 import '../../routes/app_pages.dart';
 
 class CustomNavigationDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      width: 60.w,
+      backgroundColor: AppColors.darkBlue,
       child: Container(
         child: ListView(children: [
           buildDrawerHeader(),
-          const Divider(
-            color: Colors.grey,
-          ),
           buildDrawerItem(
-              text: "First",
-              icon: Icon(Icons.person),
+              text: "Home",
               onTap: () => navigate(0),
-              tileColor: Get.currentRoute == Routes.login
-                  ? Colors.blue
+              tileColor: Get.currentRoute == Routes.home
+                  ? AppColors.chosendrawer
                   : Colors.transparent),
           buildDrawerItem(
-              text: "Sec",
-              icon: Icon(Icons.photo),
+              text: "My Reports",
               onTap: () => navigate(1),
-              tileColor: Get.currentRoute == Routes.login
-                  ? Colors.blue
+              tileColor: Get.currentRoute == Routes.myreports
+                  ? AppColors.chosendrawer
                   : Colors.transparent),
           buildDrawerItem(
-              text: "Third",
-              icon: Icon(Icons.close),
+              text: "Settings",
               onTap: () => navigate(2),
-              tileColor: Get.currentRoute == Routes.login
-                  ? Colors.blue
+              tileColor: Get.currentRoute == Routes.settings
+                  ? AppColors.chosendrawer
+                  : Colors.transparent),
+          buildDrawerItem(
+              text: "Contact",
+              onTap: () => navigate(3),
+              tileColor: Get.currentRoute == Routes.contact
+                  ? AppColors.chosendrawer
                   : Colors.transparent)
         ]),
       ),
@@ -39,36 +44,49 @@ class CustomNavigationDrawer extends StatelessWidget {
   }
 
   Widget buildDrawerHeader() {
-    return const UserAccountsDrawerHeader(
-      accountName: Text("Hello"),
-      accountEmail: Text("deneme@gmail.com"),
-      currentAccountPicture: Icon(Icons.person),
-      currentAccountPictureSize: Size.square(50),
+    return UserAccountsDrawerHeader(
+      margin: EdgeInsets.only(left: 5.w),
+      accountName: Text(
+        "Fabb App",
+        style: TextStyle(fontWeight: FontWeight.w300),
+      ),
+      accountEmail: Text("deneme@gmail.com",
+          style: TextStyle(fontWeight: FontWeight.w300)),
+      currentAccountPicture: Image(image: AppImages.logo),
+      currentAccountPictureSize: Size.square(100),
+      decoration: BoxDecoration(color: AppColors.darkBlue),
     );
   }
 
   Widget buildDrawerItem(
       {required String text,
-      required Icon icon,
       required VoidCallback onTap,
       required Color tileColor}) {
-    return ListTile(
-      leading: icon,
-      title: Text(text),
-      onTap: onTap,
-      tileColor: tileColor,
+    return Container(
+      margin: EdgeInsets.only(left: 5.w),
+      child: ListTile(
+        title: Text(
+          text,
+          style: TextStyle(
+              color: AppColors.lightWords,
+              fontSize: 16,
+              fontWeight: FontWeight.w400),
+        ),
+        onTap: onTap,
+        tileColor: tileColor,
+      ),
     );
   }
 
   navigate(int index) {
     if (index == 0) {
-      Get.toNamed("/firstPage");
+      Get.toNamed("/mapscreen");
     } else if (index == 1) {
-      Get.toNamed("/secondPage");
+      Get.toNamed("/myreports");
     } else if (index == 2) {
-      Get.toNamed("/thirdPage");
+      Get.toNamed("/settings");
     } else {
-      Get.toNamed("/home");
+      Get.toNamed("/contact");
     }
   }
 }

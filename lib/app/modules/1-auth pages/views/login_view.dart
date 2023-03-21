@@ -44,26 +44,39 @@ class LoginView extends GetView<LoginController> {
                             loginButton(),
                             orCreateAccountText()
                           ])))),
-          Padding(
-            padding: EdgeInsets.only(right: 18.w, bottom: 20.h),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Text(
-                "Continue as\nGuest",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, color: Colors.white),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Container(
-              margin: EdgeInsets.only(bottom: 2.h),
-              height: 10.h,
-              child: Image(image: AppImages.logo),
-            ),
-          )
+          continueAsGuest(),
+          logo()
         ]),
+      ),
+    );
+  }
+
+  Align logo() {
+    return Align(
+      alignment: Alignment.bottomLeft,
+      child: Container(
+        margin: EdgeInsets.only(bottom: 2.h),
+        height: 10.h,
+        child: Image(image: AppImages.logo),
+      ),
+    );
+  }
+
+  GestureDetector continueAsGuest() {
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed("/home");
+      },
+      child: Padding(
+        padding: EdgeInsets.only(right: 18.w, bottom: 20.h),
+        child: Align(
+          alignment: Alignment.bottomRight,
+          child: Text(
+            "Continue as\nGuest",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, color: Colors.white),
+          ),
+        ),
       ),
     );
   }
