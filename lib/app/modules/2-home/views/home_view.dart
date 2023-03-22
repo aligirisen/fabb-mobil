@@ -1,3 +1,4 @@
+import 'package:fabb_mobil/app/modules/2-home/views/map_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sizer/sizer.dart';
@@ -18,7 +19,7 @@ class HomeView extends StatelessWidget {
             toolbarHeight: 9.h,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(25),
+                bottom: Radius.circular(0),
               ),
             ),
             backgroundColor: AppColors.darkBlue,
@@ -54,9 +55,7 @@ class HomeView extends StatelessWidget {
             children: [
               TabBarView(
                 children: [
-                  Center(
-                    child: Text("map"),
-                  ),
+                  Center(child: Text("map")),
                   Center(child: Text("list"))
                 ],
               ),

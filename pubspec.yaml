@@ -49,6 +49,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   liquid_swipe: ^3.0.0
   swipe: ^0.0.1
+  google_maps_flutter: ^2.2.5
 
 dev_dependencies:
   flutter_test:
