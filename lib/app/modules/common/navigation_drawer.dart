@@ -80,7 +80,7 @@ class CustomNavigationDrawer extends StatelessWidget {
 
   navigate(int index) {
     if (index == 0) {
-      Get.toNamed("/mapscreen");
+      Get.toNamed("/home");
     } else if (index == 1) {
       Get.toNamed("/myreports");
     } else if (index == 2) {

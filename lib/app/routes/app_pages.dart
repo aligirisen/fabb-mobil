@@ -1,9 +1,12 @@
+import 'dart:collection';
+
 import 'package:get/get.dart';
-import '../modules/1-auth pages/bindings/auth_binding.dart';
+import '../bindings/all_bindings.dart';
 import '../modules/1-auth pages/views/login_view.dart';
 import '../modules/1-auth pages/views/signup_view.dart';
 import '../modules/0-onboarding/views/onboarding_view.dart';
 import '../modules/2-home/views/home_view.dart';
+import '../modules/2-home/views/map_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
@@ -15,6 +18,7 @@ class AppPages {
   static const login = Routes.login;
   static const signup = Routes.signup;
   static const home = Routes.home;
+  static const map = Routes.map;
 
   static final routes = [
     GetPage(
@@ -33,22 +37,27 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.home,
-      page: () => HomeView(),
+      page: () => const HomeView(),
       binding: HomeBindings(),
     ),
     GetPage(
       name: _Paths.myreports,
-      page: () => HomeView(),
+      page: () => const HomeView(),
       binding: HomeBindings(), //change!!!!
     ),
     GetPage(
       name: _Paths.settings,
-      page: () => HomeView(),
+      page: () => const HomeView(),
       binding: HomeBindings(), //change!!!!
     ),
     GetPage(
       name: _Paths.contact,
-      page: () => HomeView(),
+      page: () => const HomeView(),
+      binding: HomeBindings(), //change!!!!
+    ),
+    GetPage(
+      name: _Paths.map,
+      page: () => const SimpleMapScreen(),
       binding: HomeBindings(), //change!!!!
     ),
   ];

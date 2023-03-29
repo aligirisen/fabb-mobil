@@ -9,14 +9,13 @@ class LoginController extends GetxController {
   RegExp letterRegExpress = RegExp(r".*[A-Za-z].*");
   RxBool isPasswordHidden = true.obs;
   RxString falseLogin = ''.obs;
-  RxString firstnName = ''.obs;
 
   RxString password = ''.obs;
   RxString email = ''.obs;
 
   //global key, create account butonuna basıldığında Get.deleteall(controller)
 
-  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  late GlobalKey<FormState> loginFormKey;
   late TextEditingController emailController, passwordController;
 
   @override
@@ -24,6 +23,7 @@ class LoginController extends GetxController {
     super.onInit();
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    loginFormKey = GlobalKey<FormState>();
   }
 
   @override

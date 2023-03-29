@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapView1 extends StatefulWidget {
-  const MapView1({Key? key}) : super(key: key);
+class SimpleMapScreen extends StatefulWidget {
+  const SimpleMapScreen({Key? key}) : super(key: key);
 
   @override
-  _MapView1State createState() => _MapView1State();
+  _SimpleMapScreenState createState() => _SimpleMapScreenState();
 }
 
-class _MapView1State extends State<MapView1> {
+class _SimpleMapScreenState extends State<SimpleMapScreen> {
   final Completer<GoogleMapController> _controller = Completer();
 
   static const CameraPosition initialPosition = CameraPosition(
@@ -25,10 +25,6 @@ class _MapView1State extends State<MapView1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Simple Google Map"),
-        centerTitle: true,
-      ),
       body: GoogleMap(
         initialCameraPosition: initialPosition,
         mapType: MapType.normal,

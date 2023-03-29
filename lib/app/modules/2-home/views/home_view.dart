@@ -1,12 +1,16 @@
+import 'dart:collection';
+
+import 'package:fabb_mobil/app/modules/2-home/controllers/map_screen_controller.dart';
 import 'package:fabb_mobil/app/modules/2-home/views/map_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../theme/app_colors.dart';
 import '../../common/navigation_drawer.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends GetView<MapScreenController> {
   const HomeView({super.key});
 
   @override
@@ -54,10 +58,7 @@ class HomeView extends StatelessWidget {
           body: Stack(
             children: [
               TabBarView(
-                children: [
-                  Center(child: Text("map")),
-                  Center(child: Text("list"))
-                ],
+                children: [SimpleMapScreen(), Center(child: Text("list"))],
               ),
               Padding(
                 padding: const EdgeInsets.all(20),

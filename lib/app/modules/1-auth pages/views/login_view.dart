@@ -134,17 +134,17 @@ class LoginView extends GetView<LoginController> {
           decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Color.fromARGB(255, 66, 66, 66).withOpacity(0.6),
+                  color: Color.fromARGB(255, 66, 66, 66).withOpacity(0.4),
                   spreadRadius: 1,
-                  blurRadius: 2,
+                  blurRadius: 8,
                   offset: Offset(0, 2), // changes position of shadow
                 ),
               ],
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: Color.fromARGB(255, 157, 157, 157),
-                width: 1,
-              ),
+              // border: Border.all(
+              //   color:Color.fromARGB(255, 157, 157, 157),
+              //   width: 1,
+              // ),
               color: Color.fromARGB(255, 255, 255, 255)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:fabb_mobil/app/models/user_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -23,7 +24,7 @@ class AuthService {
     }
   }
 
-  void postRegister() async {
+  Future<bool> postRegister(UserModel user) async {
     // register
     String url = "https://192.168.1.106:5111/user/signup";
 
@@ -39,17 +40,27 @@ class AuthService {
       "full_name": "Ali ali"
     };
 
+    final Map<String, dynamic> userJson = {
+      'fullName': user.fullName,
+      'phoneNumber': user.phoneNumber,
+      'email': user.email,
+      'password': user.password,
+    };
+
     // Send the POST request
+    print(jsonEncode(userJson));
     http.Response response = await http.post(Uri.parse(url),
-        headers: headers, body: jsonEncode(body));
+        headers: headers, body: jsonEncode(userJson));
 
     // Handle the response
     if (response.statusCode == 200) {
       // Success
       print("Data Posted Successfully!");
+      return true;
     } else {
       // Failure
       print("Failed to Post Data. Error: ${response.statusCode}");
+      return false;
     }
   }
 
