@@ -15,7 +15,7 @@ class LoginController extends GetxController {
 
   //global key, create account butonuna basıldığında Get.deleteall(controller)
 
-  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  late GlobalKey<FormState> loginFormKey;
   late TextEditingController emailController, passwordController;
 
   @override
@@ -23,6 +23,7 @@ class LoginController extends GetxController {
     super.onInit();
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    loginFormKey = GlobalKey<FormState>();
   }
 
   @override

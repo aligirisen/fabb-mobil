@@ -44,26 +44,39 @@ class LoginView extends GetView<LoginController> {
                             loginButton(),
                             orCreateAccountText()
                           ])))),
-          Padding(
-            padding: EdgeInsets.only(right: 18.w, bottom: 20.h),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Text(
-                "Continue as\nGuest",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, color: Colors.white),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Container(
-              margin: EdgeInsets.only(bottom: 2.h),
-              height: 10.h,
-              child: Image(image: AppImages.logo),
-            ),
-          )
+          continueAsGuest(),
+          logo()
         ]),
+      ),
+    );
+  }
+
+  Align logo() {
+    return Align(
+      alignment: Alignment.bottomLeft,
+      child: Container(
+        margin: EdgeInsets.only(bottom: 2.h),
+        height: 10.h,
+        child: Image(image: AppImages.logo),
+      ),
+    );
+  }
+
+  GestureDetector continueAsGuest() {
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed("/home");
+      },
+      child: Padding(
+        padding: EdgeInsets.only(right: 18.w, bottom: 20.h),
+        child: Align(
+          alignment: Alignment.bottomRight,
+          child: Text(
+            "Continue as\nGuest",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, color: Colors.white),
+          ),
+        ),
       ),
     );
   }
@@ -121,17 +134,17 @@ class LoginView extends GetView<LoginController> {
           decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Color.fromARGB(255, 66, 66, 66).withOpacity(0.6),
+                  color: Color.fromARGB(255, 66, 66, 66).withOpacity(0.4),
                   spreadRadius: 1,
-                  blurRadius: 2,
+                  blurRadius: 8,
                   offset: Offset(0, 2), // changes position of shadow
                 ),
               ],
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: Color.fromARGB(255, 157, 157, 157),
-                width: 1,
-              ),
+              // border: Border.all(
+              //   color:Color.fromARGB(255, 157, 157, 157),
+              //   width: 1,
+              // ),
               color: Color.fromARGB(255, 255, 255, 255)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

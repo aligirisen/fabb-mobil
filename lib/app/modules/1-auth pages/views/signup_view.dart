@@ -162,7 +162,7 @@ class SignupView extends GetView<SignupController> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           color: Colors.transparent,
-          border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
+          border: Border.all(color: Color.fromARGB(255, 156, 156, 156))),
       child: TextFormField(
         onSaved: (value) {
           controller.lastname.value = value!;
