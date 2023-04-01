@@ -1,9 +1,8 @@
-import 'package:fabb_mobil/app/modules/1-auth%20pages/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import '../services/auth_service.dart';
-import '../../../theme/app_images.dart';
+import '../../controllers/auth pages/login_controller.dart';
+import '../../theme/app_images.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
@@ -31,7 +30,7 @@ class LoginView extends GetView<LoginController> {
               child: SingleChildScrollView(
                   child: Form(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      key: controller.loginFormKey,
+                      // key: controller.loginFormKey,
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -69,7 +68,7 @@ class LoginView extends GetView<LoginController> {
       },
       child: Padding(
         padding: EdgeInsets.only(right: 18.w, bottom: 20.h),
-        child: Align(
+        child: const Align(
           alignment: Alignment.bottomRight,
           child: Text(
             "Continue as\nGuest",
@@ -89,7 +88,7 @@ class LoginView extends GetView<LoginController> {
         ),
         GestureDetector(
             onTap: () {},
-            child: Text(
+            child: const Text(
               "Forgot password?",
               style: TextStyle(color: Colors.grey, fontSize: 12),
             )),
@@ -134,10 +133,10 @@ class LoginView extends GetView<LoginController> {
           decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Color.fromARGB(255, 66, 66, 66).withOpacity(0.4),
+                  color: const Color.fromARGB(255, 66, 66, 66).withOpacity(0.4),
                   spreadRadius: 1,
                   blurRadius: 8,
-                  offset: Offset(0, 2), // changes position of shadow
+                  offset: const Offset(0, 2), // changes position of shadow
                 ),
               ],
               borderRadius: BorderRadius.circular(20),
@@ -145,11 +144,11 @@ class LoginView extends GetView<LoginController> {
               //   color:Color.fromARGB(255, 157, 157, 157),
               //   width: 1,
               // ),
-              color: Color.fromARGB(255, 255, 255, 255)),
+              color: const Color.fromARGB(255, 255, 255, 255)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text(
+              const Text(
                 "LOGIN NOW",
                 style: TextStyle(
                     fontSize: 17,
@@ -159,7 +158,7 @@ class LoginView extends GetView<LoginController> {
               SizedBox(
                 width: 10.w,
               ),
-              Icon(Icons.arrow_right)
+              const Icon(Icons.arrow_right)
             ],
           )),
     );

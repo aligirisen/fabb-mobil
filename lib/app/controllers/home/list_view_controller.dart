@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import '../models/incident_model.dart';
+
+import '../../models/incident_model.dart';
 
 class ListViewController extends GetxController {
   late List<Incident> incidents;

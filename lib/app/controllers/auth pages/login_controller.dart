@@ -1,4 +1,4 @@
-import 'package:fabb_mobil/app/modules/1-auth%20pages/services/auth_service.dart';
+import 'package:fabb_mobil/app/services/auth%20pages/auth_service.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +15,7 @@ class LoginController extends GetxController {
 
   //global key, create account butonuna basıldığında Get.deleteall(controller)
 
-  late GlobalKey<FormState> loginFormKey;
+  // late GlobalKey<FormState> loginFormKey;
   late TextEditingController emailController, passwordController;
 
   @override
@@ -23,7 +23,7 @@ class LoginController extends GetxController {
     super.onInit();
     emailController = TextEditingController();
     passwordController = TextEditingController();
-    loginFormKey = GlobalKey<FormState>();
+    //loginFormKey = GlobalKey<FormState>();
   }
 
   @override
@@ -47,13 +47,15 @@ class LoginController extends GetxController {
   }
 
   bool checkLogin() {
-    final isValid = loginFormKey.currentState!.validate();
-    if (!isValid) {
-      return false;
-    } else {
-      loginFormKey.currentState!.save();
-      return true;
-    }
+    //final isValid = true;
+    // loginFormKey.currentState!.validate();
+    // if (!isValid) {
+    //   return false;
+    // } else {
+    //   loginFormKey.currentState!.save();
+    //   return true;
+    // }
+    return true;
   }
 
   Future<bool> loginService(String email, String password) async {

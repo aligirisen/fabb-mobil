@@ -8,7 +8,7 @@ class MapScreenController extends GetxController {
   late final GoogleMapController mapController;
   Completer<GoogleMapController> completer = Completer();
 
-  final CameraPosition startPosition = CameraPosition(
+  final CameraPosition startPosition = const CameraPosition(
     target: LatLng(39.903358459472656, 32.79481887817383),
     zoom: 16,
   );

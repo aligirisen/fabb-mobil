@@ -3,57 +3,57 @@ import 'package:fabb_mobil/app/theme/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import '../../routes/app_pages.dart';
+import '../routes/app_pages.dart';
 
 class CustomNavigationDrawer extends StatelessWidget {
+  const CustomNavigationDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       width: 60.w,
       backgroundColor: AppColors.darkBlue,
-      child: Container(
-        child: ListView(children: [
-          buildDrawerHeader(),
-          buildDrawerItem(
-              text: "Home",
-              onTap: () => navigate(0),
-              tileColor: Get.currentRoute == Routes.home
-                  ? AppColors.chosendrawer
-                  : Colors.transparent),
-          buildDrawerItem(
-              text: "My Reports",
-              onTap: () => navigate(1),
-              tileColor: Get.currentRoute == Routes.myreports
-                  ? AppColors.chosendrawer
-                  : Colors.transparent),
-          buildDrawerItem(
-              text: "Settings",
-              onTap: () => navigate(2),
-              tileColor: Get.currentRoute == Routes.settings
-                  ? AppColors.chosendrawer
-                  : Colors.transparent),
-          buildDrawerItem(
-              text: "Contact",
-              onTap: () => navigate(3),
-              tileColor: Get.currentRoute == Routes.contact
-                  ? AppColors.chosendrawer
-                  : Colors.transparent)
-        ]),
-      ),
+      child: ListView(children: [
+        buildDrawerHeader(),
+        buildDrawerItem(
+            text: "Home",
+            onTap: () => navigate(0),
+            tileColor: Get.currentRoute == Routes.home
+                ? AppColors.chosendrawer
+                : Colors.transparent),
+        buildDrawerItem(
+            text: "My Reports",
+            onTap: () => navigate(1),
+            tileColor: Get.currentRoute == Routes.myreports
+                ? AppColors.chosendrawer
+                : Colors.transparent),
+        buildDrawerItem(
+            text: "Settings",
+            onTap: () => navigate(2),
+            tileColor: Get.currentRoute == Routes.settings
+                ? AppColors.chosendrawer
+                : Colors.transparent),
+        buildDrawerItem(
+            text: "Contact",
+            onTap: () => navigate(3),
+            tileColor: Get.currentRoute == Routes.contact
+                ? AppColors.chosendrawer
+                : Colors.transparent)
+      ]),
     );
   }
 
   Widget buildDrawerHeader() {
     return UserAccountsDrawerHeader(
       margin: EdgeInsets.only(left: 5.w),
-      accountName: Text(
+      accountName: const Text(
         "Fabb App",
         style: TextStyle(fontWeight: FontWeight.w300),
       ),
-      accountEmail: Text("deneme@gmail.com",
+      accountEmail: const Text("deneme@gmail.com",
           style: TextStyle(fontWeight: FontWeight.w300)),
       currentAccountPicture: Image(image: AppImages.logo),
-      currentAccountPictureSize: Size.square(100),
+      currentAccountPictureSize: const Size.square(100),
       decoration: BoxDecoration(color: AppColors.darkBlue),
     );
   }

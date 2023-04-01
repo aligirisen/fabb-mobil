@@ -27,7 +27,7 @@ class _SimpleMapScreenState extends State<SimpleMapScreen> {
     return Scaffold(
       body: GoogleMap(
         initialCameraPosition: initialPosition,
-        mapType: MapType.normal,
+        mapType: MapType.terrain,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
@@ -37,7 +37,7 @@ class _SimpleMapScreenState extends State<SimpleMapScreen> {
           goToLake();
         },
         label: const Text("To the lake!"),
-        icon: const Icon(Icons.directions_boat),
+        //icon: const Icon(Icons.directions_boat),
       ),
     );
   }

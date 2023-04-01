@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:fabb_mobil/app/models/user_model.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService {
@@ -15,13 +14,6 @@ class AuthService {
     Map<String, String> headers = {
       "Content-Type": "application/json",
       "Accept": "application/json"
-    };
-
-    Map<String, dynamic> body = {
-      "email": "mobil@gmail.com",
-      "password": "deneme",
-      "phone_number": "+905486214587",
-      "full_name": "Ali ali"
     };
 
     final Map<String, dynamic> userJson = {
@@ -51,9 +43,9 @@ class AuthService {
   Future<bool> login(String email, String password) async {
     // login
 
-    const base_url = 'http://192.168.1.106:5111';
-    final response = await http.get(
-        Uri.parse('$base_url/user/signin?email=$email&password=$password'));
+    const baseUrl = 'http://192.168.1.106:5111';
+    final response = await http
+        .get(Uri.parse('$baseUrl/user/signin?email=$email&password=$password'));
 
     if (response.statusCode == 200) {
       final jsonData = json.decode(response.body);
