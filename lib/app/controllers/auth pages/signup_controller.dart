@@ -1,8 +1,7 @@
 import 'package:fabb_mobil/app/models/user_model.dart';
-import 'package:fabb_mobil/app/modules/1-auth%20pages/services/auth_service.dart';
+import 'package:fabb_mobil/app/services/auth%20pages/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class SignupController extends GetxController {
   RxString firstname = ''.obs;

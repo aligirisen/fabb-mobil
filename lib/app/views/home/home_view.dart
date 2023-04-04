@@ -1,14 +1,10 @@
-import 'dart:collection';
-
-import 'package:fabb_mobil/app/modules/2-home/controllers/map_screen_controller.dart';
-import 'package:fabb_mobil/app/modules/2-home/views/map_view.dart';
+import 'package:fabb_mobil/app/views/home/map_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-
-import '../../../theme/app_colors.dart';
 import '../../common/navigation_drawer.dart';
+import '../../controllers/home/map_screen_controller.dart';
+import '../../theme/app_colors.dart';
 
 class HomeView extends GetView<MapScreenController> {
   const HomeView({super.key});
@@ -18,17 +14,17 @@ class HomeView extends GetView<MapScreenController> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-          drawer: CustomNavigationDrawer(),
+          drawer: const CustomNavigationDrawer(),
           appBar: AppBar(
             toolbarHeight: 9.h,
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(0),
               ),
             ),
             backgroundColor: AppColors.darkBlue,
             title: Padding(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Column(children: [
                 Container(
                   height: 4.h,
@@ -43,7 +39,7 @@ class HomeView extends GetView<MapScreenController> {
                           borderRadius: BorderRadius.circular(10)),
                       labelColor: AppColors.darkBlue,
                       unselectedLabelColor: AppColors.lightWords,
-                      tabs: [
+                      tabs: const [
                         Tab(
                           text: 'Map',
                         ),
@@ -57,7 +53,7 @@ class HomeView extends GetView<MapScreenController> {
           ),
           body: Stack(
             children: [
-              TabBarView(
+              const TabBarView(
                 children: [SimpleMapScreen(), Center(child: Text("list"))],
               ),
               Padding(
@@ -65,6 +61,7 @@ class HomeView extends GetView<MapScreenController> {
                 child: Align(
                   alignment: Alignment.bottomRight,
                   child: FloatingActionButton(
+                    heroTag: "add",
                     onPressed: () {},
                     backgroundColor: AppColors.darkBlue,
                     child: const Icon(

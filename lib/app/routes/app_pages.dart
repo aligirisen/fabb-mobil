@@ -1,12 +1,13 @@
-import 'dart:collection';
-
+import 'package:fabb_mobil/app/views/contact/contact_view.dart';
+import 'package:fabb_mobil/app/views/my%20reports/my_reports_view.dart';
 import 'package:get/get.dart';
 import '../bindings/all_bindings.dart';
-import '../modules/1-auth pages/views/login_view.dart';
-import '../modules/1-auth pages/views/signup_view.dart';
-import '../modules/0-onboarding/views/onboarding_view.dart';
-import '../modules/2-home/views/home_view.dart';
-import '../modules/2-home/views/map_view.dart';
+import '../views/auth pages/login_view.dart';
+import '../views/auth pages/signup_view.dart';
+import '../views/home/home_view.dart';
+import '../views/home/map_view.dart';
+import '../views/onboarding/onboarding_view.dart';
+import '../views/settings/settings_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
@@ -41,24 +42,20 @@ class AppPages {
       binding: HomeBindings(),
     ),
     GetPage(
+      name: _Paths.map,
+      page: () => const SimpleMapScreen(),
+    ),
+    GetPage(
       name: _Paths.myreports,
-      page: () => const HomeView(),
-      binding: HomeBindings(), //change!!!!
+      page: () => const MyReportsView(),
     ),
     GetPage(
       name: _Paths.settings,
-      page: () => const HomeView(),
-      binding: HomeBindings(), //change!!!!
+      page: () => const SettingsView(),
     ),
     GetPage(
       name: _Paths.contact,
-      page: () => const HomeView(),
-      binding: HomeBindings(), //change!!!!
-    ),
-    GetPage(
-      name: _Paths.map,
-      page: () => const SimpleMapScreen(),
-      binding: HomeBindings(), //change!!!!
+      page: () => const ContactView(),
     ),
   ];
 }

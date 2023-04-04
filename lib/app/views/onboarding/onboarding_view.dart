@@ -1,14 +1,13 @@
 import 'package:fabb_mobil/app/theme/app_colors.dart';
-import 'package:fabb_mobil/app/theme/app_images.dart';
-import 'package:fabb_mobil/app/theme/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:swipe/swipe.dart';
-import 'package:fabb_mobil/app/modules/0-onboarding/controllers/onboarding_controller.dart';
+import 'package:fabb_mobil/app/controllers/onboarding/onboarding_controller.dart';
 
 class OnboardingPageView extends StatelessWidget {
   final controller = OnboardingController();
+
+  OnboardingPageView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +76,7 @@ class OnboardingPageView extends StatelessWidget {
 
   Container dotsContainer() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 30),
+      margin: const EdgeInsets.symmetric(vertical: 30),
       height: 30,
       width: 30.w,
       child: Row(

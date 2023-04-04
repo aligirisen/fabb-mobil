@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../models/onborading_model.dart';
-import '../../../theme/app_images.dart';
-import '../../../theme/app_strings.dart';
+import '../../models/onborading_model.dart';
+import '../../theme/app_images.dart';
+import '../../theme/app_strings.dart';
 
 class OnboardingController extends GetxController {
   var selectedPageIndex = 0.obs;

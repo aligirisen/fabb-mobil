@@ -2,9 +2,8 @@ import 'package:fabb_mobil/app/theme/app_images.dart';
 import 'package:fabb_mobil/app/theme/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:sizer/sizer.dart';
-import '../controllers/signup_controller.dart';
+import '../../controllers/auth pages/signup_controller.dart';
 
 class SignupView extends GetView<SignupController> {
   const SignupView({super.key});
@@ -19,7 +18,7 @@ class SignupView extends GetView<SignupController> {
         //   backgroundColor: AppColors.mainColor,
         // ),
         body: Stack(children: [
-          Container(
+          SizedBox(
             width: Get.width,
             height: 100.h,
             child: Image(image: AppImages.loginBackground, fit: BoxFit.fill),
@@ -47,8 +46,8 @@ class SignupView extends GetView<SignupController> {
                             margin: EdgeInsets.symmetric(vertical: 2.h),
                             child: Text(
                               AppStrings.agreeText,
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 10),
+                              style: const TextStyle(
+                                  color: Colors.grey, fontSize: 10),
                             )),
                         signupButton(),
                         alreadyHaveAnAccountText()
@@ -67,7 +66,7 @@ class SignupView extends GetView<SignupController> {
         },
         child: Padding(
           padding: EdgeInsets.only(top: 2.h, left: 25.w),
-          child: Text(
+          child: const Text(
             'Already have an account? Login',
             style: TextStyle(fontSize: 13, color: Colors.white),
           ),
@@ -97,22 +96,22 @@ class SignupView extends GetView<SignupController> {
           decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Color.fromARGB(255, 66, 66, 66).withOpacity(0.6),
+                  color: const Color.fromARGB(255, 66, 66, 66).withOpacity(0.6),
                   spreadRadius: 1,
                   blurRadius: 2,
-                  offset: Offset(0, 2), // changes position of shadow
+                  offset: const Offset(0, 2), // changes position of shadow
                 ),
               ],
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: Color.fromARGB(255, 157, 157, 157),
+                color: const Color.fromARGB(255, 157, 157, 157),
                 width: 1,
               ),
-              color: Color.fromARGB(255, 255, 255, 255)),
+              color: const Color.fromARGB(255, 255, 255, 255)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text(
+              const Text(
                 "SIGN UP",
                 style: TextStyle(
                     fontSize: 17,
@@ -122,7 +121,7 @@ class SignupView extends GetView<SignupController> {
               SizedBox(
                 width: 10.w,
               ),
-              Icon(Icons.arrow_right)
+              const Icon(Icons.arrow_right)
             ],
           )),
     );
@@ -162,7 +161,7 @@ class SignupView extends GetView<SignupController> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           color: Colors.transparent,
-          border: Border.all(color: Color.fromARGB(255, 156, 156, 156))),
+          border: Border.all(color: const Color.fromARGB(255, 156, 156, 156))),
       child: TextFormField(
         onSaved: (value) {
           controller.lastname.value = value!;
