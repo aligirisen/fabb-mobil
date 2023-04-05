@@ -10,8 +10,8 @@ class SignupController extends GetxController {
   RxString email = ''.obs;
   RxString password = ''.obs;
 
-  UserModel createUser() {
-    return UserModel(
+  User createUser() {
+    return User(
       fullName: firstname.value + lastname.value,
       phoneNumber: phonenumber.value,
       email: email.value,

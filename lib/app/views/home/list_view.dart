@@ -27,7 +27,7 @@ class ListView extends GetView<ListViewController> {
                       return ListTile(title: Text(item.name));
                     }),
                     body: ListTile(
-                      title: Text(item.id),
+                      title: Text(item.incidentid),
                     ),
                     isExpanded: item.isExpanded.value);
               }).toList())),

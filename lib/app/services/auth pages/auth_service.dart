@@ -7,12 +7,12 @@ class AuthService {
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   TextEditingController? emailController, passwordController;
 
-  final base_url = 'https://192.168.1.106:5111';
-  final user_id = '-NQ0aJDZwrov9UsJ8Q2d';
+  final baseUrl = 'https://192.168.1.106:5111';
+  final userId = '-NQ0aJDZwrov9UsJ8Q2d';
 
   Future<void> fetchUserData(String user_id) async {
     // get
-    final response = await http.get(Uri.parse('$base_url/user/$user_id'));
+    final response = await http.get(Uri.parse('$baseUrl/user/$user_id'));
 
     if (response.statusCode == 200) {
       final jsonData = json.decode(response.body);
@@ -23,7 +23,7 @@ class AuthService {
     }
   }
 
-  Future<bool> postRegister(UserModel user) async {
+  Future<bool> postRegister(User user) async {
     // register
     String url = "https://192.168.1.106:5111/user/signup";
 
