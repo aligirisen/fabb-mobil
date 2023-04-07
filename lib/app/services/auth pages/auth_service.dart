@@ -7,12 +7,11 @@ class AuthService {
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   TextEditingController? emailController, passwordController;
 
-  final baseUrl = 'https://192.168.1.106:5111';
-  final userId = '-NQ0aJDZwrov9UsJ8Q2d';
+  final baseUrl = 'http://192.168.1.106:5111';
 
-  Future<void> fetchUserData(String user_id) async {
+  Future<void> fetchUserData(String userId) async {
     // get
-    final response = await http.get(Uri.parse('$baseUrl/user/$user_id'));
+    final response = await http.get(Uri.parse('$baseUrl/user/$userId'));
 
     if (response.statusCode == 200) {
       final jsonData = json.decode(response.body);
@@ -25,24 +24,18 @@ class AuthService {
 
   Future<bool> postRegister(User user) async {
     // register
-    String url = "https://192.168.1.106:5111/user/signup";
-
-    Map<String, String> headers = {
-      "Content-Type": "application/json",
-      "Accept": "application/json"
-    };
 
     final Map<String, dynamic> userJson = {
-      'fullName': user.fullName,
-      'phoneNumber': user.phoneNumber,
+      'full_name': user.fullName,
+      'phone_number': user.phoneNumber,
       'email': user.email,
       'password': user.password,
     };
 
     // Send the POST request
     print(jsonEncode(userJson));
-    http.Response response = await http.post(Uri.parse(url),
-        headers: headers, body: jsonEncode(userJson));
+    http.Response response =
+        await http.post(Uri.parse('$baseUrl/user/signup'), body: userJson);
 
     // Handle the response
     if (response.statusCode == 200) {
@@ -59,7 +52,6 @@ class AuthService {
   Future<bool> login(String email, String password) async {
     // login
 
-    const baseUrl = 'http://192.168.1.106:5111';
     final response = await http
         .get(Uri.parse('$baseUrl/user/signin?email=$email&password=$password'));
 

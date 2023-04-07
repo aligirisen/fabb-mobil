@@ -13,9 +13,9 @@ class ListViewController extends GetxController {
   void onInit() {
     super.onInit();
     locationController = TextEditingController();
-    incidents = generateItems(20);
+    //incidents = generateItems(20);
   }
-
+/*
   Location location = Location(latitude: 10.0, longitude: -125.0);
   //location
 
@@ -33,5 +33,5 @@ class ListViewController extends GetxController {
           attachments: ["attachments"],
           description: 'description');
     });
-  }
+  }*/
 }

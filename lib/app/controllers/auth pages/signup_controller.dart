@@ -12,7 +12,8 @@ class SignupController extends GetxController {
 
   User createUser() {
     return User(
-      fullName: firstname.value + lastname.value,
+      fullName: firstname.value +
+          lastname.value, // database'de full name'in arasında boşlık yok !!
       phoneNumber: phonenumber.value,
       email: email.value,
       password: password.value,
