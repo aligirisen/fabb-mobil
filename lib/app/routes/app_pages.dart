@@ -43,7 +43,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.map,
-      page: () => const SimpleMapScreen(),
+      page: () => MapView(),
     ),
     GetPage(
       name: _Paths.myreports,

@@ -2,20 +2,20 @@ import 'package:get/get.dart';
 
 import '../../models/incident_model.dart';
 
-class ListViewController extends GetxController {
-  late List<Incident> incidents;
+class ExpansionPanelController extends GetxController {
+  late List<Employee> employee;
 
   @override
   void onInit() {
     super.onInit();
-    incidents = generateItems(20);
+    employee = generateItems(20);
   }
 
-  List<Incident> generateItems(int numberOfItems) {
+  List<Employee> generateItems(int numberOfItems) {
     return List.generate(numberOfItems, (int index) {
-      return Incident(
-          name: 'Incident - $index',
-          id: 'Incident - $index Details',
+      return Employee(
+          name: 'Employee - $index',
+          id: 'Employee - $index Details',
           isExpanded: false.obs);
     });
   }

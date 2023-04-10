@@ -1,49 +1,53 @@
 import 'dart:async';
 
+import 'package:fabb_mobil/app/controllers/home/map_view_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:sizer/sizer.dart';
 
-class SimpleMapScreen extends StatefulWidget {
-  const SimpleMapScreen({Key? key}) : super(key: key);
-
-  @override
-  _SimpleMapScreenState createState() => _SimpleMapScreenState();
-}
-
-class _SimpleMapScreenState extends State<SimpleMapScreen> {
-  final Completer<GoogleMapController> _controller = Completer();
-
-  static const CameraPosition initialPosition = CameraPosition(
-      target: LatLng(37.42796133580664, -122.085749655962), zoom: 14.0);
-
-  static const CameraPosition targetPosition = CameraPosition(
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      zoom: 14.0,
-      bearing: 192.0,
-      tilt: 60);
+class MapView extends GetView<MapViewController> {
+  const MapView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GoogleMap(
-        initialCameraPosition: initialPosition,
-        mapType: MapType.terrain,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          goToLake();
-        },
-        label: const Text("To the lake!"),
-        //icon: const Icon(Icons.directions_boat),
-      ),
+    Get.lazyPut<MapViewController>(
+      () => MapViewController(),
     );
-  }
-
-  Future<void> goToLake() async {
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(targetPosition));
+    return Scaffold(
+      body: Obx(
+        () => GoogleMap(
+          initialCameraPosition: controller.initialPosition,
+          mapType: controller.maptype.value,
+          onMapCreated: (GoogleMapController mapController) {
+            controller.completer.complete(mapController);
+          },
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(top: 1.h),
+        child: Obx(
+          () => FloatingActionButton(
+            backgroundColor: controller.backgroundColor.value,
+            foregroundColor: controller.foregroundColor.value,
+            child: Icon(
+              Icons.map,
+              color: controller.foregroundColor.value,
+            ),
+            onPressed: () {
+              controller.changeMapType();
+            },
+          ),
+        ),
+      ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   onPressed: () {
+      //     goToLake();
+      //   },
+      //   label: const Text("To the lake!"),
+      //   //icon: const Icon(Icons.directions_boat),
+      // ),
+    );
   }
 }

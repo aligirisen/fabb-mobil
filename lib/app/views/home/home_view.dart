@@ -1,12 +1,13 @@
+import 'package:fabb_mobil/app/views/home/list_view.dart';
 import 'package:fabb_mobil/app/views/home/map_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../common/navigation_drawer.dart';
-import '../../controllers/home/map_screen_controller.dart';
+import '../../controllers/home/map_view_controller.dart';
 import '../../theme/app_colors.dart';
 
-class HomeView extends GetView<MapScreenController> {
+class HomeView extends GetView<MapViewController> {
   const HomeView({super.key});
 
   @override
@@ -53,13 +54,13 @@ class HomeView extends GetView<MapScreenController> {
           ),
           body: Stack(
             children: [
-              const TabBarView(
-                children: [SimpleMapScreen(), Center(child: Text("list"))],
+              TabBarView(
+                children: [MapView(), ExpansionPanelView()],
               ),
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: Align(
-                  alignment: Alignment.bottomRight,
+                  alignment: Alignment.bottomCenter,
                   child: FloatingActionButton(
                     heroTag: "add",
                     onPressed: () {},

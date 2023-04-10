@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class Incident {
-  Incident({
+class Employee {
+  Employee({
     required this.name,
     required this.id,
     required this.isExpanded,
