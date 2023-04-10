@@ -173,3 +173,21 @@ class ExpansionPanelView extends GetView<ExpansionPanelController> {
     );
   }
 }
+
+
+// child: Obx(() => ExpansionPanelList(
+//               expansionCallback: (panelIndex, isExpanded) {
+//                 controller.incidents[panelIndex].isExpanded.value = !isExpanded;
+//               },
+//               children:
+//                   controller.incidents.map<ExpansionPanel>((Incident item) {
+//                 return ExpansionPanel(
+//                     canTapOnHeader: true,
+//                     headerBuilder: ((context, isExpanded) {
+//                       return ListTile(title: Text(item.name));
+//                     }),
+//                     body: ListTile(
+//                       title: Text(item.incidentid),
+//                     ),
+//                     isExpanded: item.isExpanded.value);
+//               }).toList())),

@@ -1,6 +1,6 @@
 import 'package:universal_html/html.dart';
 
-class UserModel {
+class User {
   final String? accountId;
   final DateTime? dateOfBirth;
   final String? userId;
@@ -13,7 +13,7 @@ class UserModel {
   final List? dislikedIncidents;
   final Location? location;
 
-  UserModel({
+  User({
     this.accountId,
     this.dateOfBirth,
     this.userId,
@@ -39,8 +39,8 @@ class UserModel {
   List? get dislikedincidents => dislikedIncidents;
   Location? get userLocation => location;
 
-  UserModel setAccountId(String accountId) {
-    return UserModel(
+  User setAccountId(String accountId) {
+    return User(
       accountId: accountId,
       dateOfBirth: dateOfBirth,
       userId: userId,
@@ -55,8 +55,8 @@ class UserModel {
     );
   }
 
-  UserModel setDateOfBirth(DateTime dateofBirth) {
-    return UserModel(
+  User setDateOfBirth(DateTime dateofBirth) {
+    return User(
       accountId: accountId,
       dateOfBirth: dateofBirth,
       userId: userId,
@@ -71,8 +71,8 @@ class UserModel {
     );
   }
 
-  UserModel setUserId(String userId) {
-    return UserModel(
+  User setUserId(String userId) {
+    return User(
       accountId: accountId,
       dateOfBirth: dateOfBirth,
       userId: userId,
@@ -87,8 +87,8 @@ class UserModel {
     );
   }
 
-  UserModel setFullName(String fullName) {
-    return UserModel(
+  User setFullName(String fullName) {
+    return User(
       accountId: accountId,
       dateOfBirth: dateOfBirth,
       userId: userId,
@@ -103,8 +103,8 @@ class UserModel {
     );
   }
 
-  UserModel setPhoneNumber(String phoneNumber) {
-    return UserModel(
+  User setPhoneNumber(String phoneNumber) {
+    return User(
       accountId: accountId,
       dateOfBirth: dateOfBirth,
       userId: userId,
@@ -119,8 +119,8 @@ class UserModel {
     );
   }
 
-  UserModel setEmail(String _email) {
-    return UserModel(
+  User setEmail(String _email) {
+    return User(
       accountId: accountId,
       dateOfBirth: dateOfBirth,
       userId: userId,
@@ -135,8 +135,8 @@ class UserModel {
     );
   }
 
-  UserModel setIncident(List _incident) {
-    return UserModel(
+  User setIncident(List _incident) {
+    return User(
       accountId: accountId,
       dateOfBirth: dateOfBirth,
       userId: userId,
@@ -151,8 +151,8 @@ class UserModel {
     );
   }
 
-  UserModel setLikedIncidents(List likedIncidents) {
-    return UserModel(
+  User setLikedIncidents(List likedIncidents) {
+    return User(
       accountId: accountId,
       dateOfBirth: dateOfBirth,
       userId: userId,
@@ -167,8 +167,8 @@ class UserModel {
     );
   }
 
-  UserModel setDislikedIncidents(List dislikedIncidents) {
-    return UserModel(
+  User setDislikedIncidents(List dislikedIncidents) {
+    return User(
       accountId: accountId,
       dateOfBirth: dateOfBirth,
       userId: userId,
@@ -183,8 +183,8 @@ class UserModel {
     );
   }
 
-  UserModel setLocation(Location _location) {
-    return UserModel(
+  User setLocation(Location _location) {
+    return User(
       accountId: accountId,
       dateOfBirth: dateOfBirth,
       userId: userId,
@@ -199,8 +199,8 @@ class UserModel {
     );
   }
 
-  UserModel setPassword(String _password) {
-    return UserModel(
+  User setPassword(String _password) {
+    return User(
       accountId: accountId,
       dateOfBirth: dateOfBirth,
       userId: userId,
