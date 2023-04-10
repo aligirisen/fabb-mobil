@@ -1,4 +1,4 @@
-import 'package:fabb_mobil/app/services/auth%20pages/auth_service.dart';
+import 'package:fabb_mobil/app/services/auth_service.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 

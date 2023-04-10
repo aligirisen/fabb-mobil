@@ -1,5 +1,5 @@
 import 'package:fabb_mobil/app/models/user_model.dart';
-import 'package:fabb_mobil/app/services/auth%20pages/auth_service.dart';
+import 'package:fabb_mobil/app/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,7 +21,7 @@ class SignupController extends GetxController {
   }
 
   Future<bool> register() async {
-    print(AuthService().postRegister(createUser()));
+    //print(AuthService().postRegister(createUser()));
     bool isRegistered = await AuthService().postRegister(createUser());
 
     if (isRegistered) {

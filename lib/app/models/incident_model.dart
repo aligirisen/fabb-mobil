@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:get/get.dart';
+import 'package:universal_html/html.dart';
 
 class Incident {
   Incident(
