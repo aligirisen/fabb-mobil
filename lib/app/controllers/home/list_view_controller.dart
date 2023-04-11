@@ -1,3 +1,6 @@
+import 'dart:js_util';
+
+import 'package:fabb_mobil/app/services/incident_service.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -13,13 +16,15 @@ class ListViewController extends GetxController {
   void onInit() {
     super.onInit();
     locationController = TextEditingController();
-    //incidents = generateItems(20);
+    incidents = generateItems(20);
   }
-/*
-  Location location = Location(latitude: 10.0, longitude: -125.0);
-  //location
+
+  Location location = getLocation();
 
   List<Incident> generateItems(int numberOfItems) {
+    /*for (int i = 0; i < numberOfItems; i++) {
+      IncidentService().getIncidents();
+    }*/
     return List.generate(numberOfItems, (int index) {
       return Incident(
           name: 'Incident - $index',
@@ -31,7 +36,13 @@ class ListViewController extends GetxController {
           category: 'category',
           location: location,
           attachments: ["attachments"],
-          description: 'description');
+          description: 'description',
+          address: 'addressss',
+          createDate: DateTime.now());
     });
-  }*/
+  }
+
+  static Location getLocation() {
+    throw notEqual(2, 4);
+  }
 }

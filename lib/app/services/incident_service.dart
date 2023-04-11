@@ -5,12 +5,15 @@ import 'package:http/http.dart' as http;
 import '../../main.dart';
 
 class IncidentService {
-  Future<void> fetchUserData(String incidentId) async {
-    final response = await http.get(Uri.parse('$baseUrl/incident/$incidentId'));
+  Future<void> fetchUserData(Incident incident) async {
+    String incidentGetId = incident.incidentId;
+    Map<String, dynamic> incidentJson;
+    final response =
+        await http.get(Uri.parse('$baseUrl/incident/$incidentGetId'));
 
     if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
-      print(jsonData);
+      incidentJson = json.decode(response.body);
+      print(incidentJson['category']);
     } else {
       throw Exception('Failed to load user data from API');
     }
@@ -21,7 +24,7 @@ class IncidentService {
       'user_id': incident.userid,
       'incident_id': incident.incidentid,
       'title': incident.title,
-      'category': incident.category
+      'category': incident.category,
     };
 
     print(jsonEncode(incidentJson));
