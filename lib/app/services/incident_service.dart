@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:fabb_mobil/app/models/incident_model.dart';
+import 'package:fabb_mobil/app/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
 import '../../main.dart';
 
 class IncidentService {
-  Future<void> fetchUserData(Incident incident) async {
+  Future<void> getIncidentbyId(Incident incident) async {
     String incidentGetId = incident.incidentId;
     Map<String, dynamic> incidentJson;
     final response =
@@ -39,7 +40,40 @@ class IncidentService {
       print("Failed to Post Data. Error: ${response.statusCode}");
       return false;
     }
+  } /*
+
+  Future<List<Incident>> getIncident() async {
+    final response = await http.get(Uri.parse('$baseUrl/incident'));
+
+    if (response.statusCode == 200) {
+      final incidents = json.decode(response.body);
+      return incidents;
+    } else {
+      throw Exception('Failed to load user data from API');
+    }
+  }*/
+
+  List<Incident> incidents = [];
+/*
+  void fetchIncidents() async {
+    final List<Incident> fetchedIncidents = await getIncidents();
+    setState(() {
+      incidents = fetchedIncidents;
+    });
   }
+
+  Future<List<Incident>> getIncidents() async {
+    final response =
+        await http.get(Uri.parse('http://localhost:3000/incidents'));
+    if (response.statusCode == 200) {
+      final incidentJson = json.decode(response.body);
+      final List<Incident> incidents = List<Incident>.from(
+          incidentJson.map((incident) => fromJson(incident)));
+      return incidents;
+    } else {
+      throw Exception('Failed to load incidents');
+    }
+  }*/
 
   /*Future<bool> deleteIncident(String userId, String accountId) async {
     final Map<String, dynamic> userJson = {

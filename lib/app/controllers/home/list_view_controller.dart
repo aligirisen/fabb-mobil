@@ -22,6 +22,8 @@ class ListViewController extends GetxController {
   Location location = getLocation();
 
   List<Incident> generateItems(int numberOfItems) {
+    List<Incident> incidents;
+    incidents = IncidentService().getIncidents();
     /*for (int i = 0; i < numberOfItems; i++) {
       IncidentService().getIncidents();
     }*/
@@ -46,3 +48,7 @@ class ListViewController extends GetxController {
     throw notEqual(2, 4);
   }
 }
+/*
+Note: C:\Users\agiri\AppData\Local\Pub\Cache\hosted\pub.dev\geolocator_android-4.1.7\android\src\main\java\com\baseflow\geolocator\location\FusedLocationClient.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+*/
