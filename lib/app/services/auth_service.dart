@@ -65,3 +65,116 @@ class AuthService {
     }
   }
 }
+<<<<<<< HEAD
+=======
+
+
+/* Yukarıdaki methodlar çalışır halde.
+
+
+controller'la bağlanacak
+
+
+class MyController extends GetxController {
+  
+  RxString name = ''.obs;
+  RxString email = ''.obs;
+  RxBool isLoading = false.obs;
+  
+  void setName(String value) {
+    name.value = value;
+  }
+  
+  void setEmail(String value) {
+    email.value = value;
+  }
+  
+  void postData() async {
+    isLoading.value = true;
+    
+    // Define the URL, headers, and body as before
+    
+    // Send the POST request
+    http.Response response = await http.post(Uri.parse(url), headers: headers, body: jsonEncode(body));
+    
+    isLoading.value = false;
+    
+    // Handle the response
+    if (response.statusCode == 200) {
+      // Success
+      print("Data Posted Successfully!");
+      name.value = '';
+      email.value = '';
+    } else {
+      // Failure
+      print("Failed to Post Data. Error: ${response.statusCode}");
+    }
+  }
+  
+  void resetForm() {
+    name.value = '';
+    email.value = '';
+  }
+
+
+
+    LOGIN PROVIDERINI ÇALIŞTIRACAK ELEMAN
+  void _onLoginButtonPressed() async {
+  final email = _emailController.text;
+  final password = _passwordController.text;
+
+  final success = await login(email, password);
+
+  if (success) {
+    Navigator.pushReplacementNamed(context, '/main');
+  } else {
+    setState(() {
+      _errorMessage = 'Invalid email or password';
+    });
+  }
+}
+
+void _onLoginButtonPressed(final email, final password) async {
+  final password = _passwordController.text;
+
+  final success = await login(email, password);
+
+  if (success) {
+    Navigator.pushReplacementNamed(context, '/main');
+  } else {
+    setState(() {
+      _errorMessage = 'Invalid email or password';
+    });
+  }
+}
+
+
+  
+}
+
+
+
+
+
+
+
+
+TextField(
+  controller: TextEditingController(text: myController.name.value),
+  onChanged: (value) => myController.setName(value),
+  decoration: InputDecoration(
+    labelText: 'Name',
+    border: OutlineInputBorder(),
+  ),
+),
+
+
+
+
+
+
+
+
+
+*/
+>>>>>>> busra

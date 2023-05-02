@@ -48,12 +48,12 @@ class CustomNavigationDrawer extends StatelessWidget {
       margin: EdgeInsets.only(left: 5.w),
       accountName: const Text(
         "Fabb App",
-        style: TextStyle(fontWeight: FontWeight.w300),
+        style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
       ),
       accountEmail: const Text("deneme@gmail.com",
-          style: TextStyle(fontWeight: FontWeight.w300)),
+          style: TextStyle(fontWeight: FontWeight.w500)),
       currentAccountPicture: Image(image: AppImages.logo),
-      currentAccountPictureSize: const Size.square(100),
+      currentAccountPictureSize: const Size.square(70),
       decoration: BoxDecoration(color: AppColors.darkBlue),
     );
   }
@@ -80,13 +80,13 @@ class CustomNavigationDrawer extends StatelessWidget {
 
   navigate(int index) {
     if (index == 0) {
-      Get.toNamed("/home");
+      Get.toNamed(Routes.home);
     } else if (index == 1) {
-      Get.toNamed("/myreports");
+      Get.toNamed(Routes.myreports);
     } else if (index == 2) {
-      Get.toNamed("/settings");
+      Get.toNamed(Routes.settings);
     } else {
-      Get.toNamed("/contact");
+      Get.toNamed(Routes.contact);
     }
   }
 }

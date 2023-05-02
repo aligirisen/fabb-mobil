@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../controllers/auth pages/login_controller.dart';
+import '../../routes/app_pages.dart';
 import '../../theme/app_images.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -64,7 +65,7 @@ class LoginView extends GetView<LoginController> {
   GestureDetector continueAsGuest() {
     return GestureDetector(
       onTap: () {
-        Get.toNamed("/home");
+        Get.toNamed(Routes.home);
       },
       child: Padding(
         padding: EdgeInsets.only(right: 18.w, bottom: 20.h),
@@ -99,7 +100,7 @@ class LoginView extends GetView<LoginController> {
   GestureDetector orCreateAccountText() {
     return GestureDetector(
         onTap: () {
-          Get.toNamed('/signup');
+          Get.toNamed(Routes.signup);
         },
         child: Padding(
           padding: EdgeInsets.only(top: 2.h, left: 45.w),
@@ -115,7 +116,7 @@ class LoginView extends GetView<LoginController> {
       onTap: () async {
         if (await controller.loginService(
             controller.email.value, controller.password.value)) {
-          Get.toNamed('/signup');
+          Get.toNamed(Routes.signup);
         } else {
           Get.defaultDialog(
               title: "Try again",

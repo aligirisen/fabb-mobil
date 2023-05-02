@@ -11,4 +11,8 @@ class AppImages {
   static AssetImage loginBackground =
       const AssetImage('assets/images/login_background.png');
   static AssetImage logo = const AssetImage('assets/images/logo.png');
+
+  static AssetImage car = const AssetImage('assets/images/car.png');
+  static AssetImage successful =
+      const AssetImage('assets/images/successful.png');
 }

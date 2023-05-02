@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../controllers/auth pages/signup_controller.dart';
+import '../../routes/app_pages.dart';
 
 class SignupView extends GetView<SignupController> {
   const SignupView({super.key});
@@ -62,7 +63,7 @@ class SignupView extends GetView<SignupController> {
   GestureDetector alreadyHaveAnAccountText() {
     return GestureDetector(
         onTap: () {
-          Get.toNamed('/login');
+          Get.toNamed(Routes.login);
         },
         child: Padding(
           padding: EdgeInsets.only(top: 2.h, left: 25.w),
@@ -86,7 +87,7 @@ class SignupView extends GetView<SignupController> {
               content: const Text('Succesfully created an account.',
                   style: TextStyle(color: Colors.white)));
         }
-        //Get.toNamed('/login');
+        //Get.toNamed(Routes.login);
       },
       child: Container(
           alignment: Alignment.center,

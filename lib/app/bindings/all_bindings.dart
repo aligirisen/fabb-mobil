@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import '../controllers/auth pages/login_controller.dart';
 import '../controllers/auth pages/signup_controller.dart';
-import '../controllers/home/map_screen_controller.dart';
+import '../controllers/home/map_view_controller.dart';
 
 class AuthBindings extends Bindings {
   @override
@@ -18,8 +18,8 @@ class AuthBindings extends Bindings {
 class HomeBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<MapScreenController>(
-      () => MapScreenController(),
+    Get.lazyPut<MapViewController>(
+      () => MapViewController(),
     );
   }
 }

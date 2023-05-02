@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:fabb_mobil/app/controllers/onboarding/onboarding_controller.dart';
 
+import '../../routes/app_pages.dart';
+
 class OnboardingPageView extends StatelessWidget {
   final controller = OnboardingController();
 
@@ -114,7 +116,7 @@ class OnboardingPageView extends StatelessWidget {
             borderRadius: BorderRadius.circular(15.0),
           ))),
       onPressed: () {
-        Get.toNamed("/signup");
+        Get.toNamed(Routes.signup);
       },
       child: Text(
         "Sign Up",
@@ -134,7 +136,7 @@ class OnboardingPageView extends StatelessWidget {
             borderRadius: BorderRadius.circular(15.0),
           ))),
       onPressed: () {
-        Get.toNamed("/login");
+        Get.toNamed(Routes.login);
       },
       child: Text(
         "Let's get started",

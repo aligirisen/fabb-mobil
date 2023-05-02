@@ -3,8 +3,6 @@ import 'dart:js_util';
 import 'package:fabb_mobil/app/services/incident_service.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:universal_html/html.dart';
 
 import '../../models/incident_model.dart';
 
@@ -36,7 +34,7 @@ class ListViewController extends GetxController {
           incidentId: 'Incident - $index Details',
           incidentStatus: 'incidentStatus',
           category: 'category',
-          location: location,
+          location: null,
           attachments: ["attachments"],
           description: 'description',
           address: 'addressss',

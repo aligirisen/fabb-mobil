@@ -14,4 +14,8 @@ class AppStrings {
 
   static String agreeText =
       'By creating an account with FABB, you agree to the Terms and Conditions and Privacy Policy';
+
+  static String successfulTitle = "Succesfully Reported";
+  static String successfulText =
+      "The problem you shared has been reported to the authorities. You can follow the status of your report on the Reports page.";
 }

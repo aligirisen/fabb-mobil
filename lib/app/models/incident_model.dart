@@ -10,7 +10,7 @@ class Incident {
       required this.incidentId,
       required this.incidentStatus,
       required this.category,
-      required this.location,
+      this.location,
       required this.attachments,
       required this.description,
       required this.address,
@@ -25,7 +25,7 @@ class Incident {
   final String address;
   final String category;
   final String description;
-  final Location location;
+  final Location? location;
   final List attachments;
   final DateTime createDate;
   final int? upvoteCount;
@@ -40,8 +40,12 @@ class Incident {
   String get addres => address;
   String get categories => category;
   String get descriptions => description;
+<<<<<<< HEAD
   Location get locations => location;
   DateTime get createdate => createDate;
+=======
+  Location? get locations => location;
+>>>>>>> busra
   List get attachment => attachments;
   int? get upvotecount => upvoteCount;
   int? get downvotecount => downvoteCount;
