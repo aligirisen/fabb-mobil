@@ -8,13 +8,13 @@ import '../../theme/app_colors.dart';
 import '../../theme/app_images.dart';
 
 //color: Color(0xff78D8A4),
-class ExpansionPanelView extends GetView<ExpansionPanelController> {
-  const ExpansionPanelView({super.key});
+class MapListView extends GetView<ListViewController> {
+  const MapListView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<ExpansionPanelController>(
-      () => ExpansionPanelController(),
+    Get.lazyPut<ListViewController>(
+      () => ListViewController(),
     );
     return Scaffold(
       body: SingleChildScrollView(
@@ -22,12 +22,13 @@ class ExpansionPanelView extends GetView<ExpansionPanelController> {
           margin: const EdgeInsets.only(top: 20, bottom: 20),
           child: Obx(() => Container(
                 child: ExpansionPanelList(
+                    key: key,
                     expansionCallback: (panelIndex, isExpanded) {
-                      controller.employee[panelIndex].isExpanded.value =
+                      controller.incidents[panelIndex].isExpanded.value =
                           !isExpanded;
                     },
-                    children: controller.employee
-                        .map<ExpansionPanel>((Employee item) {
+                    children: controller.incidents
+                        .map<ExpansionPanel>((Incident item) {
                       return ExpansionPanel(
                           backgroundColor: Color(0xffF7F7F7),
                           canTapOnHeader: true,

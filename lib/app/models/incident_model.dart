@@ -1,5 +1,4 @@
-import 'dart:html';
-
+import 'package:universal_html/html.dart';
 import 'package:get/get.dart';
 
 class Incident {
@@ -11,7 +10,7 @@ class Incident {
       required this.incidentId,
       required this.incidentStatus,
       required this.category,
-      required this.location,
+      this.location,
       required this.attachments,
       required this.description,
       this.upvoteCount,
@@ -23,7 +22,7 @@ class Incident {
   final String title;
   final String category;
   final String description;
-  final Location location;
+  final Location? location;
   final List attachments;
   final int? upvoteCount;
   final int? downvoteCount;
@@ -36,7 +35,7 @@ class Incident {
   String get titles => title;
   String get categories => category;
   String get descriptions => description;
-  Location get locations => location;
+  Location? get locations => location;
   List get attachment => attachments;
   int? get upvotecount => upvoteCount;
   int? get downvotecount => downvoteCount;

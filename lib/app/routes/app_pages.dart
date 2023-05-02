@@ -1,11 +1,14 @@
 import 'package:fabb_mobil/app/views/contact/contact_view.dart';
+import 'package:fabb_mobil/app/views/home/incident_details_view.dart';
 import 'package:fabb_mobil/app/views/my%20reports/my_reports_view.dart';
 import 'package:get/get.dart';
 import '../bindings/all_bindings.dart';
 import '../views/auth pages/login_view.dart';
 import '../views/auth pages/signup_view.dart';
+import '../views/home/accident_type_view.dart';
 import '../views/home/home_view.dart';
 import '../views/home/map_view.dart';
+import '../views/home/successfully_reported_view.dart';
 import '../views/onboarding/onboarding_view.dart';
 import '../views/settings/settings_view.dart';
 part 'app_routes.dart';
@@ -20,6 +23,8 @@ class AppPages {
   static const signup = Routes.signup;
   static const home = Routes.home;
   static const map = Routes.map;
+
+  static const accidentType = Routes.accidentType;
 
   static final routes = [
     GetPage(
@@ -56,6 +61,18 @@ class AppPages {
     GetPage(
       name: _Paths.contact,
       page: () => const ContactView(),
+    ),
+    GetPage(
+      name: _Paths.accidentType,
+      page: () => const AccidentTypeView(),
+    ),
+    GetPage(
+      name: _Paths.incidentDetails,
+      page: () => const IncidentDetailsView(),
+    ),
+    GetPage(
+      name: _Paths.succcesfulyReportedPage,
+      page: () => SuccessfullyReportedView(),
     ),
   ];
 }

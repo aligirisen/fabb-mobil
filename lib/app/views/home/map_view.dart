@@ -14,13 +14,14 @@ class MapView extends GetView<MapViewController> {
     Get.lazyPut<MapViewController>(
       () => MapViewController(),
     );
+    final Completer<GoogleMapController> completer = Completer();
     return Scaffold(
       body: Obx(
         () => GoogleMap(
           initialCameraPosition: controller.initialPosition,
           mapType: controller.maptype.value,
           onMapCreated: (GoogleMapController mapController) {
-            controller.completer.complete(mapController);
+            completer.complete(mapController);
           },
         ),
       ),

@@ -12,8 +12,6 @@ class MapViewController extends GetxController {
     super.onInit();
   }
 
-  final Completer<GoogleMapController> completer = Completer();
-
   CameraPosition initialPosition = CameraPosition(
       target: LatLng(37.42796133580664, -122.085749655962), zoom: 14.0);
 
@@ -39,16 +37,16 @@ class MapViewController extends GetxController {
     }
   }
 
-  @override
-  void dispose() {
-    _disposeController();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _disposeController();
+  //   super.dispose();
+  // }
 
-  Future<void> _disposeController() async {
-    final GoogleMapController controller = await completer.future;
-    controller.dispose();
-  }
+  // Future<void> _disposeController() async {
+  //   final GoogleMapController controller = await completer.future;
+  //   controller.dispose();
+  // }
 
   // Future<void> goToCurrentPosition() async {
   //   final GoogleMapController mapController = await completer.future;

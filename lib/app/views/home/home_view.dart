@@ -1,13 +1,14 @@
+import 'package:fabb_mobil/app/views/home/accident_type_view.dart';
 import 'package:fabb_mobil/app/views/home/list_view.dart';
 import 'package:fabb_mobil/app/views/home/map_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../common/navigation_drawer.dart';
-import '../../controllers/home/map_view_controller.dart';
+import '../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
 
-class HomeView extends GetView<MapViewController> {
+class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
@@ -55,7 +56,8 @@ class HomeView extends GetView<MapViewController> {
           body: Stack(
             children: [
               TabBarView(
-                children: [MapView(), ExpansionPanelView()],
+                physics: NeverScrollableScrollPhysics(),
+                children: [MapView(), MapListView()],
               ),
               Padding(
                 padding: const EdgeInsets.all(20),
@@ -63,7 +65,7 @@ class HomeView extends GetView<MapViewController> {
                   alignment: Alignment.bottomCenter,
                   child: FloatingActionButton(
                     heroTag: "add",
-                    onPressed: () {},
+                    onPressed: () => Get.toNamed(Routes.accidentType),
                     backgroundColor: AppColors.darkBlue,
                     child: const Icon(
                       Icons.add_rounded,

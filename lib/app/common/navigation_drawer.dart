@@ -80,13 +80,13 @@ class CustomNavigationDrawer extends StatelessWidget {
 
   navigate(int index) {
     if (index == 0) {
-      Get.toNamed("/home");
+      Get.toNamed(Routes.home);
     } else if (index == 1) {
-      Get.toNamed("/myreports");
+      Get.toNamed(Routes.myreports);
     } else if (index == 2) {
-      Get.toNamed("/settings");
+      Get.toNamed(Routes.settings);
     } else {
-      Get.toNamed("/contact");
+      Get.toNamed(Routes.contact);
     }
   }
 }

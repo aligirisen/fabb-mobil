@@ -7,7 +7,7 @@ class AuthService {
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   TextEditingController? emailController, passwordController;
 
-  final baseUrl = 'http://192.168.1.106:5111';
+  final baseUrl = 'http://192.168.1.83:5111';
 
   Future<void> fetchUserData(String userId) async {
     // get

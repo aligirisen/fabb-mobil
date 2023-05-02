@@ -3,7 +3,7 @@ import 'package:fabb_mobil/app/models/incident_model.dart';
 import 'package:http/http.dart' as http;
 
 class IncidentService {
-  final baseUrl = 'https://192.168.1.106:5111';
+  final baseUrl = 'https://192.168.1.83:5111';
 
   Future<void> fetchUserData(String incidentId) async {
     final response = await http.get(Uri.parse('$baseUrl/incident/$incidentId'));

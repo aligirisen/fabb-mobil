@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../models/onborading_model.dart';
+import '../../routes/app_pages.dart';
 import '../../theme/app_images.dart';
 import '../../theme/app_strings.dart';
 
@@ -12,7 +13,7 @@ class OnboardingController extends GetxController {
 
   forwardAction() {
     if (isLastPage) {
-      Get.toNamed('login');
+      Get.toNamed(Routes.login);
     } else {
       pageController.nextPage(duration: 300.milliseconds, curve: Curves.ease);
     }
