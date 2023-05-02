@@ -100,11 +100,10 @@ class MyReportsView extends GetView<ListViewController> {
                       child: ExpansionPanelList(
                           key: key,
                           expansionCallback: (panelIndex, isExpanded) {
-                            controller.incidents[panelIndex].isExpanded.value =
-                                !isExpanded;
+                            controller.isExpanded.value = !isExpanded;
                           },
                           children: controller.incidents
-                              .map<ExpansionPanel>((Incident item) {
+                              .map<ExpansionPanel>((IncidentModel item) {
                             return ExpansionPanel(
                                 backgroundColor: Color(0xffF7F7F7),
                                 canTapOnHeader: true,
@@ -213,7 +212,7 @@ class MyReportsView extends GetView<ListViewController> {
                                     )
                                   ]),
                                 ),
-                                isExpanded: item.isExpanded.value);
+                                isExpanded: controller.isExpanded.value);
                           }).toList()),
                     )),
               ),

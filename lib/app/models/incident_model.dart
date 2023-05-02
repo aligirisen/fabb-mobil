@@ -1,288 +1,110 @@
-import 'package:get/get.dart';
-import 'package:universal_html/html.dart';
+// To parse this JSON data, do
+//
+//     final incidentModel = incidentModelFromJson(jsonString);
 
-class Incident {
-  Incident(
-      {required this.name,
-      required this.isExpanded,
-      required this.userId,
-      required this.title,
-      required this.incidentId,
-      required this.incidentStatus,
-      required this.category,
-      this.location,
-      required this.attachments,
-      required this.description,
-      required this.address,
-      required this.createDate,
-      this.upvoteCount,
-      this.downvoteCount});
+import 'dart:convert';
 
-  final String name;
-  final String userId;
-  final String incidentId;
-  final String title;
-  final String address;
-  final String category;
-  final String description;
-  final Location? location;
-  final List attachments;
-  final DateTime createDate;
-  final int? upvoteCount;
-  final int? downvoteCount;
-  final String incidentStatus;
-  RxBool isExpanded;
+IncidentModel incidentModelFromJson(String str) =>
+    IncidentModel.fromJson(json.decode(str));
 
-  String get names => name;
-  String get userid => userId;
-  String get incidentid => incidentId;
-  String get titles => title;
-  String get addres => address;
-  String get categories => category;
-  String get descriptions => description;
-<<<<<<< HEAD
-  Location get locations => location;
-  DateTime get createdate => createDate;
-=======
-  Location? get locations => location;
->>>>>>> busra
-  List get attachment => attachments;
-  int? get upvotecount => upvoteCount;
-  int? get downvotecount => downvoteCount;
-  String get incidentstatus => incidentStatus;
-  RxBool get isexpanded => isExpanded;
+String incidentModelToJson(IncidentModel data) => json.encode(data.toJson());
 
-  Incident setName(String name) {
-    return Incident(
-        name: name,
-        isExpanded: isExpanded,
-        userId: userId,
-        title: title,
-        address: address,
-        incidentId: incidentId,
-        incidentStatus: incidentStatus,
-        category: category,
-        location: location,
-        createDate: createDate,
-        attachments: attachments,
-        description: description,
-        upvoteCount: upvoteCount,
-        downvoteCount: downvoteCount);
-  }
+class IncidentModel {
+  String? address;
+  String? category;
+  String? createDate;
+  String? description;
+  String? incidentId;
+  String? incidentStatus;
+  int? key;
+  Location? location;
+  String? reportNumber;
+  String? title;
+  String? userId;
+  VoteCounts? voteCounts;
 
-  Incident setIsExpanded(RxBool isExpanded) {
-    return Incident(
-        name: name,
-        isExpanded: isExpanded,
-        userId: userId,
-        title: title,
-        address: address,
-        incidentId: incidentId,
-        incidentStatus: incidentStatus,
-        category: category,
-        location: location,
-        createDate: createDate,
-        attachments: attachments,
-        description: description,
-        upvoteCount: upvoteCount,
-        downvoteCount: downvoteCount);
-  }
+  IncidentModel({
+    this.address,
+    this.category,
+    this.createDate,
+    this.description,
+    this.incidentId,
+    this.incidentStatus,
+    this.key,
+    this.location,
+    this.reportNumber,
+    this.title,
+    this.userId,
+    this.voteCounts,
+  });
 
-  Incident setUserId(String userId) {
-    return Incident(
-        name: name,
-        isExpanded: isExpanded,
-        userId: userId,
-        title: title,
-        address: address,
-        incidentId: incidentId,
-        incidentStatus: incidentStatus,
-        category: category,
-        location: location,
-        createDate: createDate,
-        attachments: attachments,
-        description: description,
-        upvoteCount: upvoteCount,
-        downvoteCount: downvoteCount);
-  }
+  factory IncidentModel.fromJson(Map<String, dynamic> json) => IncidentModel(
+        address: json["address"],
+        category: json["category"],
+        createDate: json["create_date"],
+        description: json["description"],
+        incidentId: json["incident_id"],
+        incidentStatus: json["incident_status"],
+        key: json["key"],
+        location: Location.fromJson(json["location"]),
+        reportNumber: json["report_number"],
+        title: json["title"],
+        userId: json["user_id"],
+        voteCounts: VoteCounts.fromJson(json["vote_counts"]),
+      );
 
-  Incident setTitle(String title) {
-    return Incident(
-        name: name,
-        isExpanded: isExpanded,
-        userId: userId,
-        title: title,
-        address: address,
-        incidentId: incidentId,
-        incidentStatus: incidentStatus,
-        category: category,
-        location: location,
-        createDate: createDate,
-        attachments: attachments,
-        description: description,
-        upvoteCount: upvoteCount,
-        downvoteCount: downvoteCount);
-  }
+  Map<String, dynamic> toJson() => {
+        "address": address,
+        "category": category,
+        "create_date": createDate,
+        "description": description,
+        "incident_id": incidentId,
+        "incident_status": incidentStatus,
+        "key": key,
+        "location": location!.toJson(),
+        "report_number": reportNumber,
+        "title": title,
+        "user_id": userId,
+        "vote_counts": voteCounts!.toJson(),
+      };
+}
 
-  Incident setDescription(String description) {
-    return Incident(
-        name: name,
-        isExpanded: isExpanded,
-        userId: userId,
-        title: title,
-        address: address,
-        incidentId: incidentId,
-        incidentStatus: incidentStatus,
-        category: category,
-        location: location,
-        createDate: createDate,
-        attachments: attachments,
-        description: description,
-        upvoteCount: upvoteCount,
-        downvoteCount: downvoteCount);
-  }
+class Location {
+  int? latitude;
+  int? longitude;
 
-  Incident setCategory(String category) {
-    return Incident(
-        name: name,
-        isExpanded: isExpanded,
-        userId: userId,
-        title: title,
-        address: address,
-        incidentId: incidentId,
-        incidentStatus: incidentStatus,
-        category: category,
-        location: location,
-        createDate: createDate,
-        attachments: attachments,
-        description: description,
-        upvoteCount: upvoteCount,
-        downvoteCount: downvoteCount);
-  }
+  Location({
+    this.latitude,
+    this.longitude,
+  });
 
-  Incident setLocation(Location location) {
-    return Incident(
-        name: name,
-        isExpanded: isExpanded,
-        userId: userId,
-        title: title,
-        address: address,
-        incidentId: incidentId,
-        incidentStatus: incidentStatus,
-        category: category,
-        location: location,
-        createDate: createDate,
-        attachments: attachments,
-        description: description,
-        upvoteCount: upvoteCount,
-        downvoteCount: downvoteCount);
-  }
+  factory Location.fromJson(Map<String, dynamic> json) => Location(
+        latitude: json["latitude"],
+        longitude: json["longitude"],
+      );
 
-  Incident setAttachments(List attachments) {
-    return Incident(
-        name: name,
-        isExpanded: isExpanded,
-        userId: userId,
-        title: title,
-        address: address,
-        incidentId: incidentId,
-        incidentStatus: incidentStatus,
-        category: category,
-        location: location,
-        createDate: createDate,
-        attachments: attachments,
-        description: description,
-        upvoteCount: upvoteCount,
-        downvoteCount: downvoteCount);
-  }
+  Map<String, dynamic> toJson() => {
+        "latitude": latitude,
+        "longitude": longitude,
+      };
+}
 
-  Incident setUpvoteCount(int upvoteCount) {
-    return Incident(
-        name: name,
-        isExpanded: isExpanded,
-        userId: userId,
-        title: title,
-        address: address,
-        incidentId: incidentId,
-        incidentStatus: incidentStatus,
-        category: category,
-        location: location,
-        createDate: createDate,
-        attachments: attachments,
-        description: description,
-        upvoteCount: upvoteCount,
-        downvoteCount: downvoteCount);
-  }
+class VoteCounts {
+  int? downvoteCount;
+  int? upvoteCount;
 
-  Incident setDownvoteCount(int downvoteCount) {
-    return Incident(
-        name: name,
-        isExpanded: isExpanded,
-        userId: userId,
-        title: title,
-        address: address,
-        incidentId: incidentId,
-        incidentStatus: incidentStatus,
-        category: category,
-        location: location,
-        createDate: createDate,
-        attachments: attachments,
-        description: description,
-        upvoteCount: upvoteCount,
-        downvoteCount: downvoteCount);
-  }
+  VoteCounts({
+    this.downvoteCount,
+    this.upvoteCount,
+  });
 
-  Incident setincidentStatus(String incidentStatus) {
-    return Incident(
-        name: name,
-        isExpanded: isExpanded,
-        userId: userId,
-        title: title,
-        address: address,
-        incidentId: incidentId,
-        incidentStatus: incidentStatus,
-        category: category,
-        location: location,
-        createDate: createDate,
-        attachments: attachments,
-        description: description,
-        upvoteCount: upvoteCount,
-        downvoteCount: downvoteCount);
-  }
+  factory VoteCounts.fromJson(Map<String, dynamic> json) => VoteCounts(
+        downvoteCount: json["downvote_count"],
+        upvoteCount: json["upvote_count"],
+      );
 
-  Incident setAddress(String address) {
-    return Incident(
-        name: name,
-        isExpanded: isExpanded,
-        userId: userId,
-        title: title,
-        address: address,
-        incidentId: incidentId,
-        incidentStatus: incidentStatus,
-        category: category,
-        location: location,
-        createDate: createDate,
-        attachments: attachments,
-        description: description,
-        upvoteCount: upvoteCount,
-        downvoteCount: downvoteCount);
-  }
-
-  Incident setCreateDate(DateTime createDate) {
-    return Incident(
-        name: name,
-        isExpanded: isExpanded,
-        userId: userId,
-        title: title,
-        address: address,
-        incidentId: incidentId,
-        incidentStatus: incidentStatus,
-        category: category,
-        location: location,
-        createDate: createDate,
-        attachments: attachments,
-        description: description,
-        upvoteCount: upvoteCount,
-        downvoteCount: downvoteCount);
-  }
+  Map<String, dynamic> toJson() => {
+        "downvote_count": downvoteCount,
+        "upvote_count": upvoteCount,
+      };
 }

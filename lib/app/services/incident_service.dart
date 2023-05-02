@@ -1,13 +1,14 @@
 import 'dart:convert';
 import 'package:fabb_mobil/app/models/incident_model.dart';
 import 'package:fabb_mobil/app/models/user_model.dart';
+import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:http/http.dart' as http;
 
 import '../../main.dart';
 
 class IncidentService {
-  Future<void> getIncidentbyId(Incident incident) async {
-    String incidentGetId = incident.incidentId;
+  Future<void> getIncidentbyId(IncidentModel incident) async {
+    String? incidentGetId = incident.incidentId;
     Map<String, dynamic> incidentJson;
     final response =
         await http.get(Uri.parse('$baseUrl/incident/$incidentGetId'));
@@ -20,9 +21,9 @@ class IncidentService {
     }
   }
 
-  Future<bool> postIncident(Incident incident) async {
+  /*Future<bool> postIncident(IncidentModel incident) async {
     final Map<String, dynamic> incidentJson = {
-      'user_id': incident.userid,
+      'user_id': incident.userId,
       'incident_id': incident.incidentid,
       'title': incident.title,
       'category': incident.category,
@@ -40,7 +41,7 @@ class IncidentService {
       print("Failed to Post Data. Error: ${response.statusCode}");
       return false;
     }
-  } /*
+  } */ /*
 
   Future<List<Incident>> getIncident() async {
     final response = await http.get(Uri.parse('$baseUrl/incident'));
@@ -53,27 +54,22 @@ class IncidentService {
     }
   }*/
 
-  List<Incident> incidents = [];
-/*
-  void fetchIncidents() async {
-    final List<Incident> fetchedIncidents = await getIncidents();
-    setState(() {
-      incidents = fetchedIncidents;
-    });
-  }
-
-  Future<List<Incident>> getIncidents() async {
-    final response =
+  Future<List<IncidentModel>> getIncidents() async {
+    http.Response response =
         await http.get(Uri.parse('http://localhost:3000/incidents'));
-    if (response.statusCode == 200) {
-      final incidentJson = json.decode(response.body);
-      final List<Incident> incidents = List<Incident>.from(
-          incidentJson.map((incident) => fromJson(incident)));
-      return incidents;
-    } else {
-      throw Exception('Failed to load incidents');
+
+    if (response != null) {
+      Map<String, dynamic> values = json.decode(response.body);
+      if (response.statusCode == 200) {
+        List<IncidentModel> incidentList = List<IncidentModel>.from(
+            values[''].map((x) => IncidentModel.fromJson(x)));
+        return incidentList;
+      } else {
+        throw Exception('Failed to load incidents');
+      }
     }
-  }*/
+    throw Exception('Unexpected error');
+  }
 
   /*Future<bool> deleteIncident(String userId, String accountId) async {
     final Map<String, dynamic> userJson = {

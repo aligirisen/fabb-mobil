@@ -1,14 +1,15 @@
-import 'dart:js_util';
-
 import 'package:fabb_mobil/app/services/incident_service.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:universal_html/html.dart';
+import 'package:universal_html/js_util.dart';
 
 import '../../models/incident_model.dart';
 
 class ListViewController extends GetxController {
-  late List<Incident> incidents;
+  late List<IncidentModel> incidents;
   late TextEditingController locationController;
+  RxBool isExpanded = false.obs;
 
   @override
   void onInit() {
@@ -17,33 +18,27 @@ class ListViewController extends GetxController {
     incidents = generateItems(20);
   }
 
-  Location location = getLocation();
+  //Location location = getLocation();
 
-  List<Incident> generateItems(int numberOfItems) {
-    List<Incident> incidents;
-    incidents = IncidentService().getIncidents();
+  List<IncidentModel> generateItems(int numberOfItems) {
+    List<IncidentModel> incidents;
+    //incidents = IncidentService().getIncidents();
     /*for (int i = 0; i < numberOfItems; i++) {
       IncidentService().getIncidents();
     }*/
     return List.generate(numberOfItems, (int index) {
-      return Incident(
-          name: 'Incident - $index',
-          isExpanded: false.obs,
+      return IncidentModel(
           userId: 'userId',
           title: 'title',
           incidentId: 'Incident - $index Details',
           incidentStatus: 'incidentStatus',
           category: 'category',
           location: null,
-          attachments: ["attachments"],
+          //attachments: ["attachments"],
           description: 'description',
           address: 'addressss',
-          createDate: DateTime.now());
+          createDate: DateTime.now().toString());
     });
-  }
-
-  static Location getLocation() {
-    throw notEqual(2, 4);
   }
 }
 /*

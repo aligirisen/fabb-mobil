@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../models/incident_model.dart';
 
 class IncidentTypeController extends GetxController {
-  late List<Incident> incidents;
+  late List<IncidentModel> incidents;
   late TextEditingController locationController;
   var selectedType = null;
 
@@ -15,4 +15,5 @@ class IncidentTypeController extends GetxController {
   }
 
   //bana list of incident type lazım
+  //tamam
 }
