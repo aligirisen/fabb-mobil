@@ -98,10 +98,8 @@ class VoteCounts {
     this.upvoteCount,
   });
 
-  factory VoteCounts.fromJson(Map<String, dynamic> json) => VoteCounts(
-        downvoteCount: json["downvote_count"],
-        upvoteCount: json["upvote_count"],
-      );
+  factory VoteCounts.fromJson(Map<String, dynamic> json) =>
+      VoteCounts(downvoteCount: 54, upvoteCount: 5);
 
   Map<String, dynamic> toJson() => {
         "downvote_count": downvoteCount,
