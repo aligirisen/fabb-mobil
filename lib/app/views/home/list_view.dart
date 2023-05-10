@@ -28,7 +28,7 @@ class MapListView extends GetView<ListViewController> {
                     expansionCallback: (panelIndex, isExpanded) {
                       controller.isExpanded.value = !isExpanded;
                     },
-                    children: controller.incidents
+                    children: controller.incidentList
                         .map<ExpansionPanel>((IncidentModel item) {
                       return ExpansionPanel(
                           backgroundColor: Color(0xffF7F7F7),
@@ -225,7 +225,7 @@ class MapListView extends GetView<ListViewController> {
           width: 2.w,
         ),
         Text(
-          "Accident",
+          "${controller.incidentList[0].category}",
           style: TextStyle(
               color: Colors.red, fontSize: 17, fontWeight: FontWeight.w600),
         )

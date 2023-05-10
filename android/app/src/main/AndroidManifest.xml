@@ -2,6 +2,8 @@
     package="com.example.fabb_mobil">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
    <application
@@ -37,6 +39,6 @@
             android:value="2" />
             <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBwHCRh9v1ousAaM_nrSPR363O7IzaDIfw" />
+            android:value="AIzaSyBCIMY-rkHZx-KFo1zi_6VzxHUnAx2xXMo" />
     </application>
 </manifest>

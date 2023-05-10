@@ -111,7 +111,7 @@ class MyReportsView extends GetView<ListViewController> {
                           expansionCallback: (panelIndex, isExpanded) {
                             controller.isExpanded.value = !isExpanded;
                           },
-                          children: controller.incidents
+                          children: controller.incidentList
                               .map<ExpansionPanel>((IncidentModel item) {
                             return ExpansionPanel(
                                 backgroundColor: Color(0xffF7F7F7),

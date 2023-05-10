@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'package:fabb_mobil/app/models/incident_model.dart';
-import 'package:fabb_mobil/app/models/user_model.dart';
-import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:http/http.dart' as http;
 
 import '../../main.dart';
@@ -12,7 +10,6 @@ class IncidentService {
     Map<String, dynamic> incidentJson;
     final response =
         await http.get(Uri.parse('$baseUrl/incident/$incidentGetId'));
-
     if (response.statusCode == 200) {
       incidentJson = json.decode(response.body);
       print(incidentJson['category']);
@@ -43,7 +40,7 @@ class IncidentService {
     }
   } */ /*
 
-  Future<List<Incident>> getIncident() async {
+  Future<List<Incident>> getIncidents() async {
     final response = await http.get(Uri.parse('$baseUrl/incident'));
 
     if (response.statusCode == 200) {
@@ -55,15 +52,19 @@ class IncidentService {
   }*/
 
   Future<List<IncidentModel>> getIncidents() async {
-    http.Response response =
-        await http.get(Uri.parse('http://localhost:3000/incidents'));
+    http.Response response = await http.get(Uri.parse('$baseUrl/incident/'));
 
     if (response != null) {
-      Map<String, dynamic> values = json.decode(response.body);
+      Map<String, dynamic> value = json.decode(response.body);
+      List<IncidentModel> list = [];
+
+      print(value);
       if (response.statusCode == 200) {
-        List<IncidentModel> incidentList = List<IncidentModel>.from(
-            values[''].map((x) => IncidentModel.fromJson(x)));
-        return incidentList;
+        value.forEach((key, value) {
+          list.add(IncidentModel.fromJson(value));
+        });
+
+        return list;
       } else {
         throw Exception('Failed to load incidents');
       }
