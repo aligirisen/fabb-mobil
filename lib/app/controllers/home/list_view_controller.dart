@@ -10,6 +10,8 @@ class ListViewController extends GetxController {
   late List<IncidentModel> incidents;
   late TextEditingController locationController;
   RxBool isExpanded = false.obs;
+  RxInt likeCount = 17.obs;
+  RxInt dislikeCount = 5.obs;
 
   @override
   void onInit() {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:like_button/like_button.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/home/list_view_controller.dart';
@@ -101,27 +102,85 @@ class MapListView extends GetView<ListViewController> {
                                     SizedBox(
                                       width: 5.w,
                                     ),
-                                    Text("12", style: TextStyle(fontSize: 13)),
-                                    SizedBox(
-                                      width: 2.w,
-                                    ),
-                                    Icon(
-                                      Icons.thumb_up_alt_rounded,
+                                    LikeButton(
                                       size: 20,
-                                      color: Colors.black,
+                                      circleColor: CircleColor(
+                                          start: Color(0xff00ddff),
+                                          end: Color(0xff0099cc)),
+                                      bubblesColor: BubblesColor(
+                                        dotPrimaryColor: Color(0xff33b5e5),
+                                        dotSecondaryColor: Color(0xff0099cc),
+                                      ),
+                                      likeBuilder: (bool isLiked) {
+                                        return Icon(
+                                          Icons.thumb_up_alt_rounded,
+                                          color: isLiked
+                                              ? AppColors.darkBlue
+                                              : Colors.grey,
+                                          size: 20,
+                                        );
+                                      },
+                                      likeCount: controller.likeCount.value,
+                                      countBuilder: (int? count, bool isLiked,
+                                          String text) {
+                                        var color = isLiked
+                                            ? AppColors.darkBlue
+                                            : Colors.grey;
+                                        Widget result;
+                                        if (count == 0) {
+                                          result = Text(
+                                            "love",
+                                            style: TextStyle(color: color),
+                                          );
+                                        } else
+                                          result = Text(
+                                            text,
+                                            style: TextStyle(color: color),
+                                          );
+                                        return result;
+                                      },
                                     ),
                                     SizedBox(
                                       width: 5.w,
                                     ),
-                                    Text("4", style: TextStyle(fontSize: 13)),
-                                    SizedBox(
-                                      width: 2.w,
-                                    ),
-                                    Icon(
-                                      Icons.thumb_down_alt_rounded,
+                                    LikeButton(
                                       size: 20,
-                                      color: Colors.black,
-                                    )
+                                      circleColor: CircleColor(
+                                          start: Color(0xff00ddff),
+                                          end: Color(0xff0099cc)),
+                                      bubblesColor: BubblesColor(
+                                        dotPrimaryColor: Color(0xff33b5e5),
+                                        dotSecondaryColor: Color(0xff0099cc),
+                                      ),
+                                      likeBuilder: (bool isLiked) {
+                                        return Icon(
+                                          Icons.thumb_down_alt_rounded,
+                                          color: isLiked
+                                              ? AppColors.darkBlue
+                                              : Colors.grey,
+                                          size: 20,
+                                        );
+                                      },
+                                      likeCount: controller.dislikeCount.value,
+                                      countBuilder: (int? count, bool isLiked,
+                                          String text) {
+                                        var color = isLiked
+                                            ? AppColors.darkBlue
+                                            : Colors.grey;
+                                        Widget result;
+                                        if (count == 0) {
+                                          result = Text(
+                                            "love",
+                                            style: TextStyle(color: color),
+                                          );
+                                        } else
+                                          result = Text(
+                                            text,
+                                            style: TextStyle(color: color),
+                                          );
+                                        return result;
+                                      },
+                                    ),
                                   ],
                                 ),
                               )

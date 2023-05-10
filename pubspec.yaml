@@ -54,6 +54,7 @@ dependencies:
   auto_size_text: ^3.0.0
   flutter_switch: ^0.3.2
   geolocator: ^9.0.2
+  like_button: ^2.0.5
 
 dev_dependencies:
   flutter_test:
