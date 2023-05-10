@@ -20,6 +20,7 @@ class MapListView extends GetView<ListViewController> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
+          //color: Colors.red,
           margin: const EdgeInsets.only(top: 20, bottom: 20),
           child: Obx(() => Container(
                 child: ExpansionPanelList(
