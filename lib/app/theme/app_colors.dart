@@ -17,4 +17,10 @@ class AppColors {
 //start new incident page
   static Color containerBackground = Color(0xFFF7F7F7);
   static Color greyTextColor = Color.fromARGB(255, 93, 93, 93);
+
+//incident type colors
+  static Color incident1color = Colors.orange;
+  static Color incident2color = Colors.green;
+  static Color incident3color = Colors.brown;
+  static Color incident4color = Colors.blue;
 }

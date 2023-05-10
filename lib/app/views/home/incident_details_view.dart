@@ -1,3 +1,5 @@
+import 'package:fabb_mobil/app/general_app_datas/general_app_datas.dart';
+import 'package:fabb_mobil/app/theme/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -25,196 +27,242 @@ class IncidentDetailsView extends GetView<IncidentTypeController> {
               ),
             ),
             backgroundColor: AppColors.darkBlue,
-            title: Text("Accident")), //seçilen incident type buraya gelecek
-        body: Padding(
-          padding: const EdgeInsets.all(20),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Report Number"),
-                SizedBox(
-                  height: 2.h,
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 5.w),
-                    child: Text(
-                      "AEF2482948",
-                      style: TextStyle(color: Colors.grey),
-                    ),
+            title: Text(GeneralAppDatas.selectedIncidentType
+                .value)), //seçilen incident type buraya gelecek
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Report Number"),
+                  SizedBox(
+                    height: 2.h,
                   ),
-                  width: 100.w,
-                  height: 6.h,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      border: Border.all(color: AppColors.mainColor)),
-                ),
-                SizedBox(
-                  height: 3.h,
-                ),
-
-                //title
-                Text("Title"),
-                SizedBox(
-                  height: 2.h,
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 5.w),
-                    child: Text(""),
+                  reportTextField(2.h),
+                  SizedBox(
+                    height: 3.h,
                   ),
-                  width: 100.w,
-                  height: 6.h,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      border: Border.all(color: AppColors.mainColor)),
-                ),
-                SizedBox(
-                  height: 3.h,
-                ),
 
-                Row(
-                  children: [
-                    Container(
-                        height: 10.h,
-                        width: 24.5.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              bottomLeft: Radius.circular(10)),
-                          color: AppColors.darkBlue,
-                        )),
-                    Container(
-                      padding: EdgeInsets.only(left: 5.w),
-                      alignment: Alignment.centerLeft,
-                      height: 10.h,
-                      width: 65.w,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            bottomRight: Radius.circular(10)),
-                        color: AppColors.blue2,
-                      ),
-                      child: Text(
-                        "Take a Photo or Video",
-                        style: AppTextStyles.infoTextStyle,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 3.h,
-                ),
-                Row(
-                  children: [
-                    Container(
-                        height: 10.h,
-                        width: 24.5.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              bottomLeft: Radius.circular(10)),
-                          color: AppColors.darkBlue,
-                        )),
-                    Container(
-                      padding: EdgeInsets.only(left: 5.w),
-                      alignment: Alignment.centerLeft,
-                      height: 10.h,
-                      width: 65.w,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            bottomRight: Radius.circular(10)),
-                        color: AppColors.blue2,
-                      ),
-                      child: Text(
-                        "Select From Library",
-                        style: AppTextStyles.infoTextStyle,
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 3.h,
-                ),
-
-                //title
-                Text("Description"),
-                SizedBox(
-                  height: 2.h,
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        left: 3.w, top: 2.h, bottom: 2.h, right: 3.w),
-                    child: Text(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio..."),
+                  //title
+                  Text("Title"),
+                  SizedBox(
+                    height: 2.h,
                   ),
-                  width: 100.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      border: Border.all(color: AppColors.mainColor)),
-                ),
-                SizedBox(
-                  height: 3.h,
-                ),
-                SizedBox(
-                  height: 3.h,
-                ),
+                  titleTextField(2.h),
 
-                //title
-                Text("Address"),
-                SizedBox(
-                  height: 2.h,
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        left: 3.w, top: 2.h, bottom: 2.h, right: 3.w),
-                    child: Text(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio..."),
+                  SizedBox(
+                    height: 3.h,
                   ),
-                  width: 100.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      border: Border.all(color: AppColors.mainColor)),
-                ),
-                SizedBox(
-                  height: 3.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(Routes.succcesfulyReportedPage);
-                      },
-                      child: Container(
+
+                  Row(
+                    children: [
+                      Stack(
                         alignment: Alignment.center,
-                        height: 7.h,
-                        width: 45.w,
+                        children: [
+                          Container(
+                              height: 10.h,
+                              width: 24.5.w,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    bottomLeft: Radius.circular(10)),
+                                color: AppColors.darkBlue,
+                              )),
+                          SizedBox(height: 4.5.h, child: AppImages.camera)
+                        ],
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 5.w),
+                        alignment: Alignment.centerLeft,
+                        height: 10.h,
+                        width: 65.w,
                         decoration: BoxDecoration(
-                          color: AppColors.darkBlue,
-                          borderRadius: BorderRadius.circular(7),
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(10),
+                              bottomRight: Radius.circular(10)),
+                          color: AppColors.blue2,
                         ),
                         child: Text(
-                          "Report",
-                          style: AppTextStyles.infoTextStyle,
+                          "Take a Photo or Video",
+                          style: AppTextStyles.infoTextStyleLight,
                         ),
                       ),
-                    ),
-                  ],
-                )
-              ],
+                    ],
+                  ),
+                  SizedBox(
+                    height: 3.h,
+                  ),
+                  Row(
+                    children: [
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                              height: 10.h,
+                              width: 24.5.w,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    bottomLeft: Radius.circular(10)),
+                                color: AppColors.darkBlue,
+                              )),
+                          SizedBox(height: 5.h, child: AppImages.album)
+                        ],
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 5.w),
+                        alignment: Alignment.centerLeft,
+                        height: 10.h,
+                        width: 65.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(10),
+                              bottomRight: Radius.circular(10)),
+                          color: AppColors.blue2,
+                        ),
+                        child: Text(
+                          "Select From Library",
+                          style: AppTextStyles.infoTextStyleLight,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 3.h,
+                  ),
+
+                  //title
+                  Text("Description"),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  descriptionTextField(10.h),
+
+                  SizedBox(
+                    height: 3.h,
+                  ),
+                  SizedBox(
+                    height: 3.h,
+                  ),
+
+                  //title
+                  Text("Address"),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  addressTextField(10.h),
+                  SizedBox(
+                    height: 3.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed(Routes.succcesfulyReportedPage);
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 7.h,
+                          width: 45.w,
+                          decoration: BoxDecoration(
+                            color: AppColors.darkBlue,
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                          child: Text(
+                            "Report",
+                            style: AppTextStyles.infoTextStyleLight,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ));
+  }
+
+  TextField reportTextField(double height) {
+    return TextField(
+      // maxLength: 10,
+      cursorColor: AppColors.mainColor,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(vertical: height, horizontal: 5.w),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.mainColor),
+        ),
+        // hoverColor: Colors.amber,
+        //focusColor: Colors.red,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        hintText: 'AUGV23442',
+      ),
+    );
+  }
+
+  TextField titleTextField(double height) {
+    return TextField(
+      // maxLength: 10,
+      cursorColor: AppColors.mainColor,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(vertical: height, horizontal: 5.w),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.mainColor),
+        ),
+        // hoverColor: Colors.amber,
+        //focusColor: Colors.red,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        //hintText: '...',
+      ),
+    );
+  }
+
+  TextField descriptionTextField(double height) {
+    return TextField(
+      textAlign: TextAlign.start,
+      //textAlignVertical: TextAlignVertical.bottom,
+      minLines: 6,
+      maxLines: 10,
+      maxLength: 250,
+      cursorColor: AppColors.mainColor,
+      decoration: InputDecoration(
+        // contentPadding: EdgeInsets.symmetric(vertical: height, horizontal: 5.w),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.mainColor),
+        ),
+        // hoverColor: Colors.amber,
+        //focusColor: Colors.red,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        //hintText: '...',
+      ),
+    );
+  }
+
+  TextField addressTextField(double height) {
+    return TextField(
+      textAlign: TextAlign.start,
+      //textAlignVertical: TextAlignVertical.bottom,
+      minLines: 4,
+      maxLines: 10,
+      maxLength: 250,
+      cursorColor: AppColors.mainColor,
+      decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.mainColor),
+        ),
+        // hoverColor: Colors.amber,
+        //focusColor: Colors.red,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        //hintText: '...',
+      ),
+    );
   }
 
   Text title() {

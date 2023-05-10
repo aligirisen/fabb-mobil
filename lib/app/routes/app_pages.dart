@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import '../bindings/all_bindings.dart';
 import '../views/auth pages/login_view.dart';
 import '../views/auth pages/signup_view.dart';
-import '../views/home/accident_type_view.dart';
+import '../views/home/incident_type_view.dart';
+import '../views/home/guest/guest_new_incident_view.dart';
 import '../views/home/home_view.dart';
 import '../views/home/map_view.dart';
 import '../views/home/successfully_reported_view.dart';
@@ -24,7 +25,7 @@ class AppPages {
   static const home = Routes.home;
   static const map = Routes.map;
 
-  static const accidentType = Routes.accidentType;
+  static const accidentType = Routes.incidentType;
 
   static final routes = [
     GetPage(
@@ -48,7 +49,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.map,
-      page: () => MapView(),
+      page: () => const MapView(),
     ),
     GetPage(
       name: _Paths.myreports,
@@ -63,8 +64,8 @@ class AppPages {
       page: () => const ContactView(),
     ),
     GetPage(
-      name: _Paths.accidentType,
-      page: () => const AccidentTypeView(),
+      name: _Paths.incidentType,
+      page: () => const IncidentTypeView(),
     ),
     GetPage(
       name: _Paths.incidentDetails,
@@ -72,7 +73,11 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.succcesfulyReportedPage,
-      page: () => SuccessfullyReportedView(),
+      page: () => const SuccessfullyReportedView(),
+    ),
+    GetPage(
+      name: _Paths.guestNewIncident,
+      page: () => const GuestNewIncidentView(),
     ),
   ];
 }

@@ -14,9 +14,10 @@ abstract class Routes {
   static const map = _Paths.map;
 
   //creating an accident
-  static const accidentType = _Paths.accidentType;
+  static const incidentType = _Paths.incidentType;
   static const incidentDetails = _Paths.incidentDetails;
   static const succcesfulyReportedPage = _Paths.succcesfulyReportedPage;
+  static const guestNewIncident = _Paths.guestNewIncident;
 }
 
 abstract class _Paths {
@@ -31,7 +32,8 @@ abstract class _Paths {
   static const map = '/mapscreen';
 
   //creating an accident
-  static const accidentType = '/accidentType';
+  static const incidentType = '/accidentType';
   static const incidentDetails = '/incidentDetails';
   static const succcesfulyReportedPage = '/succcesfulyReportedPage';
+  static const guestNewIncident = '/guestNewIncident';
 }

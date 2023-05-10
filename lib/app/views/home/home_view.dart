@@ -1,4 +1,5 @@
-import 'package:fabb_mobil/app/views/home/accident_type_view.dart';
+import 'package:fabb_mobil/app/general_app_datas/general_app_datas.dart';
+import 'package:fabb_mobil/app/views/home/incident_type_view.dart';
 import 'package:fabb_mobil/app/views/home/list_view.dart';
 import 'package:fabb_mobil/app/views/home/map_view.dart';
 import 'package:flutter/material.dart';
@@ -64,8 +65,12 @@ class HomeView extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: FloatingActionButton(
-                    heroTag: "add",
-                    onPressed: () => Get.toNamed(Routes.accidentType),
+                    heroTag: "new_incident",
+                    onPressed: () {
+                      GeneralAppDatas.isLoggedIn.value == true
+                          ? Get.toNamed(Routes.incidentType)
+                          : Get.toNamed(Routes.guestNewIncident);
+                    },
                     backgroundColor: AppColors.darkBlue,
                     child: const Icon(
                       Icons.add_rounded,

@@ -2,6 +2,8 @@ import 'package:fabb_mobil/app/services/auth_service.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
+import '../../general_app_datas/general_app_datas.dart';
+
 class LoginController extends GetxController {
   RxString displayText = 'Enter a password'.obs;
   RxDouble passwordStrength = 0.0.obs;
@@ -61,6 +63,7 @@ class LoginController extends GetxController {
   Future<bool> loginService(String email, String password) async {
     bool isLogged = await AuthService().login(email, password);
     if (isLogged == true) {
+      GeneralAppDatas.isLoggedIn(true);
       return true;
     } else {
       return false;

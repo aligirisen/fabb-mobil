@@ -1,3 +1,4 @@
+import 'package:fabb_mobil/app/general_app_datas/general_app_datas.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -8,8 +9,8 @@ import '../../theme/app_colors.dart';
 import 'incident_details_view.dart';
 
 //color: Color(0xff78D8A4),
-class AccidentTypeView extends GetView<IncidentTypeController> {
-  const AccidentTypeView({super.key});
+class IncidentTypeView extends GetView<IncidentTypeController> {
+  const IncidentTypeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class AccidentTypeView extends GetView<IncidentTypeController> {
                 height: 100.h,
                 margin: const EdgeInsets.only(top: 20, bottom: 20),
                 child: ListView.builder(
-                  itemCount: 5,
+                  itemCount: controller.incidentTypes.length,
                   itemBuilder: (context, index) => ListTile(
                       title: Container(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -49,24 +50,27 @@ class AccidentTypeView extends GetView<IncidentTypeController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        IncidentType(),
+                        IncidentType(index),
                         SizedBox(
                           height: 1.h,
                         ),
-                        title(),
+                        text(index),
                       ],
                     ),
                   )),
                 )),
+            SizedBox(
+              height: 5.h,
+            )
           ],
         ),
       ),
     );
   }
 
-  Text title() {
+  Text text(int index) {
     return Text(
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
+      "${controller.incidentTypes[index].text}",
       style: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w500,
@@ -74,23 +78,24 @@ class AccidentTypeView extends GetView<IncidentTypeController> {
     );
   }
 
-  Row IncidentType() {
+  Row IncidentType(int index) {
     return Row(
       children: [
-        Icon(
-          Icons.warning_rounded,
-          color: Colors.red,
-          size: 33.0,
+        Image(
+          height: 5.h,
+          image: controller.incidentTypes[index].icon,
         ),
         SizedBox(
           width: 2.w,
         ),
         Text(
-          "Accident",
+          "${controller.incidentTypes[index].title}",
           style: TextStyle(
-              color: Colors.red, fontSize: 17, fontWeight: FontWeight.w600),
+              color: controller.incidentTypes[index].color,
+              fontSize: 17,
+              fontWeight: FontWeight.w600),
         ),
-        SizedBox(width: 30.w),
+        Spacer(),
         ElevatedButton(
           style: ButtonStyle(
               fixedSize: MaterialStateProperty.all(const Size(100, 25)),
@@ -101,6 +106,8 @@ class AccidentTypeView extends GetView<IncidentTypeController> {
                 borderRadius: BorderRadius.circular(5.0),
               ))),
           onPressed: () {
+            GeneralAppDatas.selectedIncidentType.value =
+                controller.incidentTypes[index].title;
             Get.toNamed(Routes.incidentDetails);
           },
           child: Text(

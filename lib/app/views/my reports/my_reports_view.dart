@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../common/navigation_drawer.dart';
 import '../../controllers/home/list_view_controller.dart';
 import '../../models/incident_model.dart';
 import '../../routes/app_pages.dart';
@@ -19,30 +20,38 @@ class MyReportsView extends GetView<ListViewController> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        drawer: const CustomNavigationDrawer(),
+        appBar: AppBar(
+          toolbarHeight: 9.h,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(0),
+            ),
+          ),
+          backgroundColor: AppColors.darkBlue,
+          title: Text("My Reports"),
+        ),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: GestureDetector(
-                  onTap: () {
-                    Get.toNamed(Routes.home);
-                  },
-                  child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Icon(
-                        Icons.close,
-                        color: Colors.black,
-                      )),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
-                child: Text(
-                  "My Reports",
-                  style: TextStyle(color: AppColors.darkBlue, fontSize: 25),
-                ),
+              // Align(
+              //   alignment: Alignment.topRight,
+              //   child: GestureDetector(
+              //     onTap: () {
+              //       Get.toNamed(Routes.home);
+              //     },
+              //     child: Padding(
+              //         padding: const EdgeInsets.all(20),
+              //         child: Icon(
+              //           Icons.close,
+              //           color: Colors.black,
+              //           size: 35,
+              //         )),
+              //   ),
+              // ),
+              SizedBox(
+                height: 3.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -53,19 +62,19 @@ class MyReportsView extends GetView<ListViewController> {
                     thickness: 10,
                     color: Colors.grey,
                   ),
-                  myReportCount(Colors.green),
+                  solvedReportCount(Colors.green),
                   Icon(
                     Icons.circle,
                     color: Colors.grey,
                     size: 7,
                   ),
-                  myReportCount(Colors.blue),
+                  inProgressReportCount(Colors.blue),
                   Icon(
                     Icons.circle,
                     color: Colors.grey,
                     size: 7,
                   ),
-                  myReportCount(Colors.red)
+                  rejectedReportCount(Colors.red)
                 ],
               ),
               Container(
@@ -232,6 +241,51 @@ class MyReportsView extends GetView<ListViewController> {
         ),
         Text(
           "total reports",
+          style: TextStyle(color: color, fontSize: 12),
+        )
+      ],
+    );
+  }
+
+  Column solvedReportCount(Color color) {
+    return Column(
+      children: [
+        Text(
+          "11",
+          style: TextStyle(color: color, fontSize: 30),
+        ),
+        Text(
+          "solved",
+          style: TextStyle(color: color, fontSize: 12),
+        )
+      ],
+    );
+  }
+
+  Column inProgressReportCount(Color color) {
+    return Column(
+      children: [
+        Text(
+          "12",
+          style: TextStyle(color: color, fontSize: 30),
+        ),
+        Text(
+          "in progress",
+          style: TextStyle(color: color, fontSize: 12),
+        )
+      ],
+    );
+  }
+
+  Column rejectedReportCount(Color color) {
+    return Column(
+      children: [
+        Text(
+          "3",
+          style: TextStyle(color: color, fontSize: 30),
+        ),
+        Text(
+          "rejected",
           style: TextStyle(color: color, fontSize: 12),
         )
       ],

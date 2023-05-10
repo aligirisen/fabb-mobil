@@ -18,4 +18,29 @@ class AppStrings {
   static String successfulTitle = "Succesfully Reported";
   static String successfulText =
       "The problem you shared has been reported to the authorities. You can follow the status of your report on the Reports page.";
+
+  static String guestNewIncidentTitle = 'Add New Incident';
+  static String guestNewIncidentText = 'If you want to use this feature';
+
+  //list of incidents
+
+  static String incident1title = 'Road Safety';
+  static String incident1text =
+      'Issues related to the safety of roads managed by the municipality, such as traffic accidents, danger signs on the roadside, or measures that can be taken for road safety can be reported.';
+
+  static String incident2title = 'Traffic Signs';
+  static String incident2text =
+      'Damaged or missing traffic signs, traffic signals, and traffic lights can be reported.';
+
+  static String incident3title = 'Road Damage';
+  static String incident3text =
+      'Damage to roads managed by the municipality can be reported, such as potholes, cracks, or sinkholes.';
+
+  static String incident4title = 'Water Damage';
+  static String incident4text =
+      'Damaged or missing traffic signs, traffic signals, and traffic lights can be reported.';
+
+  static String incident5title = 'Animals';
+  static String incident5text =
+      'Problems related to animals in areas managed by the municipality, such as stray animals, dog bites, wild animals, etc. can be reported.';
 }
