@@ -18,17 +18,28 @@ class IncidentService {
     }
   }
 
-  /*Future<bool> postIncident(IncidentModel incident) async {
+  Future<bool> postIncident(IncidentModel incident) async {
     final Map<String, dynamic> incidentJson = {
       'user_id': incident.userId,
-      'incident_id': incident.incidentid,
+      'incident_id': incident.incidentId,
       'title': incident.title,
       'category': incident.category,
+      'location': incident.location,
+      'key': incident.key,
+      'attachments': incident.attachments,
+      'address': incident.address,
+      'create_date': incident.createDate,
+      'incident_status': incident.incidentStatus,
+      'report_number': incident.reportNumber,
+      'description': incident.description,
+      'upvote_count': incident.upvoteCount,
+      'downvote_count': incident.downvoteCount
     };
 
-    print(jsonEncode(incidentJson));
-    http.Response response =
-        await http.post(Uri.parse(baseUrl), body: incidentJson);
+    var encodedIncident = jsonEncode(incidentJson);
+    print(encodedIncident);
+    http.Response response = await http
+        .post(Uri.parse('$baseUrl/incident/create'), body: encodedIncident);
     if (response.statusCode == 200) {
       // Success
       print("Data Posted Successfully!");
@@ -38,18 +49,7 @@ class IncidentService {
       print("Failed to Post Data. Error: ${response.statusCode}");
       return false;
     }
-  } */ /*
-
-  Future<List<Incident>> getIncidents() async {
-    final response = await http.get(Uri.parse('$baseUrl/incident'));
-
-    if (response.statusCode == 200) {
-      final incidents = json.decode(response.body);
-      return incidents;
-    } else {
-      throw Exception('Failed to load user data from API');
-    }
-  }*/
+  }
 
   Future<List<IncidentModel>> getIncidents() async {
     http.Response response = await http.get(Uri.parse('$baseUrl/incident/'));

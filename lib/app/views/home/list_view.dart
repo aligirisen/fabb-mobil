@@ -138,9 +138,8 @@ class MapListView extends GetView<ListViewController> {
                               size: 20,
                             );
                           },
-                          likeCount: controller.incidentList[index].voteCounts
-                                  ?.upvoteCount ??
-                              0,
+                          likeCount:
+                              controller.incidentList[index].upvoteCount ?? 0,
                           countBuilder:
                               (int? count, bool isLiked, String text) {
                             var color =
@@ -177,9 +176,8 @@ class MapListView extends GetView<ListViewController> {
                               size: 20,
                             );
                           },
-                          likeCount: controller.incidentList[index].voteCounts
-                                  ?.downvoteCount ??
-                              0,
+                          likeCount:
+                              controller.incidentList[index].downvoteCount ?? 0,
                           countBuilder:
                               (int? count, bool isLiked, String text) {
                             var color =
