@@ -74,9 +74,28 @@ class SignupView extends GetView<SignupController> {
         ));
   }
 
+  bool checkIsEmptyTextField(String value) {
+    if (value == null || value == "") {
+      return true;
+    }
+    return false;
+  }
+
   GestureDetector signupButton() {
     return GestureDetector(
       onTap: () async {
+        if (checkIsEmptyTextField(controller.firstname.value)) {
+          showDialog(
+            context: Get.overlayContext!,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Empty fields"),
+                content: Text(
+                    "You have empty fileds. Please fill these empty fields and try again."),
+              );
+            },
+          );
+        }
         if (!await controller.register()) {
           print("Not Found");
         } else {
@@ -140,7 +159,7 @@ class SignupView extends GetView<SignupController> {
           border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
       child: TextFormField(
         onSaved: (value) {
-          controller.firstname.value = value!;
+          controller.firstname.value = value ?? "";
         },
         onChanged: (value) {
           controller.firstname.value = value;
@@ -165,7 +184,7 @@ class SignupView extends GetView<SignupController> {
           border: Border.all(color: const Color.fromARGB(255, 156, 156, 156))),
       child: TextFormField(
         onSaved: (value) {
-          controller.lastname.value = value!;
+          controller.lastname.value = value ?? "";
         },
         onChanged: (value) {
           controller.lastname.value = value;

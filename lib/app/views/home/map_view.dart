@@ -20,6 +20,12 @@ class MapView extends GetView<MapViewController> {
         () => GoogleMap(
           initialCameraPosition: controller.initialPosition,
           mapType: controller.maptype.value,
+          markers: Set<Marker>.of(controller.markers),
+          myLocationEnabled: true,
+          compassEnabled: true,
+          onTap: (position) {
+            controller.addMarker(position);
+          },
           onMapCreated: (GoogleMapController mapController) {
             completer.complete(mapController);
           },

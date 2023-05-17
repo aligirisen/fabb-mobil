@@ -5,7 +5,7 @@ import 'package:sizer/sizer.dart';
 import 'app/routes/app_pages.dart';
 import 'app/theme/app_strings.dart';
 
-const baseUrl = 'http://192.168.1.106:5111';
+const baseUrl = 'http://192.168.1.78:5111';
 void main() async {
   await GetStorage.init();
   runApp(const MyApp());

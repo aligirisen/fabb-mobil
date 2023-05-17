@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../controllers/home/incident_type_controller.dart';
 import '../../routes/app_pages.dart';
+import '../../shared/category_list.dart';
 import '../../theme/app_colors.dart';
 import 'incident_details_view.dart';
 
@@ -34,7 +35,7 @@ class IncidentTypeView extends GetView<IncidentTypeController> {
             Padding(
               padding: const EdgeInsets.only(top: 15, left: 20),
               child: Text(
-                "Select an incident type",
+                "Select a category",
                 style: TextStyle(color: Color.fromARGB(255, 93, 93, 93)),
               ),
             ),
@@ -42,7 +43,7 @@ class IncidentTypeView extends GetView<IncidentTypeController> {
                 height: 100.h,
                 margin: const EdgeInsets.only(top: 20, bottom: 20),
                 child: ListView.builder(
-                  itemCount: controller.incidentTypes.length,
+                  itemCount: CategoryList.incidentTypes.length,
                   itemBuilder: (context, index) => ListTile(
                       title: Container(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -70,7 +71,7 @@ class IncidentTypeView extends GetView<IncidentTypeController> {
 
   Text text(int index) {
     return Text(
-      "${controller.incidentTypes[index].text}",
+      "${CategoryList.incidentTypes[index].text}",
       style: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w500,
@@ -83,15 +84,15 @@ class IncidentTypeView extends GetView<IncidentTypeController> {
       children: [
         Image(
           height: 5.h,
-          image: controller.incidentTypes[index].icon,
+          image: CategoryList.incidentTypes[index].icon,
         ),
         SizedBox(
           width: 2.w,
         ),
         Text(
-          "${controller.incidentTypes[index].title}",
+          "${CategoryList.incidentTypes[index].title}",
           style: TextStyle(
-              color: controller.incidentTypes[index].color,
+              color: CategoryList.incidentTypes[index].color,
               fontSize: 17,
               fontWeight: FontWeight.w600),
         ),
@@ -107,7 +108,7 @@ class IncidentTypeView extends GetView<IncidentTypeController> {
               ))),
           onPressed: () {
             GeneralAppDatas.selectedIncidentType.value =
-                controller.incidentTypes[index].title;
+                CategoryList.incidentTypes[index].title;
             Get.toNamed(Routes.incidentDetails);
           },
           child: Text(

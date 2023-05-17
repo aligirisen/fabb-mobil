@@ -20,4 +20,11 @@ class AppTextStyles {
     color: AppColors.darkBlue,
     fontSize: 16,
   );
+
+//incidents
+  static TextStyle incidentTitleTextStyle = TextStyle(
+      color: AppColors.darkBlue, fontSize: 16, fontWeight: FontWeight.w600);
+
+  static TextStyle incidentDescriptionTextStyle = TextStyle(
+      color: AppColors.darkBlue, fontSize: 14, fontWeight: FontWeight.w400);
 }

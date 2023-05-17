@@ -38,7 +38,12 @@ class CustomNavigationDrawer extends StatelessWidget {
             onTap: () => navigate(3),
             tileColor: Get.currentRoute == Routes.contact
                 ? AppColors.chosendrawer
-                : Colors.transparent)
+                : Colors.transparent),
+        buildDrawerItem(
+          text: "Logout",
+          onTap: () => showLogoutConfirmationDialog(),
+          tileColor: Colors.transparent,
+        ),
       ]),
     );
   }
@@ -88,5 +93,31 @@ class CustomNavigationDrawer extends StatelessWidget {
     } else {
       Get.toNamed(Routes.contact);
     }
+  }
+
+  void showLogoutConfirmationDialog() {
+    showDialog(
+      context: Get.overlayContext!,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Çıkış Yap"),
+          content: Text("Çıkış yapmak istediğinize emin misiniz?"),
+          actions: [
+            TextButton(
+              child: Text("Hayır"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text("Evet"),
+              onPressed: () {
+                Get.offAllNamed(AppPages.login);
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

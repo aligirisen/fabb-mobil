@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../controllers/auth pages/login_controller.dart';
+import '../../models/user_model.dart';
 import '../../routes/app_pages.dart';
 import '../../theme/app_images.dart';
 
@@ -117,7 +118,9 @@ class LoginView extends GetView<LoginController> {
       onTap: () async {
         if (await controller.loginService(
             controller.email.value, controller.password.value)) {
-          Get.toNamed(Routes.signup);
+          // User user = controller.getUserList.firstWhere((user) => user.email == 'x@gmail.com', orElse: () => null);
+          // GeneralAppDatas.loggedInUser.value = user;
+          Get.toNamed(Routes.home);
         } else {
           Get.defaultDialog(
               title: "Try again",

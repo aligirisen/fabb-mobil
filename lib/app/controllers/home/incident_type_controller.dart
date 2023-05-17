@@ -19,23 +19,4 @@ class IncidentTypeController extends GetxController {
 
   //bana list of incident type lazım
   //tamam
-
-  List<IncidentTypeModel> incidentTypes = [
-    IncidentTypeModel(AppImages.roadSafety, AppStrings.incident1title,
-        AppStrings.incident1text, AppColors.incident1color),
-    IncidentTypeModel(AppImages.trafficSigns, AppStrings.incident2title,
-        AppStrings.incident2text, AppColors.incident2color),
-    IncidentTypeModel(AppImages.roadDamage, AppStrings.incident3title,
-        AppStrings.incident3text, AppColors.incident3color),
-    IncidentTypeModel(AppImages.waterDamage, AppStrings.incident4title,
-        AppStrings.incident4text, AppColors.incident4color),
-    IncidentTypeModel(AppImages.roadSafety, AppStrings.incident1title,
-        AppStrings.incident1text, AppColors.incident1color),
-    IncidentTypeModel(AppImages.trafficSigns, AppStrings.incident2title,
-        AppStrings.incident2text, AppColors.incident2color),
-    IncidentTypeModel(AppImages.roadDamage, AppStrings.incident3title,
-        AppStrings.incident3text, AppColors.incident3color),
-    IncidentTypeModel(AppImages.waterDamage, AppStrings.incident4title,
-        AppStrings.incident4text, AppColors.incident4color),
-  ];
 }

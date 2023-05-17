@@ -29,6 +29,9 @@ class AppImages {
   static AssetImage roadDamage =
       const AssetImage('assets/images/road_damage.png');
 
+  static AssetImage imageNotFound =
+      const AssetImage('assets/icons/not_found.png');
+
   static Image camera =
       Image(height: 5.h, image: AssetImage('assets/images/camera.png'));
 

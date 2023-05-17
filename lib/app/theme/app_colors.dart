@@ -19,8 +19,14 @@ class AppColors {
   static Color greyTextColor = Color.fromARGB(255, 93, 93, 93);
 
 //incident type colors
-  static Color incident1color = Colors.orange;
-  static Color incident2color = Colors.green;
-  static Color incident3color = Colors.brown;
-  static Color incident4color = Colors.blue;
+  static Color incidentRoadSafety = Colors.orange;
+  static Color incidentTrafficSigns = Colors.green;
+  static Color incidentRoadDamage = Colors.brown;
+  static Color incidentWaterDamage = Colors.blue;
+
+  //status
+  static Color statusOpened = const Color(0xff8c8c8c);
+  static Color statusInProgress = const Color(0xff548de6);
+  static Color statusSolved = const Color(0xff76bd56);
+  static Color statusRejected = const Color(0xffdf5e68);
 }

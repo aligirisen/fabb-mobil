@@ -4,10 +4,10 @@ class User {
   final String? accountId;
   final DateTime? dateOfBirth;
   final String? userId;
-  final String fullName;
-  final String phoneNumber;
-  final String email;
-  final String password;
+  final String? fullName;
+  final String? phoneNumber;
+  late final String? email;
+  final String? password;
   final List? incident;
   final List? likedIncidents;
   final List? dislikedIncidents;
@@ -17,10 +17,10 @@ class User {
     this.accountId,
     this.dateOfBirth,
     this.userId,
-    required this.fullName,
-    required this.phoneNumber,
-    required this.email,
-    required this.password,
+    this.fullName,
+    this.phoneNumber,
+    this.email,
+    this.password,
     this.incident,
     this.likedIncidents,
     this.dislikedIncidents,
@@ -30,10 +30,10 @@ class User {
   String? get accountid => accountId;
   DateTime? get dateofbirth => dateOfBirth;
   String? get userid => userId;
-  String get fullname => fullName;
-  String get phonenumber => phoneNumber;
-  String get emailAddress => email;
-  String get passwords => password;
+  String? get fullname => fullName;
+  String? get phonenumber => phoneNumber;
+  String? get emailAddress => email;
+  String? get passwords => password;
   List? get incidents => incident;
   List? get likedincidents => likedIncidents;
   List? get dislikedincidents => dislikedIncidents;

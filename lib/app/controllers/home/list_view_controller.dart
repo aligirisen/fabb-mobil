@@ -1,4 +1,6 @@
 import 'package:fabb_mobil/app/services/incident_service.dart';
+import 'package:fabb_mobil/app/theme/app_colors.dart';
+import 'package:fabb_mobil/app/theme/app_images.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:universal_html/html.dart';
@@ -12,6 +14,7 @@ class ListViewController extends GetxController {
   RxList<IncidentModel> incidentList = <IncidentModel>[].obs;
   RxInt likeCount = 17.obs;
   RxInt dislikeCount = 5.obs;
+  RxBool isLoading = true.obs;
 
   @override
   void onInit() {
@@ -21,6 +24,7 @@ class ListViewController extends GetxController {
   }
 
   void generateItems(int numberOfItems) async {
+    isLoading.value = true;
     List<IncidentModel> incidents;
 
     incidents = await IncidentService().getIncidents();
@@ -41,6 +45,80 @@ class ListViewController extends GetxController {
           createDate: element.createDate.toString());
       incidentList.add(element);
     }
+    isLoading.value = false;
     print(incidentList);
+  }
+
+  AssetImage getIncidentIcon(String category) {
+    switch (category) {
+      case "Road Damage":
+        {
+          return AppImages.roadDamage;
+        }
+
+      case "Water Damage":
+        {
+          return AppImages.waterDamage;
+        }
+      case "Traffic Signs":
+        {
+          return AppImages.trafficSigns;
+        }
+
+      default:
+        {
+          return AppImages.imageNotFound;
+        }
+    }
+  }
+
+  Color getSatusColor(String status) {
+    switch (status) {
+      case "In Progress":
+        {
+          return AppColors.statusInProgress;
+        }
+
+      case "Opened":
+        {
+          return AppColors.statusOpened;
+        }
+      case "Solved":
+        {
+          return AppColors.statusSolved;
+        }
+      case "Rejected":
+        {
+          return AppColors.statusRejected;
+        }
+
+      default:
+        {
+          return AppColors.greyTextColor;
+        }
+    }
+  }
+
+  Color getColor(String category) {
+    switch (category) {
+      case "Road Damage":
+        {
+          return AppColors.incidentRoadDamage;
+        }
+
+      case "Water Damage":
+        {
+          return AppColors.incidentWaterDamage;
+        }
+      case "Traffic Signs":
+        {
+          return AppColors.incidentTrafficSigns;
+        }
+
+      default:
+        {
+          return AppColors.greyTextColor;
+        }
+    }
   }
 }
