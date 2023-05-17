@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final incidentModel = incidentModelFromJson(jsonString);
-
 import 'dart:convert';
 
 IncidentModel incidentModelFromJson(String str) =>
@@ -21,7 +17,9 @@ class IncidentModel {
   String? reportNumber;
   String? title;
   String? userId;
-  VoteCounts? voteCounts;
+  List<String>? attachments = [];
+  int? downvoteCount;
+  int? upvoteCount;
 
   IncidentModel({
     this.address,
@@ -31,11 +29,13 @@ class IncidentModel {
     this.incidentId,
     this.incidentStatus,
     this.key,
+    this.attachments,
     this.location,
     this.reportNumber,
     this.title,
     this.userId,
-    this.voteCounts,
+    this.downvoteCount,
+    this.upvoteCount,
   });
 
   factory IncidentModel.fromJson(Map<String, dynamic> json) => IncidentModel(
@@ -50,7 +50,9 @@ class IncidentModel {
         reportNumber: json["report_number"],
         title: json["title"],
         userId: json["user_id"],
-        voteCounts: VoteCounts.fromJson(json["vote_counts"]),
+        attachments: json["attachments"],
+        downvoteCount: json["downvote_count"],
+        upvoteCount: json["upvote_count"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -65,7 +67,8 @@ class IncidentModel {
         "report_number": reportNumber,
         "title": title,
         "user_id": userId,
-        "vote_counts": voteCounts!.toJson(),
+        "downvote_count": downvoteCount,
+        "upvote_count": upvoteCount
       };
 }
 
@@ -86,23 +89,5 @@ class Location {
   Map<String, dynamic> toJson() => {
         "latitude": latitude,
         "longitude": longitude,
-      };
-}
-
-class VoteCounts {
-  int? downvoteCount;
-  int? upvoteCount;
-
-  VoteCounts({
-    this.downvoteCount,
-    this.upvoteCount,
-  });
-
-  factory VoteCounts.fromJson(Map<String, dynamic> json) =>
-      VoteCounts(downvoteCount: 54, upvoteCount: 5);
-
-  Map<String, dynamic> toJson() => {
-        "downvote_count": downvoteCount,
-        "upvote_count": upvoteCount,
       };
 }
