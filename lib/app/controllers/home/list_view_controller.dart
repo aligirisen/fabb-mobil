@@ -29,8 +29,6 @@ class ListViewController extends GetxController {
 
     incidents = await IncidentService().getIncidents();
 
-    print(incidents);
-
     for (var element in incidents) {
       var model = IncidentModel(
           userId: element.userId,
@@ -46,7 +44,6 @@ class ListViewController extends GetxController {
       incidentList.add(element);
     }
     isLoading.value = false;
-    print(incidentList);
   }
 
   AssetImage getIncidentIcon(String category) {

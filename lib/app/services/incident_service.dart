@@ -37,7 +37,6 @@ class IncidentService {
     };
 
     var encodedIncident = jsonEncode(incidentJson);
-    print(encodedIncident);
     http.Response response = await http
         .post(Uri.parse('$baseUrl/incident/create'), body: encodedIncident);
     if (response.statusCode == 200) {
@@ -58,7 +57,6 @@ class IncidentService {
       Map<String, dynamic> value = json.decode(response.body);
       List<IncidentModel> list = [];
 
-      print(value);
       if (response.statusCode == 200) {
         value.forEach((key, value) {
           list.add(IncidentModel.fromJson(value));

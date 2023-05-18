@@ -106,7 +106,7 @@ class SignupView extends GetView<SignupController> {
               content: const Text('Succesfully created an account.',
                   style: TextStyle(color: Colors.white)));
         }
-        //Get.toNamed(Routes.login);
+        Get.toNamed(Routes.login);
       },
       child: Container(
           alignment: Alignment.center,
@@ -161,6 +161,9 @@ class SignupView extends GetView<SignupController> {
         onSaved: (value) {
           controller.firstname.value = value ?? "";
         },
+        validator: (value) {
+          return controller.validateFullName(value!);
+        },
         onChanged: (value) {
           controller.firstname.value = value;
         },
@@ -185,6 +188,9 @@ class SignupView extends GetView<SignupController> {
       child: TextFormField(
         onSaved: (value) {
           controller.lastname.value = value ?? "";
+        },
+        validator: (value) {
+          return controller.validateFullName(value!);
         },
         onChanged: (value) {
           controller.lastname.value = value;
@@ -211,6 +217,9 @@ class SignupView extends GetView<SignupController> {
         onSaved: (value) {
           controller.phonenumber.value = value!;
         },
+        validator: (value) {
+          return controller.validatePhoneNumber(value!);
+        },
         onChanged: (value) {
           controller.phonenumber.value = value;
         },
@@ -235,6 +244,9 @@ class SignupView extends GetView<SignupController> {
       child: TextFormField(
         onSaved: (value) {
           controller.email.value = value!;
+        },
+        validator: (value) {
+          return controller.validateEmail(value!);
         },
         onChanged: (value) {
           controller.email.value = value;
@@ -261,13 +273,31 @@ class SignupView extends GetView<SignupController> {
         onSaved: (value) {
           controller.password.value = value!;
         },
+        validator: (value) {
+          return controller.validatePassword(value!);
+        },
         onChanged: (value) {
           controller.password.value = value;
         },
-        decoration: const InputDecoration(
-            border: InputBorder.none,
+        obscureText: controller.isPasswordHidden.value,
+        decoration: InputDecoration(
+            icon: const Icon(Icons.lock),
+            border: const UnderlineInputBorder(),
             hintText: 'Password',
-            hintStyle: TextStyle(fontSize: 14)),
+            hintStyle: const TextStyle(fontSize: 13),
+            suffix: InkWell(
+              child: Icon(
+                controller.isPasswordHidden.value
+                    ? Icons.visibility
+                    : Icons.visibility_off,
+                color: Colors.grey,
+                size: 2.h,
+              ),
+              onTap: () {
+                controller.isPasswordHidden.value =
+                    !controller.isPasswordHidden.value;
+              },
+            )),
       ),
     );
   }
@@ -277,18 +307,3 @@ class SignupView extends GetView<SignupController> {
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300));
   }
 }
-
-
-// Text(
-//                     controller.displayText.value,
-//                     style: TextStyle(
-//                       fontSize: 12,
-//                       color: controller.passwordStrength.value <= 1 / 4
-//                           ? Colors.red
-//                           : controller.passwordStrength.value == 2 / 4
-//                               ? Colors.amber
-//                               : controller.passwordStrength.value == 3 / 4
-//                                   ? Colors.deepPurpleAccent
-//                                   : Colors.green,
-//                     ),
-//                   ),

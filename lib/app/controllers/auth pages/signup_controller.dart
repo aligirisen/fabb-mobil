@@ -9,6 +9,8 @@ class SignupController extends GetxController {
   RxString phonenumber = ''.obs;
   RxString email = ''.obs;
   RxString password = ''.obs;
+  RxBool isPasswordHidden = true.obs;
+  RxString displayText = 'Enter a password'.obs;
 
   User createUser() {
     return User(
@@ -32,17 +34,22 @@ class SignupController extends GetxController {
   }
 
   late TextEditingController infoController;
+  late TextEditingController emailController, passwordController;
   GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
 
   @override
   void onInit() {
     super.onInit();
     infoController = TextEditingController();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
   }
 
   @override
   void onClose() {
     infoController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
   }
 
   String? validateEmail(String value) {
@@ -52,9 +59,23 @@ class SignupController extends GetxController {
     return null;
   }
 
-  String? validatePassword(String value) {
+  String? validatePassword(value) {
     if (value.length < 6) {
       return "Password must be longer than 6 characters";
+    }
+    return null;
+  }
+
+  String? validateFullName(String value) {
+    if (value.length < 2) {
+      return "Name must be longer than 1 character";
+    }
+    return null;
+  }
+
+  String? validatePhoneNumber(String value) {
+    if (!GetUtils.isPhoneNumber(value)) {
+      return "Provide valid number";
     }
     return null;
   }
