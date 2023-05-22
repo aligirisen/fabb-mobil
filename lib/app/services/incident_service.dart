@@ -19,26 +19,15 @@ class IncidentService {
   }
 
   Future<bool> postIncident(IncidentModel incident) async {
-    final Map<String, dynamic> incidentJson = {
-      'user_id': incident.userId,
-      'incident_id': incident.incidentId,
-      'title': incident.title,
-      'category': incident.category,
-      'location': incident.location,
-      'key': incident.key,
-      'attachments': incident.attachments,
-      'address': incident.address,
-      'create_date': incident.createDate,
-      'incident_status': incident.incidentStatus,
-      'report_number': incident.reportNumber,
-      'description': incident.description,
-      'upvote_count': incident.upvoteCount,
-      'downvote_count': incident.downvoteCount
-    };
+    String incidentJson = incidentModelToJson(incident);
+    http.Response response = await http.post(
+      Uri.parse('$baseUrl/incident/create'),
+      headers: {'Content-Type': 'application/json'},
+      body: incidentJson,
+    );
 
-    var encodedIncident = jsonEncode(incidentJson);
-    http.Response response = await http
-        .post(Uri.parse('$baseUrl/incident/create'), body: encodedIncident);
+    print("Response Status Code: ${response.statusCode}");
+    print("Response Body: ${response.body}");
     if (response.statusCode == 200) {
       // Success
       print("Data Posted Successfully!");

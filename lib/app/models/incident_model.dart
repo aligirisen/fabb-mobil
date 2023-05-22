@@ -21,39 +21,37 @@ class IncidentModel {
   int? downvoteCount;
   int? upvoteCount;
 
-  IncidentModel({
-    this.address,
-    this.category,
-    this.createDate,
-    this.description,
-    this.incidentId,
-    this.incidentStatus,
-    this.key,
-    this.attachments,
-    this.location,
-    this.reportNumber,
-    this.title,
-    this.userId,
-    this.downvoteCount,
-    this.upvoteCount,
-  });
+  IncidentModel(
+      {this.address,
+      this.category,
+      this.createDate,
+      this.description,
+      this.incidentId,
+      this.incidentStatus,
+      this.key,
+      this.location,
+      this.reportNumber,
+      this.attachments,
+      this.title,
+      this.userId,
+      this.downvoteCount,
+      this.upvoteCount});
 
   factory IncidentModel.fromJson(Map<String, dynamic> json) => IncidentModel(
-        address: json["address"],
-        category: json["category"],
-        createDate: json["create_date"],
-        description: json["description"],
-        incidentId: json["incident_id"],
-        incidentStatus: json["incident_status"],
-        key: json["key"],
-        location: Location.fromJson(json["location"]),
-        reportNumber: json["report_number"],
-        title: json["title"],
-        userId: json["user_id"],
-        attachments: json["attachments"],
-        downvoteCount: json["downvote_count"],
-        upvoteCount: json["upvote_count"],
-      );
+      address: json["address"],
+      category: json["category"],
+      createDate: json["create_date"],
+      description: json["description"],
+      incidentId: json["incident_id"],
+      incidentStatus: json["incident_status"],
+      key: json["key"],
+      attachments: json["attachments"],
+      location: Location.fromJson(json["location"]),
+      reportNumber: json["report_number"],
+      title: json["title"],
+      userId: json["user_id"],
+      downvoteCount: json["downvote_count"],
+      upvoteCount: json["upvote_count"]);
 
   Map<String, dynamic> toJson() => {
         "address": address,
@@ -63,12 +61,13 @@ class IncidentModel {
         "incident_id": incidentId,
         "incident_status": incidentStatus,
         "key": key,
+        "attachments": attachments,
         "location": location!.toJson(),
         "report_number": reportNumber,
         "title": title,
         "user_id": userId,
+        "upvote_count": upvoteCount,
         "downvote_count": downvoteCount,
-        "upvote_count": upvoteCount
       };
 }
 
