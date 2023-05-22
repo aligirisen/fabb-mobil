@@ -7,14 +7,14 @@ import 'package:get/get.dart';
 import '../../models/incident_model.dart';
 import '../../models/incident_type_model.dart';
 
-class IncidentTypeController extends GetxController {
+class IncidentCategoryController extends GetxController {
   late List<IncidentModel> incidents;
-  late TextEditingController locationController;
+  late TextEditingController locationTEController;
 
   @override
   void onInit() {
     super.onInit();
-    locationController = TextEditingController();
+    locationTEController = TextEditingController();
   }
 
   //bana list of incident type lazım

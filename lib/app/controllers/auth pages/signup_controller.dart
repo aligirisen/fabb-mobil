@@ -58,4 +58,10 @@ class SignupController extends GetxController {
     }
     return null;
   }
+
+  @override
+  void dispose() {
+    Get.delete<SignupController>();
+    super.dispose();
+  }
 }

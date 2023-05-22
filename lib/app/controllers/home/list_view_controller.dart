@@ -20,16 +20,17 @@ class ListViewController extends GetxController {
   void onInit() {
     super.onInit();
     locationController = TextEditingController();
-    generateItems(20);
+    generateItems();
   }
 
-  void generateItems(int numberOfItems) async {
+  void generateItems() async {
     isLoading.value = true;
+
+    await Future.delayed(Duration(seconds: 3));
+
     List<IncidentModel> incidents;
 
     incidents = await IncidentService().getIncidents();
-
-    print(incidents);
 
     for (var element in incidents) {
       var model = IncidentModel(
@@ -46,7 +47,6 @@ class ListViewController extends GetxController {
       incidentList.add(element);
     }
     isLoading.value = false;
-    print(incidentList);
   }
 
   AssetImage getIncidentIcon(String category) {
@@ -120,5 +120,11 @@ class ListViewController extends GetxController {
           return AppColors.greyTextColor;
         }
     }
+  }
+
+  @override
+  void dispose() {
+    Get.delete<ListViewController>();
+    super.dispose();
   }
 }

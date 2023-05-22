@@ -2,21 +2,21 @@ import 'package:fabb_mobil/app/general_app_datas/general_app_datas.dart';
 import 'package:fabb_mobil/app/theme/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sizer/sizer.dart';
-
-import '../../controllers/home/incident_type_controller.dart';
+import '../../controllers/home/incident_details_controller.dart';
 import '../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_textstyles.dart';
 
 //color: Color(0xff78D8A4),
-class IncidentDetailsView extends GetView<IncidentTypeController> {
+class IncidentDetailsView extends GetView<IncidentDetailsController> {
   const IncidentDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<IncidentTypeController>(
-      () => IncidentTypeController(),
+    Get.lazyPut<IncidentDetailsController>(
+      () => IncidentDetailsController(),
     );
     return Scaffold(
         appBar: AppBar(
@@ -59,84 +59,10 @@ class IncidentDetailsView extends GetView<IncidentTypeController> {
                   SizedBox(
                     height: 3.h,
                   ),
-
-                  Row(
-                    children: [
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Container(
-                              height: 10.h,
-                              width: 24.5.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10)),
-                                color: AppColors.darkBlue,
-                              )),
-                          SizedBox(height: 4.5.h, child: AppImages.camera)
-                        ],
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: 5.w),
-                        alignment: Alignment.centerLeft,
-                        height: 10.h,
-                        width: 65.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10)),
-                          color: AppColors.blue2,
-                        ),
-                        child: Text(
-                          "Take a Photo or Video",
-                          style: AppTextStyles.infoTextStyleLight,
-                        ),
-                      ),
-                    ],
-                  ),
+                  photoPickerContainer(),
                   SizedBox(
                     height: 3.h,
                   ),
-                  Row(
-                    children: [
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Container(
-                              height: 10.h,
-                              width: 24.5.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10)),
-                                color: AppColors.darkBlue,
-                              )),
-                          SizedBox(height: 5.h, child: AppImages.album)
-                        ],
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: 5.w),
-                        alignment: Alignment.centerLeft,
-                        height: 10.h,
-                        width: 65.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10)),
-                          color: AppColors.blue2,
-                        ),
-                        child: Text(
-                          "Select From Library",
-                          style: AppTextStyles.infoTextStyleLight,
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 3.h,
-                  ),
-
                   //title
                   Text("Description"),
                   SizedBox(
@@ -165,6 +91,7 @@ class IncidentDetailsView extends GetView<IncidentTypeController> {
                     children: [
                       GestureDetector(
                         onTap: () {
+                          print(controller.titleTEController.text);
                           Get.toNamed(Routes.succcesfulyReportedPage);
                         },
                         child: Container(
@@ -190,6 +117,117 @@ class IncidentDetailsView extends GetView<IncidentTypeController> {
         ));
   }
 
+  Widget photoPickerContainer() {
+    return Obx(() => controller.image.value?.path == ""
+        ? Column(
+            children: [
+              cameraPickerContainer(),
+              SizedBox(
+                height: 3.h,
+              ),
+              libraryPickerContainer(),
+            ],
+          )
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Attachments"),
+              SizedBox(
+                height: 2.h,
+              ),
+              Container(
+                  height: 20.h, child: Image.file(controller.image.value!)),
+            ],
+          ));
+  }
+
+  Widget libraryPickerContainer() {
+    return GestureDetector(
+      onTap: () {
+        controller.onImageButtonPressd(ImageSource.gallery);
+      },
+      child: Row(
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                  height: 10.h,
+                  width: 24.5.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        bottomLeft: Radius.circular(10)),
+                    color: AppColors.darkBlue,
+                  )),
+              SizedBox(height: 5.h, child: AppImages.album)
+            ],
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 5.w),
+            alignment: Alignment.centerLeft,
+            height: 10.h,
+            width: 65.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(10),
+                  bottomRight: Radius.circular(10)),
+              color: AppColors.blue2,
+            ),
+            child: Text(
+              "Select From Library",
+              style: AppTextStyles.infoTextStyleLight,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget cameraPickerContainer() {
+    return Center(
+        child: GestureDetector(
+      onTap: () {
+        controller.onImageButtonPressd(ImageSource.camera);
+      },
+      child: Row(
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                  height: 10.h,
+                  width: 24.5.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        bottomLeft: Radius.circular(10)),
+                    color: AppColors.darkBlue,
+                  )),
+              SizedBox(height: 4.5.h, child: AppImages.camera)
+            ],
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 5.w),
+            alignment: Alignment.centerLeft,
+            height: 10.h,
+            width: 65.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(10),
+                  bottomRight: Radius.circular(10)),
+              color: AppColors.blue2,
+            ),
+            child: Text(
+              "Take a Photo or Video",
+              style: AppTextStyles.infoTextStyleLight,
+            ),
+          ),
+        ],
+      ),
+    ));
+  }
+
   TextField reportTextField(double height) {
     return TextField(
       // maxLength: 10,
@@ -202,7 +240,8 @@ class IncidentDetailsView extends GetView<IncidentTypeController> {
         // hoverColor: Colors.amber,
         //focusColor: Colors.red,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-        hintText: 'AUGV23442',
+        hintText:
+            'AUGV23442', //her birine yeni bir report number generate edilecek
       ),
     );
   }
@@ -210,6 +249,7 @@ class IncidentDetailsView extends GetView<IncidentTypeController> {
   TextField titleTextField(double height) {
     return TextField(
       // maxLength: 10,
+      controller: controller.titleTEController,
       cursorColor: AppColors.mainColor,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: height, horizontal: 5.w),
@@ -219,13 +259,14 @@ class IncidentDetailsView extends GetView<IncidentTypeController> {
         // hoverColor: Colors.amber,
         //focusColor: Colors.red,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-        //hintText: '...',
+        hintText: 'Describe the problem',
       ),
     );
   }
 
   TextField descriptionTextField(double height) {
     return TextField(
+      controller: controller.descriptionTEController,
       textAlign: TextAlign.start,
       //textAlignVertical: TextAlignVertical.bottom,
       minLines: 6,
@@ -247,20 +288,20 @@ class IncidentDetailsView extends GetView<IncidentTypeController> {
 
   TextField addressTextField(double height) {
     return TextField(
+      controller: controller.addressTEController,
+      readOnly: true,
       textAlign: TextAlign.start,
-      //textAlignVertical: TextAlignVertical.bottom,
       minLines: 4,
       maxLines: 10,
-      maxLength: 250,
       cursorColor: AppColors.mainColor,
+      style: TextStyle(
+        color: Colors.grey,
+      ),
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.mainColor),
         ),
-        // hoverColor: Colors.amber,
-        //focusColor: Colors.red,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-        //hintText: '...',
       ),
     );
   }

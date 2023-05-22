@@ -13,67 +13,68 @@ class OnboardingPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: SafeArea(
-      child: Stack(children: [
-        PageView.builder(
-            controller: controller.pageController,
-            onPageChanged: controller.selectedPageIndex,
-            itemCount: controller.onboardingPages.length,
-            itemBuilder: (context, index) => Container(
-                  height: 100.h,
-                  width: 100.w,
-                  color: AppColors.infoPageBackground,
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 50,
-                    ),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.symmetric(
-                              vertical: 40,
-                            ),
-                            height: 40.h,
-                            child: controller.onboardingPages[index].image,
-                          ),
-                          Text(
-                            controller.onboardingPages[index].title,
-                            style: TextStyle(
-                                color: AppColors.infoTextColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Text(
-                            controller.onboardingPages[index].text,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: AppColors.infoTextColor,
-                              fontSize: 16,
-                            ),
-                          ),
-                          dotsContainer(),
-                        ]),
-                  ),
-                )),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              startButton(),
-              SizedBox(
-                height: 10.h,
-              )
-            ],
-          ),
-        ),
-      ]),
-    ));
+          child: Stack(children: [
+            PageView.builder(
+                controller: controller.pageController,
+                onPageChanged: controller.selectedPageIndex,
+                itemCount: controller.onboardingPages.length,
+                itemBuilder: (context, index) => Container(
+                      height: 100.h,
+                      width: 100.w,
+                      color: AppColors.infoPageBackground,
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 50,
+                        ),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.symmetric(
+                                  vertical: 40,
+                                ),
+                                height: 40.h,
+                                child: controller.onboardingPages[index].image,
+                              ),
+                              Text(
+                                controller.onboardingPages[index].title,
+                                style: TextStyle(
+                                    color: AppColors.infoTextColor,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Text(
+                                controller.onboardingPages[index].text,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: AppColors.infoTextColor,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              dotsContainer(),
+                            ]),
+                      ),
+                    )),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  startButton(),
+                  SizedBox(
+                    height: 10.h,
+                  )
+                ],
+              ),
+            ),
+          ]),
+        ));
   }
 
   Container dotsContainer() {

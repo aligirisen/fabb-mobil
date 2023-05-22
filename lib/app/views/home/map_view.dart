@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../general_app_datas/general_app_datas.dart';
+
 class MapView extends GetView<MapViewController> {
   const MapView({super.key});
 
@@ -17,36 +19,46 @@ class MapView extends GetView<MapViewController> {
     final Completer<GoogleMapController> completer = Completer();
     return Scaffold(
       body: Obx(
-        () => GoogleMap(
-          initialCameraPosition: controller.initialPosition,
-          mapType: controller.maptype.value,
-          markers: Set<Marker>.of(controller.markers),
-          myLocationEnabled: true,
-          compassEnabled: true,
-          onTap: (position) {
-            controller.addMarker(position);
-          },
-          onMapCreated: (GoogleMapController mapController) {
-            completer.complete(mapController);
-          },
-        ),
+        () => controller.isLoadingMarkers.isTrue
+            ? Center(child: CircularProgressIndicator())
+            : GoogleMap(
+                initialCameraPosition: CameraPosition(
+                    target: LatLng(
+                        GeneralAppDatas.currentPosition.value!.latitude,
+                        GeneralAppDatas.currentPosition.value!.longitude),
+                    zoom: 14.0),
+                mapType: controller.maptype.value,
+                markers: Set<Marker>.of(controller.markers),
+                myLocationEnabled: true,
+                compassEnabled: true,
+                onTap: (position) {
+                  // controller.addMarker(position);
+                },
+                onMapCreated: (GoogleMapController mapController) {
+                  completer.complete(mapController);
+                },
+              ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
-      floatingActionButton: Padding(
-        padding: EdgeInsets.only(top: 1.h),
-        child: Obx(
-          () => FloatingActionButton(
-            backgroundColor: controller.backgroundColor.value,
-            foregroundColor: controller.foregroundColor.value,
-            child: Icon(
-              Icons.map,
-              color: controller.foregroundColor.value,
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
+      floatingActionButton: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: 1.h),
+            child: Obx(
+              () => FloatingActionButton(
+                backgroundColor: controller.backgroundColor.value,
+                foregroundColor: controller.foregroundColor.value,
+                child: Icon(
+                  Icons.map,
+                  color: controller.foregroundColor.value,
+                ),
+                onPressed: () {
+                  controller.changeMapType();
+                },
+              ),
             ),
-            onPressed: () {
-              controller.changeMapType();
-            },
           ),
-        ),
+        ],
       ),
       // floatingActionButton: FloatingActionButton.extended(
       //   onPressed: () {
