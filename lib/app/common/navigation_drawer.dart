@@ -1,3 +1,4 @@
+import 'package:fabb_mobil/app/general_app_datas/general_app_datas.dart';
 import 'package:fabb_mobil/app/theme/app_colors.dart';
 import 'package:fabb_mobil/app/theme/app_images.dart';
 import 'package:flutter/material.dart';
@@ -39,11 +40,13 @@ class CustomNavigationDrawer extends StatelessWidget {
             tileColor: Get.currentRoute == Routes.contact
                 ? AppColors.chosendrawer
                 : Colors.transparent),
-        buildDrawerItem(
-          text: "Logout",
-          onTap: () => showLogoutConfirmationDialog(),
-          tileColor: Colors.transparent,
-        ),
+        GeneralAppDatas.userId.value == ""
+            ? Container()
+            : buildDrawerItem(
+                text: "Logout",
+                onTap: () => showLogoutConfirmationDialog(),
+                tileColor: Colors.transparent,
+              ),
       ]),
     );
   }
@@ -55,8 +58,8 @@ class CustomNavigationDrawer extends StatelessWidget {
         "Fabb App",
         style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
       ),
-      accountEmail: const Text("deneme@gmail.com",
-          style: TextStyle(fontWeight: FontWeight.w500)),
+      accountEmail: Text(GeneralAppDatas.userEmail.value,
+          style: const TextStyle(fontWeight: FontWeight.w500)),
       currentAccountPicture: Image(image: AppImages.logo),
       currentAccountPictureSize: const Size.square(70),
       decoration: BoxDecoration(color: AppColors.darkBlue),
@@ -100,18 +103,21 @@ class CustomNavigationDrawer extends StatelessWidget {
       context: Get.overlayContext!,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Log Out"),
-          content: Text("Are you sure you want to log out?"),
+          title: const Text("Log Out"),
+          content: const Text("Are you sure you want to log out?"),
           actions: [
             TextButton(
-              child: Text("No"),
+              child: const Text("No"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text("Yes"),
+              child: const Text("Yes"),
               onPressed: () {
+                GeneralAppDatas.userId.value = "";
+                GeneralAppDatas.userEmail.value = "";
+
                 Get.offAllNamed(AppPages.login);
               },
             ),

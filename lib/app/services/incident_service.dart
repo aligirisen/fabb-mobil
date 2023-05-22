@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:fabb_mobil/app/models/incident_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,14 +19,27 @@ class IncidentService {
     }
   }
 
-  Future<bool> postIncident(IncidentModel incident) async {
-    String incidentJson = incidentModelToJson(incident);
-    http.Response response = await http.post(
-      Uri.parse('$baseUrl/incident/create'),
-      headers: {'Content-Type': 'application/json'},
-      body: incidentJson,
-    );
+  Future<bool> postIncident(IncidentModel incident, File image) async {
+    // String incidentJson = incidentModelToJson(incident);
+    // http.Response response = await http.post(
+    //   Uri.parse('$baseUrl/incident/create'),
+    //   headers: {'Content-Type': 'multipart/form-data'},
+    //   body: incidentJson,
+    // );
 
+    var request =
+        http.MultipartRequest("POST", Uri.parse('$baseUrl/incident/create'));
+
+    request.fields.addAll(incident.toJson());
+
+    request.files.add(await http.MultipartFile.fromPath(
+      'attachments',
+      image.path,
+    ));
+    var response = request.send();
+    print(response);
+    return true;
+/*
     print("Response Status Code: ${response.statusCode}");
     print("Response Body: ${response.body}");
     if (response.statusCode == 200) {
@@ -36,7 +50,7 @@ class IncidentService {
       // Failure
       print("Failed to Post Data. Error: ${response.statusCode}");
       return false;
-    }
+    }*/
   }
 
   Future<List<IncidentModel>> getIncidents() async {

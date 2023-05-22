@@ -6,6 +6,9 @@ import '../models/user_model.dart';
 class GeneralAppDatas {
   static RxBool isLoggedIn = true.obs;
   //false guest true login
+  static RxString userId = "".obs;
+
+  static RxString userEmail = "".obs;
 
   static RxString selectedIncidentType = "".obs;
 

@@ -7,6 +7,9 @@ import 'package:image_picker/image_picker.dart';
 import '../../general_app_datas/general_app_datas.dart';
 import 'package:http/http.dart' as http;
 
+import '../../models/incident_model.dart';
+import '../../services/incident_service.dart';
+
 class IncidentDetailsController extends GetxController {
   late TextEditingController titleTEController;
   late TextEditingController descriptionTEController;
@@ -35,10 +38,8 @@ class IncidentDetailsController extends GetxController {
         "${place.street}, ${place.subLocality},${place.subAdministrativeArea}, ${place.postalCode}";
 
     addressTEController.text = address.value;
-
-    print(address.value);
   }
-
+/*
   void openCamera() async {
     final pickedFile = await picker.pickImage(source: ImageSource.camera);
 
@@ -48,13 +49,13 @@ class IncidentDetailsController extends GetxController {
 
       // Perform your desired operation here (e.g., display the image on the screen or save it to a database)
     }
-  }
+  }*/
 
   void onImageButtonPressd(ImageSource source) {
     try {
       getImage(source);
     } catch (e) {
-      print(e);
+      debugPrint;
     }
   }
 
@@ -89,5 +90,38 @@ class IncidentDetailsController extends GetxController {
     } else {
       print('Image upload failed!');
     }
+  }
+
+  Future<bool> createIncident() async {
+    IncidentModel incident = IncidentModel(
+      userId: GeneralAppDatas.userId.value,
+      title: titleTEController.text,
+      incidentStatus: "opened",
+      location: LocationModel(
+          latitude: GeneralAppDatas.currentPosition.value!.latitude,
+          longitude: GeneralAppDatas.currentPosition.value!.longitude),
+      category: GeneralAppDatas.selectedIncidentType.value,
+      description: descriptionTEController.text,
+      address: addressTEController.text,
+      attachments: null,
+      createDate: DateTime.now().toString(),
+      incidentId: "",
+      reportNumber: "AC-MOBIL",
+      downvoteCount: 0,
+      upvoteCount: 0,
+      image: image.value,
+    );
+    print(incident);
+    bool isRegistered =
+        await IncidentService().postIncident(incident, image.value!);
+    if (isRegistered) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void reportOnClick() {
+    createIncident();
   }
 }

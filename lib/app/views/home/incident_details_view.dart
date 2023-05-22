@@ -91,6 +91,7 @@ class IncidentDetailsView extends GetView<IncidentDetailsController> {
                     children: [
                       GestureDetector(
                         onTap: () {
+                          controller.reportOnClick();
                           print(controller.titleTEController.text);
                           Get.toNamed(Routes.succcesfulyReportedPage);
                         },

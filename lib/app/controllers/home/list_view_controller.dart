@@ -1,10 +1,8 @@
-import 'package:fabb_mobil/app/services/auth_service.dart';
 import 'package:fabb_mobil/app/services/incident_service.dart';
 import 'package:fabb_mobil/app/theme/app_colors.dart';
 import 'package:fabb_mobil/app/theme/app_images.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:universal_html/html.dart';
 
 import '../../models/incident_model.dart';
 
@@ -34,13 +32,13 @@ class ListViewController extends GetxController {
     incidents = await IncidentService().getIncidents();
 
     for (var element in incidents) {
-      var model = IncidentModel(
+      IncidentModel(
           userId: element.userId,
           title: element.title,
           incidentId: element.incidentId,
           incidentStatus: element.incidentId,
           category: element.category,
-          location: null,
+          location: element.location,
           //attachments: ["attachments"],
           description: element.description,
           address: element.address,
@@ -123,34 +121,9 @@ class ListViewController extends GetxController {
     }
   }
 
-  Future<bool> createIncident() async {
-    IncidentModel incident = IncidentModel(
-      userId: userId.value,
-      title: title.value ?? "",
-      incidentStatus: incidentStatus.value ?? "",
-      location: location.value ?? "",
-      category: category.value ?? "",
-      description: description.value ?? "",
-      address: address.value ?? "",
-      attachments: attachements.value ?? "",
-      createDate: createdate.value ?? "",
-      incidentId: incidentId.value ?? "",
-      reportNumber: reportNumber.value ?? "",
-      key: key.value ?? "",
-      downvoteCount: 0,
-      upvoteCount: 0,
-    );
-    bool isRegistered = await IncidentService().postIncident(incident);
-
-    if (isRegistered) {
-      return true;
-    } else {
-      return false;
-    }
-    @override
-    void dispose() {
-      Get.delete<ListViewController>();
-      super.dispose();
-    }
+  @override
+  void dispose() {
+    Get.delete<ListViewController>();
+    super.dispose();
   }
 }

@@ -1,15 +1,11 @@
 import 'dart:convert';
+import 'package:fabb_mobil/app/general_app_datas/general_app_datas.dart';
 import 'package:fabb_mobil/app/models/user_model.dart';
-import 'package:fabb_mobil/app/services/incident_service.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+
 import 'package:http/http.dart' as http;
 
 import '../../main.dart';
-import '../models/incident_model.dart';
-
-RxString userId = "".obs;
 
 class AuthService {
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
@@ -21,6 +17,7 @@ class AuthService {
 
     if (response.statusCode == 200) {
       final jsonData = json.decode(response.body);
+
       print(jsonData);
     } else {
       throw Exception(
@@ -62,8 +59,8 @@ class AuthService {
     if (response.statusCode == 200) {
       final jsonData = json.decode(response.body);
       String id = jsonData.keys.first;
-      userId.value = id;
-      print(userId);
+      GeneralAppDatas.userId.value = id;
+      GeneralAppDatas.userEmail.value = email;
       return true;
     } else {
       print(response.statusCode);
