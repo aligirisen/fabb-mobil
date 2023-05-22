@@ -41,7 +41,6 @@ class IncidentService {
 
   Future<List<IncidentModel>> getIncidents() async {
     http.Response response = await http.get(Uri.parse('$baseUrl/incident/'));
-
     if (response != null) {
       Map<String, dynamic> value = json.decode(response.body);
       List<IncidentModel> list = [];

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../bindings/all_bindings.dart';
 import '../views/auth pages/login_view.dart';
 import '../views/auth pages/signup_view.dart';
-import '../views/home/incident_type_view.dart';
+import '../views/home/incident_category_view.dart';
 import '../views/home/guest/guest_new_incident_view.dart';
 import '../views/home/home_view.dart';
 import '../views/home/map_view.dart';
@@ -65,7 +65,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.incidentType,
-      page: () => const IncidentTypeView(),
+      page: () => const IncidentCategoryView(),
     ),
     GetPage(
       name: _Paths.incidentDetails,

@@ -32,6 +32,7 @@ class LoginController extends GetxController {
   void onClose() {
     emailController.dispose();
     passwordController.dispose();
+    super.onClose();
   }
 
   String? validateEmail(String value) {
@@ -68,5 +69,11 @@ class LoginController extends GetxController {
     } else {
       return false;
     }
+  }
+
+  @override
+  void dispose() {
+    Get.delete<LoginController>();
+    super.dispose();
   }
 }

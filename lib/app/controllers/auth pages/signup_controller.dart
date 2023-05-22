@@ -78,5 +78,10 @@ class SignupController extends GetxController {
       return "Provide valid number";
     }
     return null;
+    @override
+    void dispose() {
+      Get.delete<SignupController>();
+      super.dispose();
+    }
   }
 }

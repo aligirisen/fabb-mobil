@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../controllers/home/incident_type_controller.dart';
+import '../../controllers/home/incident_category_controller.dart';
 import '../../routes/app_pages.dart';
 import '../../shared/category_list.dart';
 import '../../theme/app_colors.dart';
 import 'incident_details_view.dart';
 
 //color: Color(0xff78D8A4),
-class IncidentTypeView extends GetView<IncidentTypeController> {
-  const IncidentTypeView({super.key});
+class IncidentCategoryView extends GetView<IncidentCategoryController> {
+  const IncidentCategoryView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<IncidentTypeController>(
-      () => IncidentTypeController(),
+    Get.lazyPut<IncidentCategoryController>(
+      () => IncidentCategoryController(),
     );
     return Scaffold(
       appBar: AppBar(

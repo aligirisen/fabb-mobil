@@ -21,11 +21,14 @@ class ListViewController extends GetxController {
   void onInit() {
     super.onInit();
     locationController = TextEditingController();
-    generateItems(20);
+    generateItems();
   }
 
-  void generateItems(int numberOfItems) async {
+  void generateItems() async {
     isLoading.value = true;
+
+    await Future.delayed(Duration(seconds: 3));
+
     List<IncidentModel> incidents;
 
     incidents = await IncidentService().getIncidents();
@@ -143,6 +146,11 @@ class ListViewController extends GetxController {
       return true;
     } else {
       return false;
+    }
+    @override
+    void dispose() {
+      Get.delete<ListViewController>();
+      super.dispose();
     }
   }
 }

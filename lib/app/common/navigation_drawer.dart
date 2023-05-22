@@ -100,17 +100,17 @@ class CustomNavigationDrawer extends StatelessWidget {
       context: Get.overlayContext!,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Çıkış Yap"),
-          content: Text("Çıkış yapmak istediğinize emin misiniz?"),
+          title: Text("Log Out"),
+          content: Text("Are you sure you want to log out?"),
           actions: [
             TextButton(
-              child: Text("Hayır"),
+              child: Text("No"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text("Evet"),
+              child: Text("Yes"),
               onPressed: () {
                 Get.offAllNamed(AppPages.login);
               },

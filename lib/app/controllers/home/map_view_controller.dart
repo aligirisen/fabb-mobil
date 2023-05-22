@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fabb_mobil/app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,17 +7,28 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../general_app_datas/general_app_datas.dart';
+
 class MapViewController extends GetxController {
   @override
   void onInit() {
+    _getMarkers();
+    getCurrentLocation();
+    //getIncidentMarkers();
     super.onInit();
   }
 
-  CameraPosition initialPosition = CameraPosition(
-      target: LatLng(37.42796133580664, -122.085749655962), zoom: 14.0);
+  GoogleMapController? mapController;
+  Marker? currentLocationMarker;
+
+  Set<Marker> markers = {};
+  RxBool isLoadingMarkers = false.obs;
+
+  CameraPosition initialPosition =
+      CameraPosition(target: LatLng(39.925533, 32.866287), zoom: 14.0);
 
   CameraPosition targetPosition = CameraPosition(
-      target: LatLng(37.43296265331129, -122.08832357078792),
+      target: LatLng(39.925533, 32.866287),
       zoom: 14.0,
       bearing: 192.0,
       tilt: 60);
@@ -28,8 +37,92 @@ class MapViewController extends GetxController {
   var backgroundColor = AppColors.darkBlue.obs;
   var foregroundColor = Colors.white.obs;
 
+  List<LatLng> coordinates = [
+    LatLng(39.925533, 32.866287),
+    LatLng(39.933543, 32.859678),
+    LatLng(39.940123, 32.854321),
+    LatLng(39.912345, 32.845678),
+    LatLng(39.912345, 32.875432),
+    LatLng(39.928765, 32.869012),
+    LatLng(39.931234, 32.857901),
+    LatLng(39.938765, 32.851234),
+    LatLng(39.920987, 32.842765),
+    LatLng(39.915432, 32.879876),
+    LatLng(39.923456, 32.871234),
+    LatLng(39.932187, 32.862345),
+    LatLng(39.944321, 32.849876),
+    LatLng(39.916543, 32.837654),
+    LatLng(39.918765, 32.889012),
+
+    LatLng(39.920275, 32.868510), // Kurtuluş Parkı
+    LatLng(39.917977, 32.868689),
+    LatLng(39.918765, 32.867432),
+    LatLng(39.919543, 32.867987),
+    LatLng(39.920321, 32.869123),
+
+    LatLng(39.973475, 32.718256),
+    LatLng(39.974381, 32.720987),
+    LatLng(39.976543, 32.715432),
+  ];
+  //current location işlemleri
+
+  Future<void> getCurrentLocation() async {
+    try {
+      LocationPermission permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Konum izni reddedildiğinde yapılacak işlemleri burada gerçekleştirebilirsiniz
+        return;
+      }
+
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      GeneralAppDatas.currentPosition.value = position;
+      updateCurrentLocationMarker();
+    } catch (e) {
+      // Hata durumunda yapılacak işlemleri burada gerçekleştirebilirsiniz
+    }
+  }
+
+  void updateCurrentLocationMarker() {
+    if (mapController != null) {
+      LatLng currentPositionLatLng = LatLng(
+        GeneralAppDatas.currentPosition.value!.latitude,
+        GeneralAppDatas.currentPosition.value!.longitude,
+      );
+
+      if (markers.isEmpty) {
+        markers.add(
+          Marker(
+            markerId: MarkerId('current_location_marker'),
+            position: currentPositionLatLng,
+            icon: BitmapDescriptor.defaultMarkerWithHue(
+                BitmapDescriptor.hueAzure),
+          ),
+        );
+      } else {
+        markers = markers.toSet()
+          ..removeWhere(
+              (marker) => marker.markerId.value == 'current_location_marker');
+
+        markers.add(
+          Marker(
+            markerId: MarkerId('current_location_marker'),
+            position: currentPositionLatLng,
+            icon: BitmapDescriptor.defaultMarkerWithHue(
+                BitmapDescriptor.hueAzure),
+          ),
+        );
+      }
+
+      mapController!
+          .animateCamera(CameraUpdate.newLatLng(currentPositionLatLng));
+      update();
+    }
+  }
+
+//map related işlemler
   void changeMapType() {
-    if (maptype == MapType.satellite) {
+    if (maptype.value == MapType.satellite) {
       maptype.value = MapType.normal;
       backgroundColor.value = AppColors.darkBlue;
       foregroundColor.value = Colors.white;
@@ -49,29 +142,60 @@ class MapViewController extends GetxController {
   //       )),
   // ];
 
-  final Set<Marker> _markers = {};
+  Future<void> _getMarkers() async {
+    isLoadingMarkers.value = true;
+    await Future.delayed(Duration(seconds: 4));
 
-  Set<Marker> get markers => _markers;
-
-  void addMarker(LatLng position) async {
-    final icon = await BitmapDescriptor.fromAssetImage(
+    BitmapDescriptor trafficSignIcon = await BitmapDescriptor.fromAssetImage(
       ImageConfiguration(size: Size(48, 48)),
       'assets/images/traffic_signs.png',
     );
 
-    _markers.add(
-      Marker(
-        markerId: MarkerId(position.toString()),
-        position: position,
-        icon: icon,
-      ),
+    BitmapDescriptor roadDamageIcon = await BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(size: Size(48, 48)),
+      'assets/images/road_damage.png',
     );
+    addMarkersFromCoordinates(coordinates);
+    isLoadingMarkers.value = false;
+    // Marker marker = Marker(
+    //     markerId: MarkerId('1'),
+    //     position: LatLng(39.925533, 32.866287),
+    //     infoWindow: InfoWindow(
+    //       title: 'Traffic Signs Problem',
+    //     ),
+    //     icon: trafficSignIcon);
 
-    update();
+    // _markers.add(marker);
+  }
+
+  void addMarkersFromCoordinates(List<LatLng> coordinates) {
+    LatLng targetLocation = LatLng(39.920275, 32.868510);
+    double maxDistance = 1000; // 2 kilometre
+
+    for (int i = 0; i < coordinates.length; i++) {
+      double distance = Geolocator.distanceBetween(
+        targetLocation.latitude,
+        targetLocation.longitude,
+        coordinates[i].latitude,
+        coordinates[i].longitude,
+      );
+      print(distance);
+      if (distance <= maxDistance) {
+        Marker marker = Marker(
+          markerId: MarkerId('marker_$i'),
+          position: coordinates[i],
+          infoWindow: InfoWindow(
+            title: 'Marker $i',
+          ),
+          // İsteğe bağlı: Icon, renk, açıklama, vs. ekleyebilirsiniz.
+        );
+        markers.add(marker);
+      }
+    }
   }
 
   void clearMarkers() {
-    _markers.clear();
+    markers.clear();
     update();
   }
 
@@ -116,4 +240,10 @@ class MapViewController extends GetxController {
   //   final GoogleMapController mapController = await completer.future;
   //   mapController.animateCamera(CameraUpdate.newCameraPosition(targetPosition));
   // }
+
+  @override
+  void dispose() {
+    Get.delete<MapViewController>();
+    super.dispose();
+  }
 }

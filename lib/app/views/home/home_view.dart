@@ -1,5 +1,5 @@
 import 'package:fabb_mobil/app/general_app_datas/general_app_datas.dart';
-import 'package:fabb_mobil/app/views/home/incident_type_view.dart';
+import 'package:fabb_mobil/app/views/home/incident_category_view.dart';
 import 'package:fabb_mobil/app/views/home/list_view.dart';
 import 'package:fabb_mobil/app/views/home/map_view.dart';
 import 'package:flutter/material.dart';
