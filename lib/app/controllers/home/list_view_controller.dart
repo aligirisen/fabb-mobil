@@ -39,7 +39,7 @@ class ListViewController extends GetxController {
           incidentStatus: element.incidentId,
           category: element.category,
           location: element.location,
-          //attachments: ["attachments"],
+          attachments: element.attachments,
           description: element.description,
           address: element.address,
           createDate: element.createDate.toString());

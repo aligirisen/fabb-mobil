@@ -17,7 +17,7 @@ class IncidentModel {
   String? reportNumber;
   String? title;
   String? userId;
-  List<String>? attachments = [];
+  List<dynamic>? attachments = [];
   int? downvoteCount;
   int? upvoteCount;
   File? image;

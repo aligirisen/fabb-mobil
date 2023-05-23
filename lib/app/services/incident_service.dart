@@ -20,7 +20,7 @@ class IncidentService {
   }
 
   Future<bool> postIncident(IncidentModel incident, File image) async {
-    // String incidentJson = incidentModelToJson(incident);
+    String incidentJson = incidentModelToJson(incident);
     // http.Response response = await http.post(
     //   Uri.parse('$baseUrl/incident/create'),
     //   headers: {'Content-Type': 'multipart/form-data'},
@@ -39,18 +39,6 @@ class IncidentService {
     var response = request.send();
     print(response);
     return true;
-/*
-    print("Response Status Code: ${response.statusCode}");
-    print("Response Body: ${response.body}");
-    if (response.statusCode == 200) {
-      // Success
-      print("Data Posted Successfully!");
-      return true;
-    } else {
-      // Failure
-      print("Failed to Post Data. Error: ${response.statusCode}");
-      return false;
-    }*/
   }
 
   Future<List<IncidentModel>> getIncidents() async {
