@@ -54,20 +54,20 @@ class IncidentModel {
         upvoteCount: json["upvote_count"],
       );
 
-  Map<String, String> toJson() => {
-        "address": address.toString(),
-        "category": category.toString(),
-        "create_date": createDate.toString(),
-        "description": description.toString(),
-        "incident_id": incidentId.toString(),
-        "incident_status": incidentStatus.toString(),
-        "attachments": attachments.toString(),
-        "location": location!.toJson().toString(),
-        "report_number": reportNumber.toString(),
-        "title": title.toString(),
-        "user_id": userId.toString(),
-        "upvote_count": upvoteCount.toString(),
-        "downvote_count": downvoteCount.toString(),
+  Map<String, dynamic> toJson() => {
+        "address": address,
+        "category": category,
+        "create_date": createDate,
+        "description": description,
+        "incident_id": incidentId,
+        "incident_status": incidentStatus,
+        "attachments": attachments,
+        "location": location!.toJson(),
+        "report_number": reportNumber,
+        "title": title,
+        "user_id": userId,
+        "upvote_count": upvoteCount,
+        "downvote_count": downvoteCount,
       };
 }
 

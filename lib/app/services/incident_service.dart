@@ -21,13 +21,13 @@ class IncidentService {
 
   Future<bool> postIncident(IncidentModel incident, File image) async {
     String incidentJson = incidentModelToJson(incident);
-    // http.Response response = await http.post(
-    //   Uri.parse('$baseUrl/incident/create'),
-    //   headers: {'Content-Type': 'multipart/form-data'},
-    //   body: incidentJson,
-    // );
+    http.Response response = await http.post(
+      Uri.parse('$baseUrl/incident/create'),
+      headers: {'Content-Type': 'application/json'},
+      body: incidentJson,
+    );
 
-    var request =
+    /*var request =
         http.MultipartRequest("POST", Uri.parse('$baseUrl/incident/create'));
 
     request.fields.addAll(incident.toJson());
@@ -36,10 +36,45 @@ class IncidentService {
       'attachments',
       image.path,
     ));
-    var response = request.send();
-    print(response);
-    return true;
+    var response = request.send();*/
+    if (response.statusCode == 200) {
+      // Success
+      print("Data Posted Successfully!");
+      return true;
+    } else {
+      // Failure
+      print("Failed to Post Data. Error: ${response.statusCode}");
+      return false;
+    }
   }
+/*
+  Future<bool> postIncident(IncidentModel incident, File image) async {
+    // Read image bytes
+    List<int> imageBytes = await image.readAsBytes();
+    String base64Image = base64Encode(imageBytes);
+
+    // Create the incident JSON
+    Map<String, dynamic> incidentData = incident.toJson();
+    incidentData['attachments'] = {'image': base64Image};
+    String incidentJson = jsonEncode(incidentData);
+
+    // Send the POST request
+    http.Response response = await http.post(
+      Uri.parse('$baseUrl/incident/create'),
+      headers: {'Content-Type': 'application/json'},
+      body: incidentJson,
+    );
+
+    if (response.statusCode == 200) {
+      // Success
+      print("Data Posted Successfully!");
+      return true;
+    } else {
+      // Failure
+      print("Failed to Post Data. Error: ${response.statusCode}");
+      return false;
+    }
+  }*/
 
   Future<List<IncidentModel>> getIncidents() async {
     http.Response response = await http.get(Uri.parse('$baseUrl/incident/'));

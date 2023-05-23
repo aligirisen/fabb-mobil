@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fabb_mobil/app/controllers/home/list_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:geocoding/geocoding.dart';
@@ -115,6 +116,7 @@ class IncidentDetailsController extends GetxController {
     bool isRegistered =
         await IncidentService().postIncident(incident, image.value!);
     if (isRegistered) {
+      ListViewController().generateItems();
       return true;
     } else {
       return false;
