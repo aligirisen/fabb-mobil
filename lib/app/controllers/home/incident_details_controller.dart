@@ -30,6 +30,13 @@ class IncidentDetailsController extends GetxController {
     getAddressFromPosition();
   }
 
+  @override
+  void onClose() {
+    titleTEController.dispose();
+    descriptionTEController.dispose();
+    addressTEController.dispose();
+  }
+
   void getAddressFromPosition() async {
     List<Placemark> placemarks = await placemarkFromCoordinates(
         GeneralAppDatas.currentPosition.value!.latitude,

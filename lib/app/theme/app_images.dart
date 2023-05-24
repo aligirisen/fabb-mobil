@@ -37,4 +37,8 @@ class AppImages {
 
   static Image album =
       const Image(image: AssetImage('assets/images/picture.png'));
+
+  //contact
+  static Image contact =
+      const Image(image: AssetImage('assets/images/contact.png'));
 }

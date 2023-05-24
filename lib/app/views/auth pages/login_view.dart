@@ -1,9 +1,7 @@
-import 'package:fabb_mobil/app/general_app_datas/general_app_datas.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../controllers/auth pages/login_controller.dart';
-import '../../models/user_model.dart';
 import '../../routes/app_pages.dart';
 import '../../theme/app_images.dart';
 
