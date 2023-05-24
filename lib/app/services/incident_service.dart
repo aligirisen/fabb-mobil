@@ -47,6 +47,33 @@ class IncidentService {
       return false;
     }
   }
+
+  /* void postImageAndObjectToBackend(
+      File imageFile, IncidentModel incident) async {
+    // Backend URL'sini ve endpoint'i buraya yazın
+
+    // Resmi base64 formatına dönüştürme
+    List<int> imageBytes = await imageFile.readAsBytes();
+    String base64Image = base64Encode(imageBytes);
+
+    // Nesneyi JSON formatına dönüştürme
+    Map<String, dynamic> incidentJson = incident.toJson();
+    String objectJsonString = jsonEncode(incidentJson);
+
+    // HTTP POST isteği oluşturma
+    var requestBody = {
+      'image': base64Image,
+      'object': objectJsonString,
+    };
+
+    var response = await http.post(Uri.parse(baseUrl), body: requestBody);
+
+    if (response.statusCode == 200) {
+      print("Data Posted Successfully!");
+    } else {
+      print("Failed to Post Data. Error: ${response.statusCode}");
+    }
+  }*/
 /*
   Future<bool> postIncident(IncidentModel incident, File image) async {
     // Read image bytes
