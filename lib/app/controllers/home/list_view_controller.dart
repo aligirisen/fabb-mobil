@@ -63,6 +63,10 @@ class ListViewController extends GetxController {
         {
           return AppImages.trafficSigns;
         }
+      case "Road Safety":
+        {
+          return AppImages.roadSafety;
+        }
 
       default:
         {

@@ -150,13 +150,13 @@ class SignupView extends GetView<SignupController> {
   Container signupTextFieldFirstName() {
     return Container(
       margin: const EdgeInsets.only(top: 20),
-      padding: EdgeInsets.only(left: 5.w, bottom: 0.3.h),
-      height: 5.h,
-      width: 50.w,
+      padding: EdgeInsets.only(left: 3.w, bottom: 0.3.h),
+      height: 7.h,
+      width: 60.w,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: Colors.transparent,
-          border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
+        color: Colors.transparent,
+        // border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))
+      ),
       child: TextFormField(
         onSaved: (value) {
           controller.firstname.value = value ?? "";
@@ -168,7 +168,7 @@ class SignupView extends GetView<SignupController> {
           controller.firstname.value = value;
         },
         decoration: const InputDecoration(
-            border: InputBorder.none,
+            // border: InputBorder.none,
             hintText: 'First Name',
             hintStyle: TextStyle(fontSize: 14)),
       ),
@@ -178,13 +178,13 @@ class SignupView extends GetView<SignupController> {
   Container signupTextFieldLastName() {
     return Container(
       margin: const EdgeInsets.only(top: 20),
-      padding: EdgeInsets.only(left: 5.w, bottom: 0.3.h),
-      height: 5.h,
-      width: 50.w,
+      padding: EdgeInsets.only(left: 3.w, bottom: 0.3.h),
+      height: 7.h,
+      width: 60.w,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: Colors.transparent,
-          border: Border.all(color: const Color.fromARGB(255, 156, 156, 156))),
+        color: Colors.transparent,
+        // border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))
+      ),
       child: TextFormField(
         onSaved: (value) {
           controller.lastname.value = value ?? "";
@@ -196,9 +196,7 @@ class SignupView extends GetView<SignupController> {
           controller.lastname.value = value;
         },
         decoration: const InputDecoration(
-            border: InputBorder.none,
-            hintText: 'Last Name',
-            hintStyle: TextStyle(fontSize: 14)),
+            hintText: 'Last Name', hintStyle: TextStyle(fontSize: 14)),
       ),
     );
   }
@@ -206,13 +204,13 @@ class SignupView extends GetView<SignupController> {
   Container signupTextFieldPhone() {
     return Container(
       margin: const EdgeInsets.only(top: 20),
-      padding: EdgeInsets.only(left: 5.w, bottom: 0.3.h),
-      height: 5.h,
-      width: 50.w,
+      padding: EdgeInsets.only(left: 3.w, bottom: 0.3.h),
+      height: 7.h,
+      width: 60.w,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: Colors.transparent,
-          border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
+        color: Colors.transparent,
+        // border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))
+      ),
       child: TextFormField(
         onSaved: (value) {
           controller.phonenumber.value = value!;
@@ -224,9 +222,7 @@ class SignupView extends GetView<SignupController> {
           controller.phonenumber.value = value;
         },
         decoration: const InputDecoration(
-            border: InputBorder.none,
-            hintText: 'Phone Number',
-            hintStyle: TextStyle(fontSize: 14)),
+            hintText: 'Phone Number', hintStyle: TextStyle(fontSize: 14)),
       ),
     );
   }
@@ -234,13 +230,13 @@ class SignupView extends GetView<SignupController> {
   Container signupTextFieldMail() {
     return Container(
       margin: const EdgeInsets.only(top: 20),
-      padding: EdgeInsets.only(left: 5.w, bottom: 0.3.h),
-      height: 5.h,
-      width: 50.w,
+      padding: EdgeInsets.only(left: 3.w, bottom: 0.3.h),
+      height: 7.h,
+      width: 60.w,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: Colors.transparent,
-          border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
+        color: Colors.transparent,
+        // border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))
+      ),
       child: TextFormField(
         onSaved: (value) {
           controller.email.value = value!;
@@ -252,9 +248,7 @@ class SignupView extends GetView<SignupController> {
           controller.email.value = value;
         },
         decoration: const InputDecoration(
-            border: InputBorder.none,
-            hintText: 'E-mail',
-            hintStyle: TextStyle(fontSize: 14)),
+            hintText: 'E-mail', hintStyle: TextStyle(fontSize: 14)),
       ),
     );
   }
@@ -262,13 +256,13 @@ class SignupView extends GetView<SignupController> {
   Container signupTextFieldPassword() {
     return Container(
       margin: const EdgeInsets.only(top: 20),
-      padding: EdgeInsets.only(left: 5.w, bottom: 0.3.h),
-      height: 5.h,
-      width: 50.w,
+      padding: EdgeInsets.only(left: 3.w, bottom: 0.3.h),
+      height: 7.h,
+      width: 60.w,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: Colors.transparent,
-          border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))),
+        color: Colors.transparent,
+        // border: Border.all(color: const Color.fromARGB(255, 106, 106, 106))
+      ),
       child: TextFormField(
         onSaved: (value) {
           controller.password.value = value!;
@@ -281,8 +275,6 @@ class SignupView extends GetView<SignupController> {
         },
         obscureText: controller.isPasswordHidden.value,
         decoration: InputDecoration(
-            icon: const Icon(Icons.lock),
-            border: const UnderlineInputBorder(),
             hintText: 'Password',
             hintStyle: const TextStyle(fontSize: 13),
             suffix: InkWell(

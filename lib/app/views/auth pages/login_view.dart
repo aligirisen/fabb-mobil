@@ -55,8 +55,8 @@ class LoginView extends GetView<LoginController> {
     return Align(
       alignment: Alignment.bottomLeft,
       child: Container(
-        margin: EdgeInsets.only(bottom: 2.h),
-        height: 10.h,
+        margin: EdgeInsets.only(bottom: 2.h, left: 2.h),
+        height: 8.h,
         child: Image(image: AppImages.logo),
       ),
     );

@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../general_app_datas/general_app_datas.dart';
 
@@ -38,7 +39,6 @@ class MapViewController extends GetxController {
   var foregroundColor = Colors.white.obs;
 
   List<LatLng> coordinates = [
-    LatLng(39.925533, 32.866287),
     LatLng(39.933543, 32.859678),
     LatLng(39.940123, 32.854321),
     LatLng(39.912345, 32.845678),
@@ -63,6 +63,12 @@ class MapViewController extends GetxController {
     LatLng(39.973475, 32.718256),
     LatLng(39.974381, 32.720987),
     LatLng(39.976543, 32.715432),
+
+    LatLng(37.291116, -121.839467),
+    LatLng(37.290678, -121.842229),
+    LatLng(37.292101, -121.839132),
+    LatLng(37.292540, -121.841893),
+    LatLng(37.291984, -121.842941),
   ];
   //current location işlemleri
 
@@ -168,29 +174,46 @@ class MapViewController extends GetxController {
     // _markers.add(marker);
   }
 
-  void addMarkersFromCoordinates(List<LatLng> coordinates) {
+  void addMarkersFromCoordinates(List<LatLng> coordinates) async {
     LatLng targetLocation = LatLng(39.920275, 32.868510);
     double maxDistance = 1000; // 2 kilometre
 
     for (int i = 0; i < coordinates.length; i++) {
-      double distance = Geolocator.distanceBetween(
-        targetLocation.latitude,
-        targetLocation.longitude,
-        coordinates[i].latitude,
-        coordinates[i].longitude,
+      // double distance = Geolocator.distanceBetween(
+      //   targetLocation.latitude,
+      //   targetLocation.longitude,
+      //   coordinates[i].latitude,
+      //   coordinates[i].longitude,
+      // );
+      // print(distance);
+      // if (distance <= maxDistance) {
+      //   Marker marker = Marker(
+      //     markerId: MarkerId('marker_$i'),
+      //     position: coordinates[i],
+      //     infoWindow: InfoWindow(
+      //       title: 'Marker $i',
+      //     ),
+      //     // İsteğe bağlı: Icon, renk, açıklama, vs. ekleyebilirsiniz.
+      //   );
+      //   markers.add(marker);
+      // }
+
+      Marker marker = Marker(
+        markerId: MarkerId('marker_$i'),
+        position: coordinates[i],
+        infoWindow: InfoWindow(
+          title: 'Marker $i',
+        ),
+        // icon: await BitmapDescriptor.fromAssetImage(
+        //   ImageConfiguration(
+        //     size: Size(5.w, 3.h),
+        //     devicePixelRatio: 5,
+        //   ),
+        //   'assets/images/road_damage.png',
+        // )
+        // İsteğe bağlı: Icon, renk, açıklama, vs. ekleyebilirsiniz.
       );
-      print(distance);
-      if (distance <= maxDistance) {
-        Marker marker = Marker(
-          markerId: MarkerId('marker_$i'),
-          position: coordinates[i],
-          infoWindow: InfoWindow(
-            title: 'Marker $i',
-          ),
-          // İsteğe bağlı: Icon, renk, açıklama, vs. ekleyebilirsiniz.
-        );
-        markers.add(marker);
-      }
+      markers.add(marker);
     }
   }
 

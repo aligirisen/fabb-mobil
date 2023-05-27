@@ -22,12 +22,14 @@ class CustomNavigationDrawer extends StatelessWidget {
             tileColor: Get.currentRoute == Routes.home
                 ? AppColors.chosendrawer
                 : Colors.transparent),
-        buildDrawerItem(
-            text: "My Reports",
-            onTap: () => navigate(1),
-            tileColor: Get.currentRoute == Routes.myreports
-                ? AppColors.chosendrawer
-                : Colors.transparent),
+        GeneralAppDatas.isLoggedIn.value == true
+            ? buildDrawerItem(
+                text: "My Reports",
+                onTap: () => navigate(1),
+                tileColor: Get.currentRoute == Routes.myreports
+                    ? AppColors.chosendrawer
+                    : Colors.transparent)
+            : Container(),
         buildDrawerItem(
             text: "Settings",
             onTap: () => navigate(2),
@@ -117,7 +119,7 @@ class CustomNavigationDrawer extends StatelessWidget {
               onPressed: () {
                 GeneralAppDatas.userId.value = "";
                 GeneralAppDatas.userEmail.value = "";
-
+                GeneralAppDatas.isLoggedIn.value = false;
                 Get.offAllNamed(AppPages.login);
               },
             ),

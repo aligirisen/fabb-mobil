@@ -45,7 +45,7 @@ class IncidentModel {
         description: json["description"],
         incidentId: json["incident_id"],
         incidentStatus: json["incident_status"],
-        attachments: json["attachments"],
+        attachments: AttachmentsModel.fromJson(json["attachments"]),
         location: LocationModel.fromJson(json["location"]),
         reportNumber: json["report_number"],
         title: json["title"],
@@ -54,20 +54,20 @@ class IncidentModel {
         upvoteCount: json["upvote_count"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "address": address,
-        "category": category,
-        "create_date": createDate,
-        "description": description,
-        "incident_id": incidentId,
-        "incident_status": incidentStatus,
-        "attachments": attachments,
-        "location": location!.toJson(),
-        "report_number": reportNumber,
-        "title": title,
-        "user_id": userId,
-        "upvote_count": upvoteCount,
-        "downvote_count": downvoteCount,
+  Map<String, String> toJson() => {
+        "address": address ?? "",
+        "category": category ?? "",
+        "create_date": createDate ?? "",
+        "description": description ?? "",
+        "incident_id": incidentId ?? "",
+        "incident_status": incidentStatus ?? "",
+        "attachments": attachments.toString(),
+        "location": location!.toJson().toString(),
+        "report_number": reportNumber ?? "",
+        "title": title ?? "",
+        "user_id": userId ?? "",
+        "upvote_count": upvoteCount.toString(),
+        "downvote_count": downvoteCount.toString(),
       };
 }
 
@@ -80,17 +80,37 @@ class LocationModel {
     this.longitude,
   });
 
-  factory LocationModel.fromJson(Map<String, dynamic> json) => LocationModel(
-        latitude: json["latitude"] is int
-            ? json["latitude"].toDouble()
-            : json["latitude"],
-        longitude: json["longitude"] is int
-            ? json["longitude"].toDouble()
-            : json["longitude"],
-      );
+  factory LocationModel.fromJson(String json) {
+    Map<String, dynamic> jsonMap = jsonDecode(json);
+
+    double? latitude = jsonMap["latitude"];
+    double? longitude = jsonMap["longitude"];
+    return LocationModel(
+      latitude: latitude,
+      longitude: longitude,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
-        "latitude": latitude,
-        "longitude": longitude,
+        '"latitude"': latitude,
+        '"longitude"': longitude,
       };
+}
+
+class AttachmentsModel {
+  static List<dynamic> fromJson(List<dynamic> json) {
+    List<dynamic> attachments = [];
+
+    for (var i = 0; i < json.length; i += 2) {
+      Map<String, dynamic> data = json[i];
+
+      String? webContentLink = data['webContentLink'];
+      String? webViewLink = data['webViewLink'];
+
+      attachments.add(webContentLink);
+      attachments.add(webViewLink);
+    }
+    print(attachments[1]);
+    return attachments;
+  }
 }

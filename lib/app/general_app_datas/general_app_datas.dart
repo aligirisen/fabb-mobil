@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../models/user_model.dart';
 
 class GeneralAppDatas {
-  static RxBool isLoggedIn = true.obs;
+  static RxBool isLoggedIn = false.obs;
   //false guest true login
   static RxString userId = "".obs;
 

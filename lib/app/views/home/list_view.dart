@@ -5,7 +5,6 @@ import 'package:sizer/sizer.dart';
 
 import '../../controllers/home/list_view_controller.dart';
 import '../../theme/app_colors.dart';
-import '../../theme/app_images.dart';
 import '../../theme/app_textstyles.dart';
 
 //color: Color(0xff78D8A4),
@@ -79,8 +78,11 @@ class MapListView extends GetView<ListViewController> {
                                 SizedBox(
                                     height: 15.h,
                                     child: Image(
-                                        image: AppImages
-                                            .car)), // bu kısımda image nasıl gelmeli???
+                                      image: NetworkImage(controller
+                                          .incidentList[index].attachments![0]
+                                          .toString()),
+                                    )), // bu kısımda image nasıl gelmeli???
+                                //
                                 Container(
                                   //address?
                                   margin: EdgeInsets.symmetric(

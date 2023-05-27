@@ -20,14 +20,14 @@ class IncidentService {
   }
 
   Future<bool> postIncident(IncidentModel incident, File image) async {
-    String incidentJson = incidentModelToJson(incident);
+    /*String incidentJson = incidentModelToJson(incident);
     http.Response response = await http.post(
       Uri.parse('$baseUrl/incident/create'),
       headers: {'Content-Type': 'application/json'},
       body: incidentJson,
-    );
+    );*/
 
-    /*var request =
+    var request =
         http.MultipartRequest("POST", Uri.parse('$baseUrl/incident/create'));
 
     request.fields.addAll(incident.toJson());
@@ -36,16 +36,17 @@ class IncidentService {
       'attachments',
       image.path,
     ));
-    var response = request.send();*/
-    if (response.statusCode == 200) {
+    var response = request.send();
+    return true;
+    /*if (response.statusCode == 200) {
       // Success
       print("Data Posted Successfully!");
-      return true;
+      
     } else {
       // Failure
       print("Failed to Post Data. Error: ${response.statusCode}");
       return false;
-    }
+    }*/
   }
 
   /* void postImageAndObjectToBackend(
@@ -122,15 +123,9 @@ class IncidentService {
     throw Exception('Unexpected error');
   }
 
-  /*Future<bool> deleteIncident(String userId, String accountId) async {
-    final Map<String, dynamic> userJson = {
-      'user_id': userId,
-      'account_id': accountId,
-    };
-
+  Future<bool> deleteIncident(String incidentId) async {
     // Send the DELETE request
-    http.Response response = await http
-        .delete(Uri.parse('$baseUrl/user/delete'), body: jsonEncode(userJson));
+    http.Response response = await http.delete(Uri.parse('$baseUrl/incidents'));
 
     // Handle the response
     if (response.statusCode == 200) {
@@ -142,7 +137,7 @@ class IncidentService {
       print("Failed to delete user. Error: ${response.statusCode}");
       return false;
     }
-  }*/
+  }
 
   /*Future<bool> updateIncident(Incident incident) async {
     final Map<String, dynamic> userJson = {
