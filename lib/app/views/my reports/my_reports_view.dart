@@ -6,6 +6,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../common/navigation_drawer.dart';
 import '../../controllers/home/list_view_controller.dart';
+import '../../general_app_datas/general_app_datas.dart';
 import '../../models/incident_model.dart';
 import '../../routes/app_pages.dart';
 import '../../theme/app_images.dart';
@@ -112,7 +113,7 @@ class MyReportsView extends GetView<ListViewController> {
                     height: 100.h,
                     margin: EdgeInsets.all(5),
                     child: ListView.builder(
-                      itemCount: controller.incidentList.length,
+                      itemCount: GeneralAppDatas.incidentList.length,
                       itemBuilder: (context, index) {
                         return Container(
                           decoration: BoxDecoration(
@@ -134,7 +135,8 @@ class MyReportsView extends GetView<ListViewController> {
                                   height: 3.h,
                                 ),
                                 Text(
-                                  controller.incidentList[index].title ?? "",
+                                  GeneralAppDatas.incidentList[index].title ??
+                                      "",
                                   style: AppTextStyles.incidentTitleTextStyle,
                                 ),
                                 SizedBox(
@@ -145,7 +147,7 @@ class MyReportsView extends GetView<ListViewController> {
                                   height: 2.h,
                                 ),
                                 Text(
-                                    controller
+                                    GeneralAppDatas
                                             .incidentList[index].description ??
                                         "",
                                     style: AppTextStyles
@@ -178,7 +180,7 @@ class MyReportsView extends GetView<ListViewController> {
                                             horizontal: 3.w, vertical: 2.h),
                                         width: 40.w,
                                         child: Text(
-                                          controller.incidentList[index]
+                                          GeneralAppDatas.incidentList[index]
                                                   .address ??
                                               "",
                                           overflow: TextOverflow.ellipsis,
@@ -207,12 +209,13 @@ class MyReportsView extends GetView<ListViewController> {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           color: controller.getSatusColor(
-                                              controller.incidentList[index]
+                                              GeneralAppDatas
+                                                      .incidentList[index]
                                                       .incidentStatus ??
                                                   ""),
                                         ),
                                         child: Text(
-                                          controller.incidentList[index]
+                                          GeneralAppDatas.incidentList[index]
                                                   .incidentStatus ??
                                               "",
                                           style: TextStyle(
@@ -241,7 +244,7 @@ class MyReportsView extends GetView<ListViewController> {
                                             size: 20,
                                           );
                                         },
-                                        likeCount: controller
+                                        likeCount: GeneralAppDatas
                                                 .incidentList[index]
                                                 .upvoteCount ??
                                             0,
@@ -285,7 +288,7 @@ class MyReportsView extends GetView<ListViewController> {
                                             size: 20,
                                           );
                                         },
-                                        likeCount: controller
+                                        likeCount: GeneralAppDatas
                                                 .incidentList[index]
                                                 .downvoteCount ??
                                             0,
@@ -389,7 +392,7 @@ class MyReportsView extends GetView<ListViewController> {
 
   Text incidentDate(int index) {
     return Text(
-      controller.incidentList[index].createDate ?? "",
+      GeneralAppDatas.incidentList[index].createDate ?? "",
       style: TextStyle(
           color: Colors.grey, fontSize: 13, fontWeight: FontWeight.w400),
     );
@@ -412,16 +415,16 @@ class MyReportsView extends GetView<ListViewController> {
           height: 5.h,
           child: Image(
               image: controller.getIncidentIcon(
-                  controller.incidentList[index].category ?? "")),
+                  GeneralAppDatas.incidentList[index].category ?? "")),
         ),
         SizedBox(
           width: 2.w,
         ),
         Text(
-          controller.incidentList[index].category ?? "null",
+          GeneralAppDatas.incidentList[index].category ?? "null",
           style: TextStyle(
               color: controller
-                  .getColor(controller.incidentList[index].category ?? ""),
+                  .getColor(GeneralAppDatas.incidentList[index].category ?? ""),
               fontSize: 17,
               fontWeight: FontWeight.w600),
         )

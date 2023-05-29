@@ -20,7 +20,7 @@ class MapView extends GetView<MapViewController> {
     return Scaffold(
       body: Obx(
         () => controller.isLoadingMarkers.isTrue
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : GoogleMap(
                 initialCameraPosition: CameraPosition(
                     target: LatLng(

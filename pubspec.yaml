@@ -76,22 +76,7 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - assets/images/firstinfo.png
-    - assets/images/secondinfo.png
-    - assets/images/thirdinfo.png
-    - assets/images/login_background.png
-    - assets/images/logo.png
-    - assets/images/car.png
-    - assets/images/successful.png
-    - assets/images/login_image.png
-    - assets/images/road_safety.png 
-    - assets/images/traffic_signs.png 
-    - assets/images/water_damage.png 
-    - assets/images/road_damage.png
-    - assets/images/camera.png 
-    - assets/images/picture.png 
-    - assets/images/accident.png 
-    - assets/images/contact.png
+    - assets/images/
     - assets/icons/not_found.png
     - assets/icons/animals.png
     - assets/icons/green.png

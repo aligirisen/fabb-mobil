@@ -1,3 +1,4 @@
+import 'package:fabb_mobil/app/general_app_datas/general_app_datas.dart';
 import 'package:fabb_mobil/app/services/incident_service.dart';
 import 'package:fabb_mobil/app/theme/app_colors.dart';
 import 'package:fabb_mobil/app/theme/app_images.dart';
@@ -10,7 +11,7 @@ class ListViewController extends GetxController {
   late List<IncidentModel> incidents;
   late TextEditingController locationController;
   RxBool isExpanded = false.obs;
-  RxList<IncidentModel> incidentList = <IncidentModel>[].obs;
+
   RxInt likeCount = 17.obs;
   RxInt dislikeCount = 5.obs;
   RxBool isLoading = true.obs;
@@ -43,7 +44,7 @@ class ListViewController extends GetxController {
           description: element.description,
           address: element.address,
           createDate: element.createDate.toString());
-      incidentList.add(element);
+      GeneralAppDatas.incidentList.add(element);
     }
     isLoading.value = false;
   }

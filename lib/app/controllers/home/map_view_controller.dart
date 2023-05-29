@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui' as ui;
 import 'package:fabb_mobil/app/theme/app_colors.dart';
+import 'package:fabb_mobil/app/theme/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
@@ -9,14 +10,45 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../general_app_datas/general_app_datas.dart';
+import '../../models/incident_model.dart';
+import '../../services/incident_service.dart';
 
 class MapViewController extends GetxController {
   @override
   void onInit() {
-    _getMarkers();
     getCurrentLocation();
     //getIncidentMarkers();
+    generateItems();
+    _getMarkers();
     super.onInit();
+  }
+
+  RxBool isLoading = true.obs;
+
+  void generateItems() async {
+    isLoading.value = true;
+
+    await Future.delayed(Duration(seconds: 3));
+
+    List<IncidentModel> incidents;
+
+    incidents = await IncidentService().getIncidents();
+
+    for (var element in incidents) {
+      IncidentModel(
+          userId: element.userId,
+          title: element.title,
+          incidentId: element.incidentId,
+          incidentStatus: element.incidentId,
+          category: element.category,
+          location: element.location,
+          attachments: element.attachments,
+          description: element.description,
+          address: element.address,
+          createDate: element.createDate.toString());
+      GeneralAppDatas.incidentList.add(element);
+    }
+    isLoading.value = false;
   }
 
   GoogleMapController? mapController;
@@ -37,40 +69,6 @@ class MapViewController extends GetxController {
   Rx<MapType> maptype = MapType.normal.obs;
   var backgroundColor = AppColors.darkBlue.obs;
   var foregroundColor = Colors.white.obs;
-
-  List<LatLng> coordinates = [
-    LatLng(39.933543, 32.859678),
-    LatLng(39.940123, 32.854321),
-    LatLng(39.912345, 32.845678),
-    LatLng(39.912345, 32.875432),
-    LatLng(39.928765, 32.869012),
-    LatLng(39.931234, 32.857901),
-    LatLng(39.938765, 32.851234),
-    LatLng(39.920987, 32.842765),
-    LatLng(39.915432, 32.879876),
-    LatLng(39.923456, 32.871234),
-    LatLng(39.932187, 32.862345),
-    LatLng(39.944321, 32.849876),
-    LatLng(39.916543, 32.837654),
-    LatLng(39.918765, 32.889012),
-
-    LatLng(39.920275, 32.868510), // Kurtuluş Parkı
-    LatLng(39.917977, 32.868689),
-    LatLng(39.918765, 32.867432),
-    LatLng(39.919543, 32.867987),
-    LatLng(39.920321, 32.869123),
-
-    LatLng(39.973475, 32.718256),
-    LatLng(39.974381, 32.720987),
-    LatLng(39.976543, 32.715432),
-
-    LatLng(37.291116, -121.839467),
-    LatLng(37.290678, -121.842229),
-    LatLng(37.292101, -121.839132),
-    LatLng(37.292540, -121.841893),
-    LatLng(37.291984, -121.842941),
-  ];
-  //current location işlemleri
 
   Future<void> getCurrentLocation() async {
     try {
@@ -152,16 +150,11 @@ class MapViewController extends GetxController {
     isLoadingMarkers.value = true;
     await Future.delayed(Duration(seconds: 4));
 
-    BitmapDescriptor trafficSignIcon = await BitmapDescriptor.fromAssetImage(
-      ImageConfiguration(size: Size(48, 48)),
-      'assets/images/traffic_signs.png',
-    );
-
     BitmapDescriptor roadDamageIcon = await BitmapDescriptor.fromAssetImage(
       ImageConfiguration(size: Size(48, 48)),
       'assets/images/road_damage.png',
     );
-    addMarkersFromCoordinates(coordinates);
+    addMarkersFromCoordinates(GeneralAppDatas.incidentList);
     isLoadingMarkers.value = false;
     // Marker marker = Marker(
     //     markerId: MarkerId('1'),
@@ -174,11 +167,11 @@ class MapViewController extends GetxController {
     // _markers.add(marker);
   }
 
-  void addMarkersFromCoordinates(List<LatLng> coordinates) async {
-    LatLng targetLocation = LatLng(39.920275, 32.868510);
-    double maxDistance = 1000; // 2 kilometre
+  void addMarkersFromCoordinates(List<IncidentModel> incidentList) async {
+    // LatLng targetLocation = LatLng(39.920275, 32.868510);
+    // double maxDistance = 1000; // 2 kilometre
 
-    for (int i = 0; i < coordinates.length; i++) {
+    for (int i = 0; i < incidentList.length; i++) {
       // double distance = Geolocator.distanceBetween(
       //   targetLocation.latitude,
       //   targetLocation.longitude,
@@ -199,21 +192,103 @@ class MapViewController extends GetxController {
       // }
 
       Marker marker = Marker(
-        markerId: MarkerId('marker_$i'),
-        position: coordinates[i],
+        markerId: MarkerId(incidentList[i].incidentId ?? ""),
+        position: LatLng(incidentList[i].location!.latitude!,
+            incidentList[i].location!.longitude!),
         infoWindow: InfoWindow(
-          title: 'Marker $i',
+          title: incidentList[i].title,
         ),
-        // icon: await BitmapDescriptor.fromAssetImage(
-        //   ImageConfiguration(
-        //     size: Size(5.w, 3.h),
-        //     devicePixelRatio: 5,
-        //   ),
-        //   'assets/images/road_damage.png',
-        // )
-        // İsteğe bağlı: Icon, renk, açıklama, vs. ekleyebilirsiniz.
+        icon: await selectMarker(incidentList[i].category ?? ""),
       );
+      print("xxx");
+      print(GeneralAppDatas.incidentList[i].location!.longitude!);
+      print(GeneralAppDatas.incidentList[i].location!.latitude!);
       markers.add(marker);
+    }
+  }
+
+  Future<BitmapDescriptor> selectMarker(String category) async {
+    BitmapDescriptor roadSafetyIcon = await BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(size: Size(48, 48)),
+      'assets/images/road_safety.png',
+    );
+
+    BitmapDescriptor trafficSignIcon = await BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(size: Size(48, 48)),
+      'assets/images/traffic_signs.png',
+    );
+
+    BitmapDescriptor roadDamageIcon = await BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(size: Size(48, 48)),
+      'assets/images/road_damage.png',
+    );
+    BitmapDescriptor waterDamageIcon = await BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(size: Size(48, 48)),
+      'assets/images/water_damage.png',
+    );
+    BitmapDescriptor animalsIcon = await BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(size: Size(48, 48)),
+      'assets/icons/animals.png',
+    );
+    BitmapDescriptor parksIcon = await BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(size: Size(48, 48)),
+      'assets/icons/green.png',
+    );
+    BitmapDescriptor transportIcon = await BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(size: Size(48, 48)),
+      'assets/icons/transport.png',
+    );
+    BitmapDescriptor noiseIcon = await BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(size: Size(48, 48)),
+      'assets/icons/noise.png',
+    );
+    BitmapDescriptor sewageIcon = await BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(size: Size(48, 48)),
+      'assets/icons/sewage.png',
+    );
+    BitmapDescriptor healthIcon = await BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(size: Size(48, 48)),
+      'assets/icons/health.png',
+    );
+    BitmapDescriptor socialIcon = await BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(size: Size(48, 48)),
+      'assets/icons/social.png',
+    );
+    BitmapDescriptor imageNotFoundIcon = await BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(size: Size(48, 48)),
+      'assets/icons/not_found.png',
+    );
+
+    switch (category) {
+      case AppStrings.incident1title:
+        return roadSafetyIcon;
+      case AppStrings.incident2title:
+        return trafficSignIcon;
+
+      case AppStrings.incident3title:
+        return roadDamageIcon;
+
+      case AppStrings.incident4title:
+        return waterDamageIcon;
+      case AppStrings.incident5title:
+        return animalsIcon;
+      case AppStrings.incident6title:
+        return parksIcon;
+      case AppStrings.incident7title:
+        return transportIcon;
+      case AppStrings.incident8title:
+        return noiseIcon;
+      case AppStrings.incident9title:
+        return sewageIcon;
+      case AppStrings.incident10title:
+        return healthIcon;
+      case AppStrings.incident11title:
+        return socialIcon;
+
+      default:
+        {
+          return imageNotFoundIcon;
+        }
     }
   }
 

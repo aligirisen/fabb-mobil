@@ -91,7 +91,7 @@ class CustomNavigationDrawer extends StatelessWidget {
           height: 5.h,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Color.fromARGB(255, 90, 127, 152)),
+              color: const Color.fromARGB(255, 90, 127, 152)),
           child: Text(
             text,
             style: TextStyle(
