@@ -7,7 +7,6 @@ import '../../controllers/home/incident_category_controller.dart';
 import '../../routes/app_pages.dart';
 import '../../shared/category_list.dart';
 import '../../theme/app_colors.dart';
-import 'incident_details_view.dart';
 
 //color: Color(0xff78D8A4),
 class IncidentCategoryView extends GetView<IncidentCategoryController> {
@@ -45,18 +44,26 @@ class IncidentCategoryView extends GetView<IncidentCategoryController> {
                 child: ListView.builder(
                   itemCount: CategoryList.incidentTypes.length,
                   itemBuilder: (context, index) => ListTile(
-                      title: Container(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                    color: AppColors.containerBackground,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        IncidentType(index),
-                        SizedBox(
-                          height: 1.h,
-                        ),
-                        text(index),
-                      ],
+                      title: GestureDetector(
+                    onTap: () {
+                      GeneralAppDatas.selectedIncidentType.value =
+                          CategoryList.incidentTypes[index].title;
+                      Get.toNamed(Routes.incidentDetails);
+                    },
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      color: AppColors.containerBackground,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          IncidentType(index),
+                          SizedBox(
+                            height: 1.h,
+                          ),
+                          text(index),
+                        ],
+                      ),
                     ),
                   )),
                 )),
@@ -79,25 +86,31 @@ class IncidentCategoryView extends GetView<IncidentCategoryController> {
     );
   }
 
-  Row IncidentType(int index) {
+  Widget IncidentType(int index) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Image(
-          height: 5.h,
-          image: CategoryList.incidentTypes[index].icon,
+        Row(
+          children: [
+            Image(
+              height: 5.h,
+              image: CategoryList.incidentTypes[index].icon,
+            ),
+            SizedBox(
+              width: 2.w,
+            ),
+            Text(
+              "${CategoryList.incidentTypes[index].title}",
+              maxLines: 2,
+              overflow: TextOverflow.visible,
+              style: TextStyle(
+                  color: CategoryList.incidentTypes[index].color,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w600),
+            ),
+          ],
         ),
-        SizedBox(
-          width: 2.w,
-        ),
-        Text(
-          "${CategoryList.incidentTypes[index].title}",
-          maxLines: 2,
-          overflow: TextOverflow.visible,
-          style: TextStyle(
-              color: CategoryList.incidentTypes[index].color,
-              fontSize: 17,
-              fontWeight: FontWeight.w600),
-        ),
+        Icon(Icons.chevron_right_rounded)
         // Spacer(),
         // ElevatedButton(
         //   style: ButtonStyle(

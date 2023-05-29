@@ -27,7 +27,7 @@ class CategoryList {
     IncidentTypeModel(AppImages.health, AppStrings.incident10title,
         AppStrings.incident10text, AppColors.incident10Color),
     IncidentTypeModel(AppImages.social, AppStrings.incident10title,
-        AppStrings.incident10text, AppColors.incident10Color),
+        AppStrings.incident11text, AppColors.incident11Color),
     IncidentTypeModel(AppImages.roadSafety, AppStrings.incident1title,
         AppStrings.incident1text, AppColors.incident1RoadSafetyColor),
   ];
