@@ -1,3 +1,4 @@
+import 'package:fabb_mobil/app/general_app_datas/base_urls.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -5,7 +6,7 @@ import 'package:sizer/sizer.dart';
 import 'app/routes/app_pages.dart';
 import 'app/theme/app_strings.dart';
 
-const baseUrl = 'http://192.168.1.92:5111';
+const baseUrl = BaseUrls.baseUrl;
 void main() async {
   await GetStorage.init();
   runApp(const MyApp());
