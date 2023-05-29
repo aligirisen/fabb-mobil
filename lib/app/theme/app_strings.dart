@@ -43,4 +43,23 @@ class AppStrings {
   static String incident5title = 'Animals';
   static String incident5text =
       'Problems related to animals in areas managed by the municipality, such as stray animals, dog bites, wild animals, etc. can be reported.';
+
+  static String incident6title = 'Parks and Green Spaces';
+  static String incident6text =
+      'Maintaining parks, landscaping, and preserving green areas.';
+  static String incident7title = 'Public Transportation';
+  static String incident7text =
+      'Operating and improving public transportation systems such as buses, trams, and metros.';
+  static String incident8title = 'Noise Pollution Control';
+  static String incident8text =
+      'Implementing measures to control excessive noise levels in residential and commercial areas.';
+  static String incident9title = 'Water and Sewage Systems';
+  static String incident9text =
+      'Maintaining and upgrading water supply systems, wastewater treatment, and sewage management.';
+  static String incident10title = 'Health Services';
+  static String incident10text =
+      'Health Services: Offering healthcare facilities, clinics, and promoting public health initiatives.';
+  static String incident11title = 'Social Services';
+  static String incident11text =
+      'Providing services for disabled individuals, assisting the elderly, and supporting the homeless.';
 }

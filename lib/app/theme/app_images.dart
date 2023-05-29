@@ -20,6 +20,7 @@ class AppImages {
   static AssetImage loginImage =
       const AssetImage('assets/images/login_image.png');
 
+//category icons
   static AssetImage roadSafety =
       const AssetImage('assets/images/road_safety.png');
   static AssetImage trafficSigns =
@@ -31,6 +32,13 @@ class AppImages {
 
   static AssetImage imageNotFound =
       const AssetImage('assets/icons/not_found.png');
+  static AssetImage animals = const AssetImage('assets/icons/animals.png');
+  static AssetImage green = const AssetImage('assets/icons/green.png');
+  static AssetImage noise = const AssetImage('assets/icons/noise.png');
+  static AssetImage sewage = const AssetImage('assets/icons/sewage.png');
+  static AssetImage social = const AssetImage('assets/icons/social.png');
+  static AssetImage transport = const AssetImage('assets/icons/transport.png');
+  static AssetImage health = const AssetImage('assets/icons/health.png');
 
   static Image camera =
       Image(height: 5.h, image: AssetImage('assets/images/camera.png'));

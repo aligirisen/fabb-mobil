@@ -91,31 +91,33 @@ class IncidentCategoryView extends GetView<IncidentCategoryController> {
         ),
         Text(
           "${CategoryList.incidentTypes[index].title}",
+          maxLines: 2,
+          overflow: TextOverflow.visible,
           style: TextStyle(
               color: CategoryList.incidentTypes[index].color,
               fontSize: 17,
               fontWeight: FontWeight.w600),
         ),
-        Spacer(),
-        ElevatedButton(
-          style: ButtonStyle(
-              fixedSize: MaterialStateProperty.all(const Size(100, 25)),
-              backgroundColor:
-                  MaterialStateColor.resolveWith((states) => Colors.white),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
-              ))),
-          onPressed: () {
-            GeneralAppDatas.selectedIncidentType.value =
-                CategoryList.incidentTypes[index].title;
-            Get.toNamed(Routes.incidentDetails);
-          },
-          child: Text(
-            "Start",
-            style: TextStyle(color: AppColors.greyTextColor),
-          ),
-        )
+        // Spacer(),
+        // ElevatedButton(
+        //   style: ButtonStyle(
+        //       fixedSize: MaterialStateProperty.all(const Size(100, 25)),
+        //       backgroundColor:
+        //           MaterialStateColor.resolveWith((states) => Colors.white),
+        //       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        //           RoundedRectangleBorder(
+        //         borderRadius: BorderRadius.circular(5.0),
+        //       ))),
+        //   onPressed: () {
+        //     GeneralAppDatas.selectedIncidentType.value =
+        //         CategoryList.incidentTypes[index].title;
+        //     Get.toNamed(Routes.incidentDetails);
+        //   },
+        //   child: Text(
+        //     "Start",
+        //     style: TextStyle(color: AppColors.greyTextColor),
+        //   ),
+        // )
       ],
     );
   }

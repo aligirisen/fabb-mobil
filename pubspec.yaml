@@ -91,8 +91,16 @@ flutter:
     - assets/images/camera.png 
     - assets/images/picture.png 
     - assets/images/accident.png 
-    - assets/icons/not_found.png
     - assets/images/contact.png
+    - assets/icons/not_found.png
+    - assets/icons/animals.png
+    - assets/icons/green.png
+    - assets/icons/noise.png
+    - assets/icons/sewage.png
+    - assets/icons/social.png
+    - assets/icons/transport.png
+    - assets/icons/health.png
+    
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

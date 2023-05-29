@@ -106,16 +106,16 @@ class ListViewController extends GetxController {
     switch (category) {
       case "Road Damage":
         {
-          return AppColors.incidentRoadDamage;
+          return AppColors.incident3RoadDamageColor;
         }
 
       case "Water Damage":
         {
-          return AppColors.incidentWaterDamage;
+          return AppColors.incident4WaterDamageColor;
         }
       case "Traffic Signs":
         {
-          return AppColors.incidentTrafficSigns;
+          return AppColors.incident2TrafficSignsColor;
         }
 
       default:
