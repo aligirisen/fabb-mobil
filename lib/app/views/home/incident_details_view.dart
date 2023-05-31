@@ -92,12 +92,6 @@ class IncidentDetailsView extends GetView<IncidentDetailsController> {
                       GestureDetector(
                         onTap: () {
                           controller.reportOnClick();
-                          print(controller.titleTEController.text);
-                          print(controller.address);
-                          print(
-                              GeneralAppDatas.currentPosition.value!.latitude);
-                          print(
-                              GeneralAppDatas.currentPosition.value!.longitude);
                           Get.toNamed(Routes.succcesfulyReportedPage);
                         },
                         child: Container(

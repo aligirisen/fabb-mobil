@@ -119,11 +119,20 @@ class IncidentDetailsController extends GetxController {
       upvoteCount: 0,
       image: image.value,
     );
-    print(incident);
     bool isRegistered =
         await IncidentService().postIncident(incident, image.value!);
     if (isRegistered) {
       ListViewController().generateItems();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> deleteIncident(String incidentId) async {
+    bool isDeleted = await IncidentService().deleteIncident(incidentId);
+
+    if (isDeleted) {
       return true;
     } else {
       return false;
