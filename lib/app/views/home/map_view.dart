@@ -26,7 +26,7 @@ class MapView extends GetView<MapViewController> {
                     target: LatLng(
                         GeneralAppDatas.currentPosition.value!.latitude,
                         GeneralAppDatas.currentPosition.value!.longitude),
-                    zoom: 14.0),
+                    zoom: 17.0),
                 mapType: controller.maptype.value,
                 markers: Set<Marker>.of(controller.markers),
                 myLocationEnabled: true,

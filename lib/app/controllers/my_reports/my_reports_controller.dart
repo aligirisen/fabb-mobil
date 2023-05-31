@@ -1,31 +1,26 @@
-import 'package:fabb_mobil/app/general_app_datas/general_app_datas.dart';
-import 'package:fabb_mobil/app/services/incident_service.dart';
-import 'package:fabb_mobil/app/theme/app_colors.dart';
-import 'package:fabb_mobil/app/theme/app_images.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
+import '../../general_app_datas/general_app_datas.dart';
 import '../../models/incident_model.dart';
+import '../../services/incident_service.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_images.dart';
 
-class ListViewController extends GetxController {
-  late List<IncidentModel> incidents;
-  late TextEditingController locationController;
-  RxBool isExpanded = false.obs;
-
-  RxInt likeCount = 17.obs;
-  RxInt dislikeCount = 5.obs;
+class MyReportsController extends GetxController {
   RxBool isLoading = true.obs;
 
   @override
   void onInit() {
+    getMyIncidents();
     super.onInit();
-    locationController = TextEditingController();
-    generateItems();
   }
 
-  void generateItems() async {
+  void getMyIncidents() async {
     isLoading.value = true;
+
+    print(GeneralAppDatas.userId);
+    print(GeneralAppDatas.loggedInUser.value.userId);
 
     await Future.delayed(Duration(seconds: 3));
 
@@ -45,7 +40,13 @@ class ListViewController extends GetxController {
           description: element.description,
           address: element.address,
           createDate: element.createDate.toString());
-      GeneralAppDatas.incidentList.add(element);
+
+      GeneralAppDatas.myIncidentList.add(element);
+      // print(element.userId);
+      // if (element.userId == GeneralAppDatas.userId.value) {
+      //   GeneralAppDatas.myIncidentList.add(element);
+      //   print("added");
+      // }
     }
     isLoading.value = false;
   }
@@ -125,11 +126,5 @@ class ListViewController extends GetxController {
           return AppColors.greyTextColor;
         }
     }
-  }
-
-  @override
-  void dispose() {
-    Get.delete<ListViewController>();
-    super.dispose();
   }
 }

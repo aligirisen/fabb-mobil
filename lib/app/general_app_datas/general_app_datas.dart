@@ -27,4 +27,5 @@ class GeneralAppDatas {
       .obs;
 
   static RxList<IncidentModel> incidentList = <IncidentModel>[].obs;
+  static RxList<IncidentModel> myIncidentList = <IncidentModel>[].obs;
 }
