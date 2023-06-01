@@ -38,12 +38,12 @@ class MyReportsController extends GetxController {
           address: element.address,
           createDate: element.createDate.toString());
 
-      GeneralAppDatas.myIncidentList.add(element);
-      // print(element.userId);
-      // if (element.userId == GeneralAppDatas.userId.value) {
-      //   GeneralAppDatas.myIncidentList.add(element);
-      //   print("added");
-      // }
+      //GeneralAppDatas.myIncidentList.add(element);
+      print(element.userId);
+      if (element.userId == GeneralAppDatas.userId.value) {
+        GeneralAppDatas.myIncidentList.add(element);
+        print("added");
+      }
     }
     isLoading.value = false;
   }

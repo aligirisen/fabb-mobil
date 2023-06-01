@@ -49,4 +49,7 @@ class AppImages {
   //contact
   static Image contact =
       const Image(image: AssetImage('assets/images/contact.png'));
+
+  static Image emptyReport =
+      const Image(image: AssetImage('assets/images/empty.jpg'));
 }
