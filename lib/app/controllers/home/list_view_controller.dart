@@ -133,5 +133,11 @@ class ListViewController extends GetxController {
           return AppColors.greyTextColor;
         }
     }
-  } //dispose'u sildim myreportsta da yoktu diye.
+  }
+
+  @override
+  void dispose() {
+    Get.delete<ListViewController>();
+    super.dispose();
+  }
 }
