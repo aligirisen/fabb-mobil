@@ -10,14 +10,14 @@ import '../../theme/app_colors.dart';
 import '../../theme/app_textstyles.dart';
 
 //color: Color(0xff78D8A4),
-class IncidentDetailsView extends GetView<IncidentDetailsController> {
-  const IncidentDetailsView({super.key});
+class IncidentDetailsView extends StatelessWidget {
+  IncidentDetailsView({super.key});
+
+  final IncidentDetailsController controller =
+      Get.put(IncidentDetailsController());
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<IncidentDetailsController>(
-      () => IncidentDetailsController(),
-    );
     return Scaffold(
         appBar: AppBar(
             toolbarHeight: 9.h,

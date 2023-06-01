@@ -70,7 +70,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.incidentDetails,
-      page: () => const IncidentDetailsView(),
+      page: () => IncidentDetailsView(),
     ),
     GetPage(
       name: _Paths.succcesfulyReportedPage,
