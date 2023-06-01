@@ -39,21 +39,6 @@ class MyReportsView extends GetView<MyReportsController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Align(
-              //   alignment: Alignment.topRight,
-              //   child: GestureDetector(
-              //     onTap: () {
-              //       Get.toNamed(Routes.home);
-              //     },
-              //     child: Padding(
-              //         padding: const EdgeInsets.all(20),
-              //         child: Icon(
-              //           Icons.close,
-              //           color: Colors.black,
-              //           size: 35,
-              //         )),
-              //   ),
-              // ),
               SizedBox(
                 height: 3.h,
               ),
@@ -108,7 +93,8 @@ class MyReportsView extends GetView<MyReportsController> {
                     ]),
               ),
               Container(
-                margin: const EdgeInsets.only(top: 20, bottom: 20),
+                height: 73.h,
+                padding: EdgeInsets.only(bottom: 2.h),
                 child: Obx(
                   () => controller.isLoading.value == true
                       ? Center(
@@ -116,7 +102,6 @@ class MyReportsView extends GetView<MyReportsController> {
                           color: AppColors.darkBlue,
                         ))
                       : Container(
-                          height: 100.h,
                           margin: const EdgeInsets.all(5),
                           child: ListView.builder(
                             itemCount: GeneralAppDatas.myIncidentList.length,

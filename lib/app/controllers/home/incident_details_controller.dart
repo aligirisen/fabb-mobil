@@ -74,6 +74,7 @@ class IncidentDetailsController extends GetxController {
       image.value = File(pickedFile.path);
     } else {
       // Handle the case where no image was selected or the path is empty
+      image.value = File("");
       print('No image selected');
     }
   }
