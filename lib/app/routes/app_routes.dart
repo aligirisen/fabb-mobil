@@ -18,6 +18,7 @@ abstract class Routes {
   static const incidentDetails = _Paths.incidentDetails;
   static const succcesfulyReportedPage = _Paths.succcesfulyReportedPage;
   static const guestNewIncident = _Paths.guestNewIncident;
+  static const termsncontitions = _Paths.termsncontitions;
 }
 
 abstract class _Paths {
@@ -36,4 +37,6 @@ abstract class _Paths {
   static const incidentDetails = '/incidentDetails';
   static const succcesfulyReportedPage = '/succcesfulyReportedPage';
   static const guestNewIncident = '/guestNewIncident';
+
+  static const termsncontitions = '/termsncontitions';
 }
