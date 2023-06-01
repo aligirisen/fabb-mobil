@@ -179,7 +179,7 @@ class CustomNavigationDrawer extends StatelessWidget {
                 GeneralAppDatas.userId.value = "";
                 GeneralAppDatas.userEmail.value = "";
                 GeneralAppDatas.isLoggedIn.value = false;
-                Get.offAllNamed(AppPages.login);
+                Get.toNamed(Routes.login);
               },
             ),
           ],

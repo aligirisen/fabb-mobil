@@ -25,11 +25,14 @@ class LoginController extends GetxController {
     super.onInit();
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    Get.lazyPut(() => LoginController());
     //loginFormKey = GlobalKey<FormState>();
   }
 
   @override
   void onClose() {
+    emailController.text = "";
+    passwordController.text = "";
     emailController.dispose();
     passwordController.dispose();
     super.onClose();
@@ -73,6 +76,11 @@ class LoginController extends GetxController {
 
   @override
   void dispose() {
+    emailController.text = "";
+    passwordController.text = "";
+    emailController.dispose();
+    passwordController.dispose();
+
     Get.delete<LoginController>();
     super.dispose();
   }

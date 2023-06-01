@@ -106,7 +106,7 @@ class IncidentDetailsController extends GetxController {
     IncidentModel incident = IncidentModel(
       userId: GeneralAppDatas.userId.value,
       title: titleTEController.text,
-      incidentStatus: "opened",
+      incidentStatus: "Opened",
       location: LocationModel(
           latitude: GeneralAppDatas.currentPosition.value!.latitude,
           longitude: GeneralAppDatas.currentPosition.value!.longitude),
@@ -127,16 +127,6 @@ class IncidentDetailsController extends GetxController {
     if (isCreated) {
       //ali buraya bu kodu neden yazdık??
       // ListViewController().generateItems();
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  Future<bool> deleteIncident(String incidentId) async {
-    bool isDeleted = await IncidentService().deleteIncident(incidentId);
-
-    if (isDeleted) {
       return true;
     } else {
       return false;

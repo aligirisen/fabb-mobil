@@ -38,4 +38,5 @@ class AppColors {
   static Color statusInProgress = const Color(0xff548de6);
   static Color statusSolved = const Color(0xff76bd56);
   static Color statusRejected = const Color(0xffdf5e68);
+  static Color titleColor = const Color.fromARGB(255, 45, 45, 45);
 }

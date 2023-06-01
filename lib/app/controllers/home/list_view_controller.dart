@@ -5,6 +5,7 @@ import 'package:fabb_mobil/app/theme/app_images.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import '../../models/incident_model.dart';
+import '../../theme/app_strings.dart';
 
 class ListViewController extends GetxController {
   late List<IncidentModel> incidents;
@@ -51,28 +52,59 @@ class ListViewController extends GetxController {
 
   AssetImage getIncidentIcon(String category) {
     switch (category) {
-      case "Road Damage":
-        {
-          return AppImages.roadDamage;
-        }
-
-      case "Water Damage":
-        {
-          return AppImages.waterDamage;
-        }
-      case "Traffic Signs":
-        {
-          return AppImages.trafficSigns;
-        }
-      case "Road Safety":
-        {
-          return AppImages.roadSafety;
-        }
-
+      case AppStrings.incident3title:
+        return AppImages.roadDamage;
+      case AppStrings.incident6title:
+        return AppImages.green;
+      case AppStrings.incident7title:
+        return AppImages.transport;
+      case AppStrings.incident2title:
+        return AppImages.trafficSigns;
+      case AppStrings.incident4title:
+        return AppImages.waterDamage;
+      case AppStrings.incident5title:
+        return AppImages.animals;
+      case AppStrings.incident8title:
+        return AppImages.noise;
+      case AppStrings.incident9title:
+        return AppImages.sewage;
+      case AppStrings.incident10title:
+        return AppImages.health;
+      case AppStrings.incident11title:
+        return AppImages.social;
+      case AppStrings.incident1title:
+        return AppImages.roadSafety;
       default:
-        {
-          return AppImages.imageNotFound;
-        }
+        return AppImages.imageNotFound;
+    }
+  }
+
+  Color getColor(String category) {
+    switch (category) {
+      case AppStrings.incident3title:
+        return AppColors.incident3RoadDamageColor;
+      case AppStrings.incident6title:
+        return AppColors.incident6Color;
+      case AppStrings.incident7title:
+        return AppColors.incident7Color;
+      case AppStrings.incident2title:
+        return AppColors.incident2TrafficSignsColor;
+      case AppStrings.incident4title:
+        return AppColors.incident4WaterDamageColor;
+      case AppStrings.incident5title:
+        return AppColors.incident5AnimalsColor;
+      case AppStrings.incident8title:
+        return AppColors.incident8Color;
+      case AppStrings.incident9title:
+        return AppColors.incident9Color;
+      case AppStrings.incident10title:
+        return AppColors.incident10Color;
+      case AppStrings.incident11title:
+        return AppColors.incident11Color;
+      case AppStrings.incident1title:
+        return AppColors.incident1RoadSafetyColor;
+      default:
+        return AppColors.greyTextColor;
     }
   }
 
@@ -94,29 +126,6 @@ class ListViewController extends GetxController {
       case "Rejected":
         {
           return AppColors.statusRejected;
-        }
-
-      default:
-        {
-          return AppColors.greyTextColor;
-        }
-    }
-  }
-
-  Color getColor(String category) {
-    switch (category) {
-      case "Road Damage":
-        {
-          return AppColors.incident3RoadDamageColor;
-        }
-
-      case "Water Damage":
-        {
-          return AppColors.incident4WaterDamageColor;
-        }
-      case "Traffic Signs":
-        {
-          return AppColors.incident2TrafficSignsColor;
         }
 
       default:

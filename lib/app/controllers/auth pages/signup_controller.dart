@@ -12,6 +12,23 @@ class SignupController extends GetxController {
   RxBool isPasswordHidden = true.obs;
   RxString displayText = 'Enter a password'.obs;
 
+  late TextEditingController firstnameTEController,
+      lastnameTEController,
+      phoneNumberTEController;
+  late TextEditingController emailController, passwordController;
+  GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
+
+  @override
+  void onInit() {
+    super.onInit();
+    firstnameTEController = TextEditingController();
+    lastnameTEController = TextEditingController();
+    phoneNumberTEController = TextEditingController();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    Get.lazyPut(() => SignupController());
+  }
+
   User createUser() {
     return User(
       fullName: firstname.value +
@@ -33,21 +50,16 @@ class SignupController extends GetxController {
     }
   }
 
-  late TextEditingController infoController;
-  late TextEditingController emailController, passwordController;
-  GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
-
-  @override
-  void onInit() {
-    super.onInit();
-    infoController = TextEditingController();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
-  }
-
   @override
   void onClose() {
-    infoController.dispose();
+    firstnameTEController.text = "";
+    lastnameTEController.text = "";
+    phoneNumberTEController.text = "";
+    emailController.text = "";
+    passwordController.text = "";
+    firstnameTEController.dispose();
+    lastnameTEController.dispose();
+    phoneNumberTEController.dispose();
     emailController.dispose();
     passwordController.dispose();
   }

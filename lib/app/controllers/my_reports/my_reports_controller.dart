@@ -124,4 +124,14 @@ class MyReportsController extends GetxController {
         }
     }
   }
+
+  Future<bool> deleteIncident(String incidentId) async {
+    bool isDeleted = await IncidentService().deleteIncident(incidentId);
+
+    if (isDeleted) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

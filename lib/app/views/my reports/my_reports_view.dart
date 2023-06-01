@@ -93,11 +93,16 @@ class MyReportsView extends GetView<MyReportsController> {
                     ]),
               ),
               GeneralAppDatas.myIncidentList.length == 0
-                  ? Container(
-                      width: 100.w,
-                      height: 50.h,
-                      margin: EdgeInsets.only(top: 5.h),
-                      child: AppImages.emptyReport,
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 70.w,
+                          height: 50.h,
+                          margin: EdgeInsets.only(top: 5.h),
+                          child: AppImages.emptyReport,
+                        ),
+                      ],
                     )
                   : Container(
                       height: 73.h,
@@ -360,7 +365,16 @@ class MyReportsView extends GetView<MyReportsController> {
                                                         MainAxisAlignment.end,
                                                     children: [
                                                       GestureDetector(
-                                                        onTap: () {},
+                                                        onTap: () {
+                                                          controller.deleteIncident(
+                                                              GeneralAppDatas
+                                                                  .myIncidentList[
+                                                                      index]
+                                                                  .incidentId!);
+
+                                                          controller
+                                                              .getMyIncidents();
+                                                        },
                                                         child: Container(
                                                           margin:
                                                               EdgeInsets.only(
