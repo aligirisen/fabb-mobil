@@ -9,14 +9,13 @@ import '../../theme/app_colors.dart';
 import '../../theme/app_textstyles.dart';
 
 //color: Color(0xff78D8A4),
-class MapListView extends GetView<ListViewController> {
-  const MapListView({super.key});
+class MapListView extends StatelessWidget {
+  MapListView({super.key});
+
+  final ListViewController controller = Get.put(ListViewController());
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<ListViewController>(
-      () => ListViewController(),
-    );
     return Scaffold(
         body: Obx(
       () => controller.isLoading.value == true
@@ -28,7 +27,7 @@ class MapListView extends GetView<ListViewController> {
               height: 100.h,
               margin: const EdgeInsets.all(5),
               child: ListView.builder(
-                itemCount: GeneralAppDatas.incidentList.length,
+                itemCount: GeneralAppDatas.incidentListList.length,
                 itemBuilder: (context, index) {
                   return Container(
                     margin:
@@ -86,7 +85,7 @@ class MapListView extends GetView<ListViewController> {
                                           height: 15.h,
                                           child: Image(
                                             image: NetworkImage(GeneralAppDatas
-                                                .incidentList[index]
+                                                .incidentListList[index]
                                                 .attachments![0]
                                                 .toString()),
                                           )), // bu kısımda image nasıl gelmeli???
@@ -100,7 +99,7 @@ class MapListView extends GetView<ListViewController> {
                                       horizontal: 3.w, vertical: 1.h),
                                   width: 40.w,
                                   child: Text(
-                                      GeneralAppDatas.incidentList[index]
+                                      GeneralAppDatas.incidentListList[index]
                                               .description ??
                                           "",
                                       style: AppTextStyles
@@ -140,7 +139,7 @@ class MapListView extends GetView<ListViewController> {
                                           );
                                         },
                                         likeCount: GeneralAppDatas
-                                                .incidentList[index]
+                                                .incidentListList[index]
                                                 .upvoteCount ??
                                             0,
                                         countBuilder: (int? count, bool isLiked,
@@ -184,7 +183,7 @@ class MapListView extends GetView<ListViewController> {
                                           );
                                         },
                                         likeCount: GeneralAppDatas
-                                                .incidentList[index]
+                                                .incidentListList[index]
                                                 .downvoteCount ??
                                             0,
                                         countBuilder: (int? count, bool isLiked,
@@ -222,7 +221,7 @@ class MapListView extends GetView<ListViewController> {
 
   Text incidentTitleText(int index) {
     return Text(
-      GeneralAppDatas.incidentList[index].title ?? "",
+      GeneralAppDatas.incidentListList[index].title ?? "",
       style: AppTextStyles.incidentTitleTextStyle,
     );
   }
@@ -235,10 +234,10 @@ class MapListView extends GetView<ListViewController> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: controller.getSatusColor(
-            GeneralAppDatas.incidentList[index].incidentStatus ?? ""),
+            GeneralAppDatas.incidentListList[index].incidentStatus ?? ""),
       ),
       child: Text(
-        GeneralAppDatas.incidentList[index].incidentStatus ?? "",
+        GeneralAppDatas.incidentListList[index].incidentStatus ?? "",
         style: const TextStyle(color: Colors.white, fontSize: 13),
       ),
     );
@@ -251,7 +250,7 @@ class MapListView extends GetView<ListViewController> {
         left: 3.w,
       ),
       child: Text(
-        GeneralAppDatas.incidentList[index].address ?? "",
+        GeneralAppDatas.incidentListList[index].address ?? "",
         overflow: TextOverflow.ellipsis,
         maxLines: 7,
         softWrap: false,
@@ -265,7 +264,7 @@ class MapListView extends GetView<ListViewController> {
 
   Text incidentDate(int index) {
     return Text(
-      GeneralAppDatas.incidentList[index].createDate ?? "",
+      GeneralAppDatas.incidentListList[index].createDate ?? "",
       style: const TextStyle(
           color: Colors.grey, fontSize: 13, fontWeight: FontWeight.w400),
     );
@@ -288,16 +287,16 @@ class MapListView extends GetView<ListViewController> {
           height: 4.h,
           child: Image(
               image: controller.getIncidentIcon(
-                  GeneralAppDatas.incidentList[index].category ?? "")),
+                  GeneralAppDatas.incidentListList[index].category ?? "")),
         ),
         SizedBox(
           width: 2.w,
         ),
         Text(
-          GeneralAppDatas.incidentList[index].category ?? "null",
+          GeneralAppDatas.incidentListList[index].category ?? "null",
           style: TextStyle(
-              color: controller
-                  .getColor(GeneralAppDatas.incidentList[index].category ?? ""),
+              color: controller.getColor(
+                  GeneralAppDatas.incidentListList[index].category ?? ""),
               fontSize: 17,
               fontWeight: FontWeight.w600),
         )

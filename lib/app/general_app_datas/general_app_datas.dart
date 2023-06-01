@@ -26,6 +26,7 @@ class GeneralAppDatas {
           speedAccuracy: 0)
       .obs;
 
-  static RxList<IncidentModel> incidentList = <IncidentModel>[].obs;
+  static RxList<IncidentModel> incidentListMap = <IncidentModel>[].obs;
+  static RxList<IncidentModel> incidentListList = <IncidentModel>[].obs;
   static RxList<IncidentModel> myIncidentList = <IncidentModel>[].obs;
 }

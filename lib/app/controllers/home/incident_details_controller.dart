@@ -4,6 +4,7 @@ import 'package:fabb_mobil/app/controllers/home/list_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../general_app_datas/general_app_datas.dart';
 import 'package:http/http.dart' as http;
@@ -124,7 +125,8 @@ class IncidentDetailsController extends GetxController {
     bool isCreated =
         await IncidentService().postIncident(incident, image.value!);
     if (isCreated) {
-      ListViewController().generateItems();
+      //ali buraya bu kodu neden yazdık??
+      // ListViewController().generateItems();
       return true;
     } else {
       return false;
@@ -141,10 +143,23 @@ class IncidentDetailsController extends GetxController {
     }
   }
 
-  Future<bool> reportOnClick() async {
-    bool isCreated = await createIncident();
-    print(isCreated);
+  reportOnClick() async {
+    if (titleTEController.text != "" &&
+        descriptionTEController.text != "" &&
+        image.value?.path != "") {
+      bool isCreated = await createIncident();
+      print(isCreated);
 
-    return isCreated;
+      titleTEController.text = "";
+      descriptionTEController.text = "";
+      addressTEController.text = "";
+
+      return isCreated;
+    } else {
+      return AlertDialog(
+        title: Text("Something went wrong!"),
+        content: Text("Try again."),
+      );
+    }
   }
 }

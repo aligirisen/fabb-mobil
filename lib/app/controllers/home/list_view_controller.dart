@@ -43,7 +43,8 @@ class ListViewController extends GetxController {
           description: element.description,
           address: element.address,
           createDate: element.createDate.toString());
-      GeneralAppDatas.incidentList.add(element);
+      GeneralAppDatas.incidentListList.add(element);
+      GeneralAppDatas.incidentListMap.add(element);
     }
     isLoading.value = false;
   }

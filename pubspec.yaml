@@ -77,14 +77,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
-    - assets/icons/not_found.png
-    - assets/icons/animals.png
-    - assets/icons/green.png
-    - assets/icons/noise.png
-    - assets/icons/sewage.png
-    - assets/icons/social.png
-    - assets/icons/transport.png
-    - assets/icons/health.png
+    - assets/icons/
     
 
   # The following line ensures that the Material Icons font is

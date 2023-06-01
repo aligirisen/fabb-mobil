@@ -46,7 +46,7 @@ class MapViewController extends GetxController {
           description: element.description,
           address: element.address,
           createDate: element.createDate.toString());
-      GeneralAppDatas.incidentList.add(element);
+      GeneralAppDatas.incidentListMap.add(element);
     }
     isLoading.value = false;
   }
@@ -154,7 +154,7 @@ class MapViewController extends GetxController {
       ImageConfiguration(size: Size(48, 48)),
       'assets/images/road_damage.png',
     );
-    addMarkersFromCoordinates(GeneralAppDatas.incidentList);
+    addMarkersFromCoordinates(GeneralAppDatas.incidentListMap);
     isLoadingMarkers.value = false;
     // Marker marker = Marker(
     //     markerId: MarkerId('1'),
@@ -201,8 +201,8 @@ class MapViewController extends GetxController {
         icon: await selectMarker(incidentList[i].category ?? ""),
       );
       print("xxx");
-      print(GeneralAppDatas.incidentList[i].location!.longitude!);
-      print(GeneralAppDatas.incidentList[i].location!.latitude!);
+      print(GeneralAppDatas.incidentListMap[i].location!.longitude!);
+      print(GeneralAppDatas.incidentListMap[i].location!.latitude!);
       markers.add(marker);
     }
   }

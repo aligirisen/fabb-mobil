@@ -73,10 +73,6 @@ class IncidentDetailsView extends StatelessWidget {
                   SizedBox(
                     height: 3.h,
                   ),
-                  SizedBox(
-                    height: 3.h,
-                  ),
-
                   //title
                   Text("Address"),
                   SizedBox(
@@ -89,28 +85,7 @@ class IncidentDetailsView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      GestureDetector(
-                        onTap: () async {
-                          if (await controller.reportOnClick() == true) {
-                            Get.toNamed(Routes.succcesfulyReportedPage);
-                          } else {
-                            Get.toNamed(Routes.home);
-                          }
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: 7.h,
-                          width: 45.w,
-                          decoration: BoxDecoration(
-                            color: AppColors.darkBlue,
-                            borderRadius: BorderRadius.circular(7),
-                          ),
-                          child: Text(
-                            "Report",
-                            style: AppTextStyles.infoTextStyleLight,
-                          ),
-                        ),
-                      ),
+                      reportButton(),
                     ],
                   )
                 ],
@@ -118,6 +93,51 @@ class IncidentDetailsView extends StatelessWidget {
             ),
           ),
         ));
+  }
+
+  bool checkIsEmptyTextField(String value) {
+    if (value == null || value == "") {
+      return true;
+    }
+    return false;
+  }
+
+  GestureDetector reportButton() {
+    return GestureDetector(
+      onTap: () async {
+        if (checkIsEmptyTextField(controller.titleTEController.text) ||
+            checkIsEmptyTextField(controller.descriptionTEController.text) ||
+            checkIsEmptyTextField(controller.image.value?.path ?? "")) {
+          showDialog(
+            context: Get.overlayContext!,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Empty fields"),
+                content: Text(
+                    "You have empty fileds. Please fill these empty fields and try again."),
+              );
+            },
+          );
+        }
+
+        if (await controller.reportOnClick() == true) {
+          Get.toNamed(Routes.succcesfulyReportedPage);
+        }
+      },
+      child: Container(
+        alignment: Alignment.center,
+        height: 7.h,
+        width: 45.w,
+        decoration: BoxDecoration(
+          color: AppColors.darkBlue,
+          borderRadius: BorderRadius.circular(7),
+        ),
+        child: Text(
+          "Report",
+          style: AppTextStyles.infoTextStyleLight,
+        ),
+      ),
+    );
   }
 
   Widget photoPickerContainer() {
@@ -138,8 +158,42 @@ class IncidentDetailsView extends StatelessWidget {
               SizedBox(
                 height: 2.h,
               ),
-              Container(
-                  height: 20.h, child: Image.file(controller.image.value!)),
+              Row(
+                children: [
+                  Stack(
+                    alignment: Alignment.topRight,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        height: 20.h,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image.file(controller.image.value!),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(10),
+                        padding: EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Color.fromARGB(255, 55, 55, 55),
+                        ),
+                        child: Icon(
+                          Icons.close,
+                          color: Colors.white,
+                          size: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    width: 5.w,
+                  ),
+                  addMorePhoto(),
+                ],
+              ),
             ],
           ));
   }
@@ -185,6 +239,32 @@ class IncidentDetailsView extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget addMorePhoto() {
+    return Center(
+        child: GestureDetector(
+            onTap: () {
+              controller.onImageButtonPressd(ImageSource.camera);
+            },
+            child: Container(
+              height: 20.h,
+              width: 30.w,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 212, 212, 212),
+                  borderRadius: BorderRadius.circular(15)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "ADD\nMORE",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
+                  SizedBox(height: 4.5.h, child: AppImages.camera)
+                ],
+              ),
+            )));
   }
 
   Widget cameraPickerContainer() {
