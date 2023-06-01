@@ -24,222 +24,199 @@ class MapListView extends StatelessWidget {
               child: CircularProgressIndicator(
               color: AppColors.darkBlue,
             ))
-          : GeneralAppDatas.myIncidentList.isEmpty
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 70.w,
-                      height: 50.h,
-                      margin: EdgeInsets.only(top: 5.h),
-                      child: AppImages.emptyReport,
-                    ),
-                  ],
-                )
-              : Container(
-                  height: 100.h,
-                  margin: const EdgeInsets.all(5),
-                  child: ListView.builder(
-                    itemCount: GeneralAppDatas.incidentListList.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        margin: EdgeInsets.symmetric(
-                            vertical: 2.w, horizontal: 1.h),
-                        decoration: BoxDecoration(
-                            color: AppColors.listViewContainerColor,
-                            border: Border.symmetric(
-                              vertical: BorderSide.none,
+          : Container(
+              height: 100.h,
+              margin: const EdgeInsets.all(5),
+              child: ListView.builder(
+                itemCount: GeneralAppDatas.incidentListList.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin:
+                        EdgeInsets.symmetric(vertical: 2.w, horizontal: 1.h),
+                    decoration: BoxDecoration(
+                        color: AppColors.listViewContainerColor,
+                        border: Border.symmetric(
+                          vertical: BorderSide.none,
+                        ),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Theme(
+                      data: Theme.of(context)
+                          .copyWith(dividerColor: Colors.transparent),
+                      child: ExpansionTile(
+                        collapsedBackgroundColor: Colors
+                            .transparent, // Kapalı durum arka plan rengini transparan yapar
+                        backgroundColor: Colors
+                            .transparent, // Başlığın sonundaki simgeyi kaldırır
+                        childrenPadding: EdgeInsets.zero,
+                        //  dividerColor: Colors.transparent,
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 1.h,
                             ),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Theme(
-                          data: Theme.of(context)
-                              .copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                            collapsedBackgroundColor: Colors
-                                .transparent, // Kapalı durum arka plan rengini transparan yapar
-                            backgroundColor: Colors
-                                .transparent, // Başlığın sonundaki simgeyi kaldırır
-                            childrenPadding: EdgeInsets.zero,
-                            //  dividerColor: Colors.transparent,
-                            title: Column(
+                            incidentCategory(index),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                            incidentTitleText(index),
+                            SizedBox(
+                              height: 0.5.h,
+                            ),
+                            incidentDate(index),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                          ],
+                        ),
+                        children: [
+                          Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                Container(
+                                  margin: EdgeInsets.only(
+                                      bottom: 1.h, left: 3.w, right: 5.w),
+                                  //color: Colors.white,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                          height: 15.h,
+                                          child: Image(
+                                            image: NetworkImage(GeneralAppDatas
+                                                .incidentListList[index]
+                                                .attachments![0]
+                                                .toString()),
+                                          )), // bu kısımda image nasıl gelmeli???
+                                      //
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  //address?
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: 3.w, vertical: 1.h),
+                                  width: 40.w,
+                                  child: Text(
+                                      GeneralAppDatas.incidentListList[index]
+                                              .description ??
+                                          "",
+                                      style: AppTextStyles
+                                          .incidentDescriptionTextStyle),
+                                ),
+                                addressText(index),
                                 SizedBox(
                                   height: 1.h,
                                 ),
-                                incidentCategory(index),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                incidentTitleText(index),
-                                SizedBox(
-                                  height: 0.5.h,
-                                ),
-                                incidentDate(index),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                              ],
-                            ),
-                            children: [
-                              Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.only(
-                                          bottom: 1.h, left: 3.w, right: 5.w),
-                                      //color: Colors.white,
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          SizedBox(
-                                              height: 15.h,
-                                              child: Image(
-                                                image: NetworkImage(
-                                                    GeneralAppDatas
-                                                        .incidentListList[index]
-                                                        .attachments![0]
-                                                        .toString()),
-                                              )), // bu kısımda image nasıl gelmeli???
-                                          //
-                                        ],
+                                Container(
+                                  margin: EdgeInsets.only(
+                                    bottom: 3.h,
+                                    left: 3.w,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      statusButton(index),
+                                      SizedBox(
+                                        width: 5.w,
                                       ),
-                                    ),
-                                    Container(
-                                      //address?
-                                      margin: EdgeInsets.symmetric(
-                                          horizontal: 3.w, vertical: 1.h),
-                                      width: 40.w,
-                                      child: Text(
-                                          GeneralAppDatas
-                                                  .incidentListList[index]
-                                                  .description ??
-                                              "",
-                                          style: AppTextStyles
-                                              .incidentDescriptionTextStyle),
-                                    ),
-                                    addressText(index),
-                                    SizedBox(
-                                      height: 1.h,
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.only(
-                                        bottom: 3.h,
-                                        left: 3.w,
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          statusButton(index),
-                                          SizedBox(
-                                            width: 5.w,
-                                          ),
-                                          LikeButton(
+                                      LikeButton(
+                                        size: 20,
+                                        circleColor: const CircleColor(
+                                            start: Color(0xff00ddff),
+                                            end: Color(0xff0099cc)),
+                                        bubblesColor: const BubblesColor(
+                                          dotPrimaryColor: Color(0xff33b5e5),
+                                          dotSecondaryColor: Color(0xff0099cc),
+                                        ),
+                                        likeBuilder: (bool isLiked) {
+                                          return Icon(
+                                            Icons.thumb_up_alt_rounded,
+                                            color: isLiked
+                                                ? AppColors.darkBlue
+                                                : Colors.grey,
                                             size: 20,
-                                            circleColor: const CircleColor(
-                                                start: Color(0xff00ddff),
-                                                end: Color(0xff0099cc)),
-                                            bubblesColor: const BubblesColor(
-                                              dotPrimaryColor:
-                                                  Color(0xff33b5e5),
-                                              dotSecondaryColor:
-                                                  Color(0xff0099cc),
-                                            ),
-                                            likeBuilder: (bool isLiked) {
-                                              return Icon(
-                                                Icons.thumb_up_alt_rounded,
-                                                color: isLiked
-                                                    ? AppColors.darkBlue
-                                                    : Colors.grey,
-                                                size: 20,
-                                              );
-                                            },
-                                            likeCount: GeneralAppDatas
-                                                    .incidentListList[index]
-                                                    .upvoteCount ??
-                                                0,
-                                            countBuilder: (int? count,
-                                                bool isLiked, String text) {
-                                              var color = isLiked
-                                                  ? AppColors.darkBlue
-                                                  : Colors.grey;
-                                              Widget result;
-                                              if (count == 0) {
-                                                result = Text(
-                                                  "0",
-                                                  style:
-                                                      TextStyle(color: color),
-                                                );
-                                              } else
-                                                result = Text(
-                                                  text,
-                                                  style:
-                                                      TextStyle(color: color),
-                                                );
-                                              return result;
-                                            },
-                                          ),
-                                          SizedBox(
-                                            width: 5.w,
-                                          ),
-                                          LikeButton(
-                                            size: 20,
-                                            circleColor: const CircleColor(
-                                                start: Color(0xff00ddff),
-                                                end: Color(0xff0099cc)),
-                                            bubblesColor: const BubblesColor(
-                                              dotPrimaryColor:
-                                                  Color(0xff33b5e5),
-                                              dotSecondaryColor:
-                                                  Color(0xff0099cc),
-                                            ),
-                                            likeBuilder: (bool isLiked) {
-                                              return Icon(
-                                                Icons.thumb_down_alt_rounded,
-                                                color: isLiked
-                                                    ? AppColors.darkBlue
-                                                    : Colors.grey,
-                                                size: 20,
-                                              );
-                                            },
-                                            likeCount: GeneralAppDatas
-                                                    .incidentListList[index]
-                                                    .downvoteCount ??
-                                                0,
-                                            countBuilder: (int? count,
-                                                bool isLiked, String text) {
-                                              var color = isLiked
-                                                  ? AppColors.darkBlue
-                                                  : Colors.grey;
-                                              Widget result;
-                                              if (count == 0) {
-                                                result = Text(
-                                                  "0",
-                                                  style:
-                                                      TextStyle(color: color),
-                                                );
-                                              } else
-                                                result = Text(
-                                                  text,
-                                                  style:
-                                                      TextStyle(color: color),
-                                                );
-                                              return result;
-                                            },
-                                          ),
-                                        ],
+                                          );
+                                        },
+                                        likeCount: GeneralAppDatas
+                                                .incidentListList[index]
+                                                .upvoteCount ??
+                                            0,
+                                        countBuilder: (int? count, bool isLiked,
+                                            String text) {
+                                          var color = isLiked
+                                              ? AppColors.darkBlue
+                                              : Colors.grey;
+                                          Widget result;
+                                          if (count == 0) {
+                                            result = Text(
+                                              "0",
+                                              style: TextStyle(color: color),
+                                            );
+                                          } else
+                                            result = Text(
+                                              text,
+                                              style: TextStyle(color: color),
+                                            );
+                                          return result;
+                                        },
                                       ),
-                                    )
-                                  ]),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                                      SizedBox(
+                                        width: 5.w,
+                                      ),
+                                      LikeButton(
+                                        size: 20,
+                                        circleColor: const CircleColor(
+                                            start: Color(0xff00ddff),
+                                            end: Color(0xff0099cc)),
+                                        bubblesColor: const BubblesColor(
+                                          dotPrimaryColor: Color(0xff33b5e5),
+                                          dotSecondaryColor: Color(0xff0099cc),
+                                        ),
+                                        likeBuilder: (bool isLiked) {
+                                          return Icon(
+                                            Icons.thumb_down_alt_rounded,
+                                            color: isLiked
+                                                ? AppColors.darkBlue
+                                                : Colors.grey,
+                                            size: 20,
+                                          );
+                                        },
+                                        likeCount: GeneralAppDatas
+                                                .incidentListList[index]
+                                                .downvoteCount ??
+                                            0,
+                                        countBuilder: (int? count, bool isLiked,
+                                            String text) {
+                                          var color = isLiked
+                                              ? AppColors.darkBlue
+                                              : Colors.grey;
+                                          Widget result;
+                                          if (count == 0) {
+                                            result = Text(
+                                              "0",
+                                              style: TextStyle(color: color),
+                                            );
+                                          } else
+                                            result = Text(
+                                              text,
+                                              style: TextStyle(color: color),
+                                            );
+                                          return result;
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ]),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
     ));
   }
 
