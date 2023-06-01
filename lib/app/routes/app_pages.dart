@@ -50,11 +50,12 @@ class AppPages {
     GetPage(
       name: _Paths.map,
       page: () => const MapView(),
+      binding: HomeBindings(),
     ),
     GetPage(
-      name: _Paths.myreports,
-      page: () => const MyReportsView(),
-    ),
+        name: _Paths.myreports,
+        page: () => const MyReportsView(),
+        binding: MyReportsBindings()),
     GetPage(
       name: _Paths.settings,
       page: () => const SettingsView(),

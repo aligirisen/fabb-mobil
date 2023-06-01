@@ -1,6 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
+import '../models/incident_model.dart';
 import '../models/user_model.dart';
 
 class GeneralAppDatas {
@@ -24,4 +25,7 @@ class GeneralAppDatas {
           speed: 0,
           speedAccuracy: 0)
       .obs;
+
+  static RxList<IncidentModel> incidentList = <IncidentModel>[].obs;
+  static RxList<IncidentModel> myIncidentList = <IncidentModel>[].obs;
 }

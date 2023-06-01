@@ -90,9 +90,12 @@ class IncidentDetailsView extends GetView<IncidentDetailsController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          controller.reportOnClick();
-                          Get.toNamed(Routes.succcesfulyReportedPage);
+                        onTap: () async {
+                          if (await controller.reportOnClick() == true) {
+                            Get.toNamed(Routes.succcesfulyReportedPage);
+                          } else {
+                            Get.toNamed(Routes.home);
+                          }
                         },
                         child: Container(
                           alignment: Alignment.center,

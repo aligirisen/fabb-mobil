@@ -110,7 +110,6 @@ class AttachmentsModel {
       attachments.add(webContentLink);
       attachments.add(webViewLink);
     }
-    print(attachments[1]);
     return attachments;
   }
 }

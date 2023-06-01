@@ -49,7 +49,60 @@ class CustomNavigationDrawer extends StatelessWidget {
                 onTap: () => showLogoutConfirmationDialog(),
                 tileColor: Colors.transparent,
               ),
+        GeneralAppDatas.userId.value == ""
+            ? Column(
+                children: [
+                  buildDrawerItemLogin(
+                      text: "Log In",
+                      onTap: () => navigate(4),
+                      tileColor: Colors.transparent),
+                  buildDrawerItemLogin(
+                      text: "Create Account",
+                      onTap: () => navigate(5),
+                      tileColor: Colors.transparent),
+                ],
+              )
+
+            // Container(
+            //     height: 5.h,
+            //     width: 10,
+            //     decoration: BoxDecoration(
+            //         color: Colors.amber,
+            //         borderRadius: BorderRadius.circular(10)),
+            //     child: Text("login"),
+            //   )
+            : Container()
       ]),
+    );
+  }
+
+  Widget buildDrawerItemLogin(
+      {required String text,
+      required VoidCallback onTap,
+      required Color tileColor}) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      // margin: EdgeInsets.only(right: 14.w),
+      child: ListTile(
+        title: Container(
+          alignment: Alignment.center,
+          height: 5.h,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: const Color.fromARGB(255, 90, 127, 152)),
+          child: Text(
+            text,
+            style: TextStyle(
+                color: AppColors.lightWords,
+                fontSize: 16,
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        onTap: onTap,
+        tileColor: tileColor,
+      ),
     );
   }
 
@@ -95,8 +148,14 @@ class CustomNavigationDrawer extends StatelessWidget {
       Get.toNamed(Routes.myreports);
     } else if (index == 2) {
       Get.toNamed(Routes.settings);
-    } else {
+    } else if (index == 3) {
       Get.toNamed(Routes.contact);
+    } else if (index == 4) {
+      Get.toNamed(Routes.login);
+    } else if (index == 5) {
+      Get.toNamed(Routes.signup);
+    } else {
+      Get.toNamed(Routes.home); //default
     }
   }
 

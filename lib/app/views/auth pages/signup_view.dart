@@ -99,7 +99,7 @@ class SignupView extends GetView<SignupController> {
         if (!await controller.register()) {
           print("Not Found");
         } else {
-          Get.defaultDialog(
+          await Get.defaultDialog(
               title: "Done!",
               titleStyle: const TextStyle(color: Colors.white),
               backgroundColor: const Color.fromARGB(255, 41, 41, 41),

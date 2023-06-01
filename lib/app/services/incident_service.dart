@@ -38,6 +38,7 @@ class IncidentService {
     ));
     print(incident.toJson());
     request.send();
+    print("request sending");
     return true;
     /*if (response.statusCode == 200) {
       // Success

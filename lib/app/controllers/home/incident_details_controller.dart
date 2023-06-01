@@ -119,9 +119,10 @@ class IncidentDetailsController extends GetxController {
       upvoteCount: 0,
       image: image.value,
     );
-    bool isRegistered =
+
+    bool isCreated =
         await IncidentService().postIncident(incident, image.value!);
-    if (isRegistered) {
+    if (isCreated) {
       ListViewController().generateItems();
       return true;
     } else {
@@ -139,7 +140,10 @@ class IncidentDetailsController extends GetxController {
     }
   }
 
-  void reportOnClick() {
-    createIncident();
+  Future<bool> reportOnClick() async {
+    bool isCreated = await createIncident();
+    print(isCreated);
+
+    return isCreated;
   }
 }

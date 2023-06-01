@@ -17,12 +17,21 @@ class AppColors {
 //start new incident page
   static Color containerBackground = Color(0xFFF7F7F7);
   static Color greyTextColor = Color.fromARGB(255, 93, 93, 93);
+  static Color listViewContainerColor = Color.fromARGB(255, 240, 240, 240);
 
 //incident type colors
-  static Color incidentRoadSafety = Colors.orange;
-  static Color incidentTrafficSigns = Colors.green;
-  static Color incidentRoadDamage = Colors.brown;
-  static Color incidentWaterDamage = Colors.blue;
+  static Color incident1RoadSafetyColor = Colors.orange;
+  static Color incident2TrafficSignsColor = Colors.green;
+  static Color incident3RoadDamageColor = Colors.brown;
+  static Color incident4WaterDamageColor = Colors.blue;
+
+  static Color incident5AnimalsColor = Color.fromARGB(255, 120, 146, 79);
+  static Color incident6Color = Color.fromARGB(255, 37, 104, 47);
+  static Color incident7Color = Color.fromARGB(255, 188, 130, 50);
+  static Color incident8Color = Color.fromARGB(255, 37, 37, 37);
+  static Color incident9Color = Color.fromARGB(255, 81, 152, 209);
+  static Color incident10Color = Color.fromARGB(255, 234, 116, 116);
+  static Color incident11Color = Color.fromARGB(255, 7, 43, 139);
 
   //status
   static Color statusOpened = const Color(0xff8c8c8c);

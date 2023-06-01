@@ -20,13 +20,13 @@ class MapView extends GetView<MapViewController> {
     return Scaffold(
       body: Obx(
         () => controller.isLoadingMarkers.isTrue
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : GoogleMap(
                 initialCameraPosition: CameraPosition(
                     target: LatLng(
                         GeneralAppDatas.currentPosition.value!.latitude,
                         GeneralAppDatas.currentPosition.value!.longitude),
-                    zoom: 14.0),
+                    zoom: 17.0),
                 mapType: controller.maptype.value,
                 markers: Set<Marker>.of(controller.markers),
                 myLocationEnabled: true,
