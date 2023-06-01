@@ -16,53 +16,55 @@ class GuestNewIncidentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
-      color: AppColors.lightWords,
-      child: Center(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: GestureDetector(
-              onTap: () {
-                Get.back();
-              },
-              child: Icon(
-                Icons.close,
-                color: Colors.black,
-                size: 35,
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+        color: AppColors.lightWords,
+        child: Center(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: Icon(
+                  Icons.close,
+                  color: Colors.black,
+                  size: 35,
+                ),
               ),
             ),
-          ),
-          Container(
-            width: 70.w,
-            child: Image(
-              image: AppImages.loginImage,
+            Container(
+              width: 70.w,
+              child: Image(
+                image: AppImages.loginImage,
+              ),
             ),
-          ),
-          Text(
-            AppStrings.guestNewIncidentTitle,
-            style: TextStyle(
-                color: AppColors.darkBlue,
-                fontSize: 18,
-                fontWeight: FontWeight.w800),
-          ),
-          SizedBox(
-            height: 3.h,
-          ),
-          Text(
-            AppStrings.guestNewIncidentText,
-            style: TextStyle(
-                color: AppColors.darkBlue,
-                fontSize: 16,
-                fontWeight: FontWeight.w500),
-          ),
-          loginButton(),
-          orCreateAccountText()
-        ],
-      )),
+            Text(
+              AppStrings.guestNewIncidentTitle,
+              style: TextStyle(
+                  color: AppColors.darkBlue,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800),
+            ),
+            SizedBox(
+              height: 3.h,
+            ),
+            Text(
+              AppStrings.guestNewIncidentText,
+              style: TextStyle(
+                  color: AppColors.darkBlue,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500),
+            ),
+            loginButton(),
+            orCreateAccountText()
+          ],
+        )),
+      ),
     );
   }
 

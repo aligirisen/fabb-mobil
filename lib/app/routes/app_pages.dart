@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../bindings/all_bindings.dart';
 import '../views/auth pages/login_view.dart';
 import '../views/auth pages/signup_view.dart';
+import '../views/auth pages/terms_n_conditions.dart';
 import '../views/home/incident_category_view.dart';
 import '../views/home/guest/guest_new_incident_view.dart';
 import '../views/home/home_view.dart';
@@ -79,6 +80,10 @@ class AppPages {
     GetPage(
       name: _Paths.guestNewIncident,
       page: () => const GuestNewIncidentView(),
+    ),
+    GetPage(
+      name: _Paths.termsncontitions,
+      page: () => TermsnConditionsView(),
     ),
   ];
 }

@@ -42,14 +42,17 @@ class SignupView extends GetView<SignupController> {
                         signupTextFieldPhone(),
                         signupTextFieldMail(),
                         signupTextFieldPassword(),
-                        Container(
-                            width: 50.w,
-                            margin: EdgeInsets.symmetric(vertical: 2.h),
-                            child: Text(
-                              AppStrings.agreeText,
-                              style: const TextStyle(
-                                  color: Colors.grey, fontSize: 10),
-                            )),
+                        GestureDetector(
+                          onTap: () => Get.toNamed(Routes.termsncontitions),
+                          child: Container(
+                              width: 50.w,
+                              margin: EdgeInsets.symmetric(vertical: 2.h),
+                              child: Text(
+                                AppStrings.agreeText,
+                                style: const TextStyle(
+                                    color: Colors.grey, fontSize: 10),
+                              )),
+                        ),
                         signupButton(),
                         alreadyHaveAnAccountText()
                       ],
