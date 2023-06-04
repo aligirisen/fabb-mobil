@@ -1,6 +1,7 @@
 import 'package:fabb_mobil/app/theme/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../common/navigation_drawer.dart';
 import '../../theme/app_colors.dart';
@@ -39,12 +40,15 @@ class ContactView extends StatelessWidget {
             SizedBox(
               height: 1.h,
             ),
-            Text(
-              "fabbsoft@gmail.com",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                color: AppColors.darkBlue,
+            GestureDetector(
+              onTap: _launchEmailApp,
+              child: Text(
+                "fabbsoft@gmail.com",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.darkBlue,
+                ),
               ),
             ),
             SizedBox(
@@ -59,13 +63,39 @@ class ContactView extends StatelessWidget {
             SizedBox(
               height: 1.h,
             ),
-            Text("+90 599 999 99 99",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.darkBlue,
-                ))
+            GestureDetector(
+              onTap: _launchPhoneApp,
+              child: Text("+90 5384869794",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.darkBlue,
+                  )),
+            )
           ]),
     );
+  }
+
+  void _launchEmailApp() async {
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: 'fabbsoft@gmail.com',
+    );
+
+    if (await canLaunchUrl(emailLaunchUri)) {
+      await launchUrl(emailLaunchUri);
+    } else {
+      throw 'E-posta uygulaması bulunamadı';
+    }
+  }
+
+  void _launchPhoneApp() async {
+    final phoneLaunchUri = Uri(scheme: 'tel', path: '+90 5384869794');
+
+    if (await canLaunchUrl(phoneLaunchUri)) {
+      await launchUrl(phoneLaunchUri);
+    } else {
+      throw 'Telefon uygulaması bulunamadı';
+    }
   }
 }
