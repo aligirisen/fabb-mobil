@@ -10,6 +10,7 @@ import '../controllers/home/home_controller.dart';
 import '../controllers/home/incident_details_controller.dart';
 import '../controllers/home/map_view_controller.dart';
 import '../controllers/my_reports/my_reports_controller.dart';
+import '../controllers/settings/settings_controller.dart';
 import '../views/auth pages/login_view.dart';
 import '../views/auth pages/signup_view.dart';
 import '../views/auth pages/terms_n_conditions.dart';
@@ -81,7 +82,10 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.settings,
-      page: () => const SettingsView(),
+      page: () => SettingsView(),
+      binding: BindingsBuilder(() {
+        Get.putAsync(() async => SettingsController());
+      }),
     ),
     GetPage(
       name: _Paths.contact,
