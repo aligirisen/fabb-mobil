@@ -1,7 +1,12 @@
 import 'package:fabb_mobil/app/models/user_model.dart';
 import 'package:fabb_mobil/app/services/auth_service.dart';
+import 'package:fabb_mobil/app/theme/app_strings.dart';
+import 'package:fabb_mobil/app/theme/app_textstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
+
+import '../../theme/app_colors.dart';
 
 class SignupController extends GetxController {
   RxString firstname = ''.obs;
@@ -36,6 +41,43 @@ class SignupController extends GetxController {
     passwordController = TextEditingController();
     Get.delete<SignupController>();
     Get.put(SignupController());
+  }
+
+  void showBottomSheet() {
+    showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+          ),
+        ),
+        backgroundColor: AppColors.listViewContainerColor,
+        context: Get.context!,
+        builder: (context) => Padding(
+              padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 3.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    AppStrings.termsTitle,
+                    style: AppTextStyles.incidentTitleTextStyle,
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  Expanded(
+                      // Eklenen widget
+                      child: SingleChildScrollView(
+                    child: Text(
+                      AppStrings.termsText,
+                      style: AppTextStyles.incidentDescriptionTextStyle,
+                    ),
+                  ))
+                ],
+              ),
+            ));
   }
 
   User createUser() {

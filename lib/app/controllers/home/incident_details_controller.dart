@@ -34,12 +34,13 @@ class IncidentDetailsController extends GetxController {
   }
 
   void initialize() {
+    Get.delete<IncidentDetailsController>();
+
+    Get.put(IncidentDetailsController());
     titleTEController = TextEditingController();
     descriptionTEController = TextEditingController();
     addressTEController = TextEditingController();
-    Get.delete<IncidentDetailsController>();
     image.value = File("");
-    Get.put(IncidentDetailsController());
   }
 
   @override

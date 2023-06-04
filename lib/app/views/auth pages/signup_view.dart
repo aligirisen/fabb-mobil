@@ -73,7 +73,9 @@ class SignupView extends StatelessWidget {
                           signupTextFieldMail(),
                           signupTextFieldPassword(),
                           GestureDetector(
-                            onTap: () => Get.toNamed(Routes.termsncontitions),
+                            onTap: () {
+                              controller.showBottomSheet();
+                            },
                             child: Container(
                                 width: 50.w,
                                 margin: EdgeInsets.symmetric(vertical: 2.h),

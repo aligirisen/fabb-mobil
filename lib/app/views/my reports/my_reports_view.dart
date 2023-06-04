@@ -457,7 +457,7 @@ class MyReportsView extends StatelessWidget {
     return Column(
       children: [
         Text(
-          "11",
+          "-",
           style: TextStyle(color: color, fontSize: 30),
         ),
         Text(
@@ -472,7 +472,7 @@ class MyReportsView extends StatelessWidget {
     return Column(
       children: [
         Text(
-          "12",
+          "-",
           style: TextStyle(color: color, fontSize: 30),
         ),
         Text(
@@ -487,7 +487,7 @@ class MyReportsView extends StatelessWidget {
     return Column(
       children: [
         Text(
-          "3",
+          "-",
           style: TextStyle(color: color, fontSize: 30),
         ),
         Text(
