@@ -1,52 +1,88 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../controllers/auth pages/login_controller.dart';
+import '../../general_app_datas/general_app_datas.dart';
 import '../../routes/app_pages.dart';
 import '../../theme/app_images.dart';
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({super.key});
+class LoginView extends StatelessWidget {
+  LoginView({super.key});
 
+  // final LoginController controller = Get.find<LoginController>();
+  // final LoginController controller = Get.put(
+  //   LoginController(),
+  // );
+  final LoginController controller = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        // appBar: AppBar(
-        //   backgroundColor: AppColors.mainColor,
-        // ),
-        body: Stack(children: [
-          SizedBox(
-            width: Get.width,
-            height: 100.h,
-            child: Image(image: AppImages.loginBackground, fit: BoxFit.fill),
+    return WillPopScope(
+      onWillPop: () async {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Uygulamadan Çık'),
+            content: Text('Uygulamadan çıkmak istiyor musunuz?'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: Text('Evet'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text('Hayır'),
+              ),
+            ],
           ),
-          Container(
-              height: Get.height,
+        ).then((value) {
+          if (value == true) {
+            // Uygulamadan çıkma işlemi
+            SystemNavigator.pop();
+          }
+        });
+
+        // Uygulamadan çıkma işlemini engellemek için false döndürün
+        return false;
+      },
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          // appBar: AppBar(
+          //   backgroundColor: AppColors.mainColor,
+          // ),
+          body: Stack(children: [
+            SizedBox(
               width: Get.width,
-              padding: EdgeInsets.symmetric(horizontal: 10.w),
-              margin: EdgeInsets.only(top: 23.h),
-              child: SingleChildScrollView(
-                  child: Form(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      // key: controller.loginFormKey,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            //appTitle(),
-                            emailTextFormField(),
-                            Obx(
-                              () => passwordTextFormField(),
-                            ),
-                            forgotPassword(),
-                            loginButton(),
-                            orCreateAccountText()
-                          ])))),
-          continueAsGuest(),
-          logo()
-        ]),
+              height: 100.h,
+              child: Image(image: AppImages.loginBackground, fit: BoxFit.fill),
+            ),
+            Container(
+                height: Get.height,
+                width: Get.width,
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                margin: EdgeInsets.only(top: 23.h),
+                child: SingleChildScrollView(
+                    child: Form(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        // key: controller.loginFormKey,
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              //appTitle(),
+                              emailTextFormField(),
+                              Obx(
+                                () => passwordTextFormField(),
+                              ),
+                              forgotPassword(),
+                              loginButton(),
+                              orCreateAccountText()
+                            ])))),
+            continueAsGuest(),
+            logo()
+          ]),
+        ),
       ),
     );
   }
@@ -65,6 +101,8 @@ class LoginView extends GetView<LoginController> {
   GestureDetector continueAsGuest() {
     return GestureDetector(
       onTap: () {
+        //   MapViewController.to.initialize();
+        // ListViewController.to.initialize();
         Get.toNamed(Routes.home);
       },
       child: Padding(
@@ -117,7 +155,8 @@ class LoginView extends GetView<LoginController> {
         if (await controller.loginService(
             controller.email.value, controller.password.value)) {
           // User user = controller.getUserList.firstWhere((user) => user.email == 'x@gmail.com', orElse: () => null);
-          // GeneralAppDatas.loggedInUser.value = user;
+          //  GeneralAppDatas.loggedInUser.value = user;
+
           Get.toNamed(Routes.home);
         } else {
           Get.defaultDialog(
@@ -175,9 +214,6 @@ class LoginView extends GetView<LoginController> {
         controller: controller.passwordController,
         onSaved: (value) {
           controller.password.value = value!;
-        },
-        validator: (value) {
-          return controller.validatePassword(value!);
         },
         onChanged: (value) {
           controller.password.value = value;

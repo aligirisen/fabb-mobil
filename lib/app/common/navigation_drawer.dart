@@ -4,11 +4,12 @@ import 'package:fabb_mobil/app/theme/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import '../controllers/auth pages/login_controller.dart';
+import '../controllers/auth pages/signup_controller.dart';
 import '../routes/app_pages.dart';
 
 class CustomNavigationDrawer extends StatelessWidget {
   const CustomNavigationDrawer({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -22,14 +23,16 @@ class CustomNavigationDrawer extends StatelessWidget {
             tileColor: Get.currentRoute == Routes.home
                 ? AppColors.chosendrawer
                 : Colors.transparent),
-        GeneralAppDatas.isLoggedIn.value == true
-            ? buildDrawerItem(
-                text: "My Reports",
-                onTap: () => navigate(1),
-                tileColor: Get.currentRoute == Routes.myreports
-                    ? AppColors.chosendrawer
-                    : Colors.transparent)
-            : Container(),
+        Obx(
+          () => GeneralAppDatas.isLoggedIn.value == true
+              ? buildDrawerItem(
+                  text: "My Reports",
+                  onTap: () => navigate(1),
+                  tileColor: Get.currentRoute == Routes.myreports
+                      ? AppColors.chosendrawer
+                      : Colors.transparent)
+              : Container(),
+        ),
         buildDrawerItem(
             text: "Settings",
             onTap: () => navigate(2),
@@ -42,14 +45,16 @@ class CustomNavigationDrawer extends StatelessWidget {
             tileColor: Get.currentRoute == Routes.contact
                 ? AppColors.chosendrawer
                 : Colors.transparent),
-        GeneralAppDatas.userId.value == ""
-            ? Container()
-            : buildDrawerItem(
-                text: "Logout",
-                onTap: () => showLogoutConfirmationDialog(),
-                tileColor: Colors.transparent,
-              ),
-        GeneralAppDatas.userId.value == ""
+        Obx(
+          () => GeneralAppDatas.isLoggedIn.value == false
+              ? Container()
+              : buildDrawerItem(
+                  text: "Logout",
+                  onTap: () => showLogoutConfirmationDialog(),
+                  tileColor: Colors.transparent,
+                ),
+        ),
+        Obx(() => GeneralAppDatas.isLoggedIn.value == false
             ? Column(
                 children: [
                   buildDrawerItemLogin(
@@ -62,16 +67,16 @@ class CustomNavigationDrawer extends StatelessWidget {
                       tileColor: Colors.transparent),
                 ],
               )
+            : Container())
 
-            // Container(
-            //     height: 5.h,
-            //     width: 10,
-            //     decoration: BoxDecoration(
-            //         color: Colors.amber,
-            //         borderRadius: BorderRadius.circular(10)),
-            //     child: Text("login"),
-            //   )
-            : Container()
+        // Container(
+        //     height: 5.h,
+        //     width: 10,
+        //     decoration: BoxDecoration(
+        //         color: Colors.amber,
+        //         borderRadius: BorderRadius.circular(10)),
+        //     child: Text("login"),
+        //   )
       ]),
     );
   }
@@ -87,7 +92,8 @@ class CustomNavigationDrawer extends StatelessWidget {
       // margin: EdgeInsets.only(right: 14.w),
       child: ListTile(
         title: Container(
-          alignment: Alignment.center,
+          padding: EdgeInsets.only(left: 6.w),
+          alignment: Alignment.centerLeft,
           height: 5.h,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -145,14 +151,17 @@ class CustomNavigationDrawer extends StatelessWidget {
     if (index == 0) {
       Get.toNamed(Routes.home);
     } else if (index == 1) {
+      //  MyReportsController.to.initialize();
       Get.toNamed(Routes.myreports);
     } else if (index == 2) {
       Get.toNamed(Routes.settings);
     } else if (index == 3) {
       Get.toNamed(Routes.contact);
     } else if (index == 4) {
+      LoginController.to.initialize();
       Get.toNamed(Routes.login);
     } else if (index == 5) {
+      SignupController.to.initialize();
       Get.toNamed(Routes.signup);
     } else {
       Get.toNamed(Routes.home); //default
@@ -179,6 +188,8 @@ class CustomNavigationDrawer extends StatelessWidget {
                 GeneralAppDatas.userId.value = "";
                 GeneralAppDatas.userEmail.value = "";
                 GeneralAppDatas.isLoggedIn.value = false;
+                GeneralAppDatas.box.write('isLoggedIn', false);
+                GeneralAppDatas.box.write("userId", "");
                 Get.toNamed(Routes.login);
               },
             ),

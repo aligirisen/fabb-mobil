@@ -12,7 +12,7 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const CustomNavigationDrawer(),
+      drawer: CustomNavigationDrawer(),
       appBar: AppBar(
         toolbarHeight: 9.h,
         shape: const RoundedRectangleBorder(

@@ -1,11 +1,15 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../models/incident_model.dart';
 import '../models/user_model.dart';
 
 class GeneralAppDatas {
+  static final box = GetStorage();
+
   static RxBool isLoggedIn = false.obs;
+
   //false guest true login
   static RxString userId = "".obs;
 
@@ -29,4 +33,19 @@ class GeneralAppDatas {
   static RxList<IncidentModel> incidentListMap = <IncidentModel>[].obs;
   static RxList<IncidentModel> incidentListList = <IncidentModel>[].obs;
   static RxList<IncidentModel> myIncidentList = <IncidentModel>[].obs;
+
+  void checkLoggedInStatus() {
+    GeneralAppDatas.isLoggedIn.value =
+        GeneralAppDatas.box.read('isLoggedIn') ?? false;
+    if (GeneralAppDatas.isLoggedIn.value) {
+      GeneralAppDatas.userId.value = GeneralAppDatas.box.read('userId') ?? "";
+    }
+  }
+
+  void setLoggedInStatus(bool isLoggedIn, String userId) {
+    GeneralAppDatas.isLoggedIn.value = isLoggedIn;
+    GeneralAppDatas.userId.value = userId;
+    GeneralAppDatas.box.write('isLoggedIn', isLoggedIn);
+    GeneralAppDatas.box.write('userId', userId);
+  }
 }

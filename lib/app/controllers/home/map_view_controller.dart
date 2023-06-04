@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:ui' as ui;
 import 'package:fabb_mobil/app/theme/app_colors.dart';
 import 'package:fabb_mobil/app/theme/app_strings.dart';
@@ -7,13 +6,36 @@ import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:sizer/sizer.dart';
 
+import '../../common/incidentCard.dart';
 import '../../general_app_datas/general_app_datas.dart';
 import '../../models/incident_model.dart';
 import '../../services/incident_service.dart';
 
 class MapViewController extends GetxController {
+  GoogleMapController? mapController;
+  Marker? currentLocationMarker;
+
+  Set<Marker> markers = {};
+  RxBool isLoadingMarkers = false.obs;
+
+  CameraPosition initialPosition =
+      CameraPosition(target: LatLng(39.925533, 32.866287), zoom: 14.0);
+
+  CameraPosition targetPosition = CameraPosition(
+      target: LatLng(39.925533, 32.866287),
+      zoom: 14.0,
+      bearing: 192.0,
+      tilt: 60);
+
+  Rx<MapType> maptype = MapType.normal.obs;
+  var backgroundColor = AppColors.darkBlue.obs;
+  var foregroundColor = Colors.white.obs;
+
+  RxBool isLoading = true.obs;
+
+  static MapViewController get to => Get.find<MapViewController>();
+
   @override
   void onInit() {
     getCurrentLocation();
@@ -23,7 +45,14 @@ class MapViewController extends GetxController {
     super.onInit();
   }
 
-  RxBool isLoading = true.obs;
+  void initialize() {
+    getCurrentLocation();
+    //getIncidentMarkers();
+    generateItems();
+    _getMarkers();
+    Get.delete<MapViewController>();
+    Get.put(MapViewController());
+  }
 
   void generateItems() async {
     isLoading.value = true;
@@ -50,25 +79,6 @@ class MapViewController extends GetxController {
     }
     isLoading.value = false;
   }
-
-  GoogleMapController? mapController;
-  Marker? currentLocationMarker;
-
-  Set<Marker> markers = {};
-  RxBool isLoadingMarkers = false.obs;
-
-  CameraPosition initialPosition =
-      CameraPosition(target: LatLng(39.925533, 32.866287), zoom: 14.0);
-
-  CameraPosition targetPosition = CameraPosition(
-      target: LatLng(39.925533, 32.866287),
-      zoom: 14.0,
-      bearing: 192.0,
-      tilt: 60);
-
-  Rx<MapType> maptype = MapType.normal.obs;
-  var backgroundColor = AppColors.darkBlue.obs;
-  var foregroundColor = Colors.white.obs;
 
   Future<void> getCurrentLocation() async {
     try {
@@ -137,15 +147,6 @@ class MapViewController extends GetxController {
     }
   }
 
-  //  List<Marker> markers = <Marker>[
-  //   Marker(
-  //       markerId: MarkerId('1'),
-  //       position: LatLng(37.43296265331129, -122.08832357078792),
-  //       infoWindow: InfoWindow(
-  //         title: 'My Position',
-  //       )),
-  // ];
-
   Future<void> _getMarkers() async {
     isLoadingMarkers.value = true;
     await Future.delayed(Duration(seconds: 4));
@@ -199,12 +200,28 @@ class MapViewController extends GetxController {
           title: incidentList[i].title,
         ),
         icon: await selectMarker(incidentList[i].category ?? ""),
+        onTap: () {
+          _showBottomSheet(incidentList[i]);
+        },
       );
       print("xxx");
       print(GeneralAppDatas.incidentListMap[i].location!.longitude!);
       print(GeneralAppDatas.incidentListMap[i].location!.latitude!);
       markers.add(marker);
     }
+  }
+
+  void _showBottomSheet(IncidentModel incidentModel) {
+    showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+          ),
+        ),
+        backgroundColor: AppColors.listViewContainerColor,
+        context: Get.context!,
+        builder: (context) => IncidentCard(incidentModel));
   }
 
   Future<BitmapDescriptor> selectMarker(String category) async {
@@ -297,11 +314,6 @@ class MapViewController extends GetxController {
     update();
   }
 
-//NOTLAR
-  //get markers metodu yazılmalı
-  //UPDATE markers
-
-// declared method to get Images
   Future<Uint8List> getImages(String path, int width) async {
     ByteData data = await rootBundle.load(path);
     ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
@@ -339,9 +351,15 @@ class MapViewController extends GetxController {
   //   mapController.animateCamera(CameraUpdate.newCameraPosition(targetPosition));
   // }
 
-  @override
-  void dispose() {
-    Get.delete<MapViewController>();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   Get.delete<MapViewController>();
+  //   super.dispose();
+  // }
+
+  // @override
+  // void onClose() {
+  //   Get.delete<MapViewController>();
+  //   super.onClose();
+  // }
 }

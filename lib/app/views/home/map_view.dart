@@ -7,20 +7,21 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../general_app_datas/general_app_datas.dart';
+import '../../theme/app_colors.dart';
 
-class MapView extends GetView<MapViewController> {
-  const MapView({super.key});
-
+class MapView extends StatelessWidget {
+  MapView({super.key});
+  final MapViewController controller = Get.put(MapViewController());
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<MapViewController>(
-      () => MapViewController(),
-    );
     final Completer<GoogleMapController> completer = Completer();
     return Scaffold(
       body: Obx(
         () => controller.isLoadingMarkers.isTrue
-            ? const Center(child: CircularProgressIndicator())
+            ? Center(
+                child: CircularProgressIndicator(
+                color: AppColors.darkBlue,
+              ))
             : GoogleMap(
                 initialCameraPosition: CameraPosition(
                     target: LatLng(

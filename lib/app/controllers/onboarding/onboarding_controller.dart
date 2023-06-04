@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../models/onborading_model.dart';
 import '../../routes/app_pages.dart';
@@ -10,6 +11,25 @@ class OnboardingController extends GetxController {
   var selectedPageIndex = 0.obs;
   bool get isLastPage => selectedPageIndex.value == onboardingPages.length - 1;
   var pageController = PageController();
+
+  final box = GetStorage();
+  var isFirstSeen = true.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    checkFirstSeen();
+  }
+
+  void checkFirstSeen() {
+    isFirstSeen.value = box.read('firstSeen') ?? true;
+  }
+
+  void setFirstSeen() {
+    box.write('firstSeen', false);
+    isFirstSeen.value = false;
+  }
 
   forwardAction() {
     if (isLastPage) {

@@ -21,14 +21,25 @@ class IncidentDetailsController extends GetxController {
   final picker = ImagePicker();
 
   late Rx<File?> image = File("").obs;
-
+  static IncidentDetailsController get to =>
+      Get.find<IncidentDetailsController>();
   @override
   void onInit() {
     super.onInit();
     titleTEController = TextEditingController();
     descriptionTEController = TextEditingController();
     addressTEController = TextEditingController();
+    image.value = File("");
     getAddressFromPosition();
+  }
+
+  void initialize() {
+    titleTEController = TextEditingController();
+    descriptionTEController = TextEditingController();
+    addressTEController = TextEditingController();
+    Get.delete<IncidentDetailsController>();
+    image.value = File("");
+    Get.put(IncidentDetailsController());
   }
 
   @override

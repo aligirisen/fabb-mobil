@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../general_app_datas/general_app_datas.dart';
 import '../../models/incident_model.dart';
@@ -13,12 +14,20 @@ class MyReportsController extends GetxController {
 
   @override
   void onInit() {
-    getMyIncidents();
     super.onInit();
+    getMyIncidents();
+  }
+
+  static MyReportsController get to => Get.find<MyReportsController>();
+
+  void initialize() {
+    Get.delete<MyReportsController>();
+    Get.put(MyReportsController());
   }
 
   void getMyIncidents() async {
     isLoading.value = true;
+    GeneralAppDatas.myIncidentList.value = [];
 
     await Future.delayed(Duration(seconds: 3));
 

@@ -15,7 +15,6 @@ class IncidentDetailsView extends StatelessWidget {
 
   final IncidentDetailsController controller =
       Get.put(IncidentDetailsController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -12,9 +12,10 @@ abstract class Routes {
   static const settings = _Paths.settings;
   static const contact = _Paths.contact;
   static const map = _Paths.map;
+  static const list = _Paths.list;
 
   //creating an accident
-  static const incidentType = _Paths.incidentType;
+  static const incidentcategory = _Paths.incidentcategory;
   static const incidentDetails = _Paths.incidentDetails;
   static const succcesfulyReportedPage = _Paths.succcesfulyReportedPage;
   static const guestNewIncident = _Paths.guestNewIncident;
@@ -31,9 +32,10 @@ abstract class _Paths {
   static const settings = '/settings';
   static const contact = '/contact';
   static const map = '/mapscreen';
+  static const list = '/list';
 
   //creating an accident
-  static const incidentType = '/accidentType';
+  static const incidentcategory = '/incidentcategory';
   static const incidentDetails = '/incidentDetails';
   static const succcesfulyReportedPage = '/succcesfulyReportedPage';
   static const guestNewIncident = '/guestNewIncident';

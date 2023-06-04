@@ -18,15 +18,24 @@ class SignupController extends GetxController {
   late TextEditingController emailController, passwordController;
   GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
 
+  static SignupController get to => Get.find<SignupController>();
+
   @override
   void onInit() {
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    //loginFormKey = GlobalKey<FormState>();
     super.onInit();
+  }
+
+  void initialize() {
     firstnameTEController = TextEditingController();
     lastnameTEController = TextEditingController();
     phoneNumberTEController = TextEditingController();
     emailController = TextEditingController();
     passwordController = TextEditingController();
-    Get.lazyPut(() => SignupController());
+    Get.delete<SignupController>();
+    Get.put(SignupController());
   }
 
   User createUser() {

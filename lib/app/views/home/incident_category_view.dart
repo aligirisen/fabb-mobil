@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/home/incident_category_controller.dart';
+import '../../controllers/home/incident_details_controller.dart';
 import '../../routes/app_pages.dart';
 import '../../shared/category_list.dart';
 import '../../theme/app_colors.dart';
@@ -48,6 +49,8 @@ class IncidentCategoryView extends GetView<IncidentCategoryController> {
                     onTap: () {
                       GeneralAppDatas.selectedIncidentType.value =
                           CategoryList.incidentTypes[index].title;
+                      Get.put(IncidentDetailsController());
+                      IncidentDetailsController.to.initialize();
                       Get.toNamed(Routes.incidentDetails);
                     },
                     child: Container(

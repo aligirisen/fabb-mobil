@@ -16,12 +16,28 @@ class ListViewController extends GetxController {
   RxInt dislikeCount = 5.obs;
   RxBool isLoading = true.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
+  static ListViewController get to => Get.find<ListViewController>();
+
+  void initialize() {
     locationController = TextEditingController();
     generateItems();
+    Get.delete<ListViewController>();
+    Get.put(ListViewController());
   }
+
+  @override
+  void onInit() {
+    //Get.put(ListViewController());
+    locationController = TextEditingController();
+    generateItems();
+    super.onInit();
+  }
+
+  // @override
+  // void onClose() {
+  //   Get.delete<ListViewController>();
+  //   super.onClose();
+  // }
 
   void generateItems() async {
     isLoading.value = true;

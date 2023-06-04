@@ -1,64 +1,95 @@
 import 'package:fabb_mobil/app/theme/app_images.dart';
 import 'package:fabb_mobil/app/theme/app_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import '../../controllers/auth pages/login_controller.dart';
 import '../../controllers/auth pages/signup_controller.dart';
 import '../../routes/app_pages.dart';
 
-class SignupView extends GetView<SignupController> {
-  const SignupView({super.key});
-
+class SignupView extends StatelessWidget {
+  SignupView({super.key});
+  final SignupController controller = Get.put(SignupController());
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        // appBar: AppBar(
-        //   backgroundColor: AppColors.mainColor,
-        // ),
-        body: Stack(children: [
-          SizedBox(
-            width: Get.width,
-            height: 100.h,
-            child: Image(image: AppImages.loginBackground, fit: BoxFit.fill),
+    return WillPopScope(
+      onWillPop: () async {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Uygulamadan Çık'),
+            content: Text('Uygulamadan çıkmak istiyor musunuz?'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: Text('Evet'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text('Hayır'),
+              ),
+            ],
           ),
-          Container(
-              alignment: Alignment.topLeft,
-              height: Get.height,
+        ).then((value) {
+          if (value == true) {
+            // Uygulamadan çıkma işlemi
+            SystemNavigator.pop();
+          }
+        });
+
+        // Uygulamadan çıkma işlemini engellemek için false döndürün
+        return false;
+      },
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          // appBar: AppBar(
+          //   backgroundColor: AppColors.mainColor,
+          // ),
+          body: Stack(children: [
+            SizedBox(
               width: Get.width,
-              padding: EdgeInsets.only(left: 10.w, top: 15.h),
-              //color: Colors.white,
-              child: SingleChildScrollView(
-                child: Form(
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        //signupPageTitle(),
-                        signupTextFieldFirstName(),
-                        signupTextFieldLastName(),
-                        signupTextFieldPhone(),
-                        signupTextFieldMail(),
-                        signupTextFieldPassword(),
-                        GestureDetector(
-                          onTap: () => Get.toNamed(Routes.termsncontitions),
-                          child: Container(
-                              width: 50.w,
-                              margin: EdgeInsets.symmetric(vertical: 2.h),
-                              child: Text(
-                                AppStrings.agreeText,
-                                style: const TextStyle(
-                                    color: Colors.grey, fontSize: 10),
-                              )),
-                        ),
-                        signupButton(),
-                        alreadyHaveAnAccountText()
-                      ],
-                    )),
-              )),
-        ]),
+              height: 100.h,
+              child: Image(image: AppImages.loginBackground, fit: BoxFit.fill),
+            ),
+            Container(
+                alignment: Alignment.topLeft,
+                height: Get.height,
+                width: Get.width,
+                padding: EdgeInsets.only(left: 10.w, top: 15.h),
+                //color: Colors.white,
+                child: SingleChildScrollView(
+                  child: Form(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          //signupPageTitle(),
+                          signupTextFieldFirstName(),
+                          signupTextFieldLastName(),
+                          signupTextFieldPhone(),
+                          signupTextFieldMail(),
+                          signupTextFieldPassword(),
+                          GestureDetector(
+                            onTap: () => Get.toNamed(Routes.termsncontitions),
+                            child: Container(
+                                width: 50.w,
+                                margin: EdgeInsets.symmetric(vertical: 2.h),
+                                child: Text(
+                                  AppStrings.agreeText,
+                                  style: const TextStyle(
+                                      color: Colors.grey, fontSize: 10),
+                                )),
+                          ),
+                          signupButton(),
+                          alreadyHaveAnAccountText()
+                        ],
+                      )),
+                )),
+          ]),
+        ),
       ),
     );
   }
@@ -66,6 +97,7 @@ class SignupView extends GetView<SignupController> {
   GestureDetector alreadyHaveAnAccountText() {
     return GestureDetector(
         onTap: () {
+          LoginController.to.initialize();
           Get.toNamed(Routes.login);
         },
         child: Padding(

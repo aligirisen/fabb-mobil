@@ -1,4 +1,5 @@
 import 'package:fabb_mobil/app/theme/app_colors.dart';
+import 'package:fabb_mobil/app/views/auth%20pages/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -13,74 +14,19 @@ class OnboardingPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: SafeArea(
-          child: Stack(children: [
-            PageView.builder(
-                controller: controller.pageController,
-                onPageChanged: controller.selectedPageIndex,
-                itemCount: controller.onboardingPages.length,
-                itemBuilder: (context, index) => Container(
-                      height: 100.h,
-                      width: 100.w,
-                      color: AppColors.infoPageBackground,
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                          horizontal: 50,
-                        ),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.symmetric(
-                                  vertical: 40,
-                                ),
-                                height: 40.h,
-                                child: controller.onboardingPages[index].image,
-                              ),
-                              Text(
-                                controller.onboardingPages[index].title,
-                                style: TextStyle(
-                                    color: AppColors.infoTextColor,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              const SizedBox(
-                                height: 30,
-                              ),
-                              Text(
-                                controller.onboardingPages[index].text,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: AppColors.infoTextColor,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              dotsContainer(),
-                            ]),
-                      ),
-                    )),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  startButton(),
-                  SizedBox(
-                    height: 10.h,
-                  )
-                ],
-              ),
-            ),
-          ]),
-        ));
+      resizeToAvoidBottomInset: false,
+      body: Obx(
+        () => controller.isFirstSeen.value
+            ? buildOnboardingScreen()
+            : LoginView(),
+      ),
+    );
   }
 
   Container dotsContainer() {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 30),
-      height: 30,
+      margin: EdgeInsets.symmetric(vertical: 4.h),
+      height: 4.h,
       width: 30.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -109,7 +55,7 @@ class OnboardingPageView extends StatelessWidget {
       // style: ElevatedButton.styleFrom(
       //     backgroundColor: AppColors.infoTextColor),
       style: ButtonStyle(
-          fixedSize: MaterialStateProperty.all(const Size(130, 50)),
+          fixedSize: MaterialStateProperty.all(Size(30.w, 8.h)),
           backgroundColor:
               MaterialStateColor.resolveWith((states) => Colors.white),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -143,6 +89,70 @@ class OnboardingPageView extends StatelessWidget {
         "Let's get started",
         style: TextStyle(color: AppColors.mainColor),
       ),
+    );
+  }
+
+  Widget buildOnboardingScreen() {
+    return SafeArea(
+      child: Stack(children: [
+        PageView.builder(
+            controller: controller.pageController,
+            onPageChanged: controller.selectedPageIndex,
+            itemCount: controller.onboardingPages.length,
+            itemBuilder: (context, index) => Container(
+                  height: 100.h,
+                  width: 100.w,
+                  color: AppColors.infoPageBackground,
+                  child: Container(
+                    margin: EdgeInsets.symmetric(
+                      horizontal: 10.w,
+                    ),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(
+                              vertical: 9.w,
+                            ),
+                            height: 40.h,
+                            child: controller.onboardingPages[index].image,
+                          ),
+                          Text(
+                            controller.onboardingPages[index].title,
+                            style: TextStyle(
+                                color: AppColors.infoTextColor,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          SizedBox(
+                            height: 4.h,
+                          ),
+                          Text(
+                            controller.onboardingPages[index].text,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: AppColors.infoTextColor,
+                              fontSize: 16,
+                            ),
+                          ),
+                          dotsContainer(),
+                        ]),
+                  ),
+                )),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              startButton(),
+              SizedBox(
+                height: 10.h,
+              )
+            ],
+          ),
+        ),
+      ]),
     );
   }
 }

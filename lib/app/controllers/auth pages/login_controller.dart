@@ -1,6 +1,7 @@
 import 'package:fabb_mobil/app/services/auth_service.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../general_app_datas/general_app_datas.dart';
 
@@ -20,13 +21,28 @@ class LoginController extends GetxController {
   // late GlobalKey<FormState> loginFormKey;
   late TextEditingController emailController, passwordController;
 
+  static LoginController get to => Get.find<LoginController>();
+
   @override
   void onInit() {
     super.onInit();
     emailController = TextEditingController();
     passwordController = TextEditingController();
-    Get.lazyPut(() => LoginController());
     //loginFormKey = GlobalKey<FormState>();
+    checkLoggedInStatus();
+  }
+
+  void checkLoggedInStatus() {
+    GeneralAppDatas.isLoggedIn.value =
+        GeneralAppDatas.box.read('isLoggedIn') ?? false;
+  }
+
+  void initialize() {
+    // Controller'ı yeniden başlatmak için bu metodu çağırın
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    Get.delete<LoginController>();
+    Get.put(LoginController());
   }
 
   @override
@@ -67,7 +83,9 @@ class LoginController extends GetxController {
   Future<bool> loginService(String email, String password) async {
     bool isLogged = await AuthService().login(email, password);
     if (isLogged == true) {
-      GeneralAppDatas.isLoggedIn(true);
+      GeneralAppDatas.isLoggedIn.value = true;
+      GeneralAppDatas.box.write('isLoggedIn', true);
+      GeneralAppDatas.box.write('userId', GeneralAppDatas.userId.value);
       return true;
     } else {
       return false;

@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../controllers/home/list_view_controller.dart';
+import '../../controllers/home/map_view_controller.dart';
+import '../../controllers/my_reports/my_reports_controller.dart';
 import '../../routes/app_pages.dart';
 
 class SuccessfullyReportedView extends StatelessWidget {
@@ -97,6 +100,7 @@ class SuccessfullyReportedView extends StatelessWidget {
             borderRadius: BorderRadius.circular(15.0),
           ))),
       onPressed: () {
+        Get.put(MyReportsController());
         Get.toNamed(Routes.myreports); //my reports sayfasına gidecek
       },
       child: Text(
