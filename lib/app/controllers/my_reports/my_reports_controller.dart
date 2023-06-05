@@ -47,12 +47,18 @@ class MyReportsController extends GetxController {
           description: element.description,
           address: element.address,
           createDate: element.createDate.toString());
-
-      //GeneralAppDatas.myIncidentList.add(element);
-      print(element.userId);
       if (element.userId == GeneralAppDatas.userId.value) {
         GeneralAppDatas.myIncidentList.add(element);
         print("added");
+      }
+      if (element.incidentStatus == "Opened") {
+        GeneralAppDatas.openedMyReport = GeneralAppDatas.openedMyReport + 1;
+      } else if (element.incidentStatus == "Rejected") {
+        GeneralAppDatas.rejectedMyReport + 1;
+      } else if (element.incidentStatus == "In Progress") {
+        GeneralAppDatas.inProgressMyReport + 1;
+      } else if (element.incidentStatus == "Solved") {
+        GeneralAppDatas.solvedMyReport + 1;
       }
     }
     isLoading.value = false;

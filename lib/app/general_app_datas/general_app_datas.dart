@@ -10,6 +10,10 @@ class GeneralAppDatas {
 
   static RxBool isLoggedIn = false.obs;
 
+  static RxInt solvedMyReport = 0.obs;
+  static RxInt rejectedMyReport = 0.obs;
+  static RxInt inProgressMyReport = 0.obs;
+  static RxInt openedMyReport = 0.obs;
   //false guest true login
   static RxString userId = "".obs;
 

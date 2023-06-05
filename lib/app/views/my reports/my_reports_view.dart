@@ -457,7 +457,7 @@ class MyReportsView extends StatelessWidget {
     return Column(
       children: [
         Text(
-          "-",
+          GeneralAppDatas.solvedMyReport.toString(),
           style: TextStyle(color: color, fontSize: 30),
         ),
         Text(
@@ -472,7 +472,7 @@ class MyReportsView extends StatelessWidget {
     return Column(
       children: [
         Text(
-          "-",
+          GeneralAppDatas.inProgressMyReport.toString(),
           style: TextStyle(color: color, fontSize: 30),
         ),
         Text(
@@ -487,7 +487,7 @@ class MyReportsView extends StatelessWidget {
     return Column(
       children: [
         Text(
-          "-",
+          GeneralAppDatas.rejectedMyReport.toString(),
           style: TextStyle(color: color, fontSize: 30),
         ),
         Text(
