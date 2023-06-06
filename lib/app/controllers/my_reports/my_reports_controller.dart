@@ -26,10 +26,14 @@ class MyReportsController extends GetxController {
   }
 
   void getMyIncidents() async {
+    GeneralAppDatas.inProgressMyReport = RxInt(0);
+    GeneralAppDatas.solvedMyReport = RxInt(0);
+    GeneralAppDatas.rejectedMyReport = RxInt(0);
+    GeneralAppDatas.openedMyReport = RxInt(0);
     isLoading.value = true;
     GeneralAppDatas.myIncidentList.value = [];
 
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(const Duration(milliseconds: 3));
 
     List<IncidentModel> incidents;
 
@@ -49,16 +53,17 @@ class MyReportsController extends GetxController {
           createDate: element.createDate.toString());
       if (element.userId == GeneralAppDatas.userId.value) {
         GeneralAppDatas.myIncidentList.add(element);
-        print("added");
-      }
-      if (element.incidentStatus == "Opened") {
-        GeneralAppDatas.openedMyReport = GeneralAppDatas.openedMyReport + 1;
-      } else if (element.incidentStatus == "Rejected") {
-        GeneralAppDatas.rejectedMyReport + 1;
-      } else if (element.incidentStatus == "In Progress") {
-        GeneralAppDatas.inProgressMyReport + 1;
-      } else if (element.incidentStatus == "Solved") {
-        GeneralAppDatas.solvedMyReport + 1;
+        if (element.incidentStatus == "Opened") {
+          GeneralAppDatas.openedMyReport = GeneralAppDatas.openedMyReport + 1;
+        } else if (element.incidentStatus == "Rejected") {
+          GeneralAppDatas.rejectedMyReport =
+              GeneralAppDatas.rejectedMyReport + 1;
+        } else if (element.incidentStatus == "In Progress") {
+          GeneralAppDatas.inProgressMyReport =
+              GeneralAppDatas.inProgressMyReport + 1;
+        } else if (element.incidentStatus == "Solved") {
+          GeneralAppDatas.solvedMyReport = GeneralAppDatas.solvedMyReport + 1;
+        }
       }
     }
     isLoading.value = false;

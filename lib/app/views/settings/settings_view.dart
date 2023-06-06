@@ -50,7 +50,7 @@ class SettingsView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "First Name",
+                        "Full Name",
                         style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w400,
@@ -70,8 +70,7 @@ class SettingsView extends StatelessWidget {
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText:
-                                  GeneralAppDatas.loggedInUser.value.fullName,
+                              hintText: GeneralAppDatas.fullNameSettings.value,
                             ),
                           ))
                     ],
@@ -101,8 +100,14 @@ class SettingsView extends StatelessWidget {
                             color: Color.fromARGB(255, 235, 235, 235),
                           ),
                           child: TextField(
-                            decoration:
-                                InputDecoration(border: InputBorder.none),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: GeneralAppDatas.birthDateSettings.value,
+                            ),
+                            onChanged: (value) {
+                              // Girilen değeri birthdateValue değişkenine atayın
+                              controller.birthdate.value = value;
+                            },
                           ))
                     ],
                   ),
@@ -133,8 +138,8 @@ class SettingsView extends StatelessWidget {
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: GeneralAppDatas
-                                  .loggedInUser.value.phoneNumber,
+                              hintText:
+                                  GeneralAppDatas.phoneNumberSettings.value,
                             ),
                           ))
                     ],
@@ -166,8 +171,7 @@ class SettingsView extends StatelessWidget {
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText:
-                                  GeneralAppDatas.loggedInUser.value.email,
+                              hintText: GeneralAppDatas.userEmail.value,
                             ),
                           ))
                     ],
@@ -257,8 +261,7 @@ class SettingsView extends StatelessWidget {
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText:
-                                  GeneralAppDatas.loggedInUser.value.email,
+                              hintText: "*******",
                             ),
                           ))
                     ],
@@ -402,8 +405,7 @@ class SettingsView extends StatelessWidget {
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText:
-                                  GeneralAppDatas.loggedInUser.value.email,
+                              hintText: "",
                             ),
                           ))
                     ],
@@ -415,21 +417,27 @@ class SettingsView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        alignment: Alignment.center,
-                        height: 5.h,
-                        width: 40.w,
-                        decoration: BoxDecoration(
-                          color: AppColors.darkBlue,
-                          borderRadius: BorderRadius.circular(7),
-                        ),
-                        child: Text(
-                          "Save Changes",
-                          style: AppTextStyles.infoTextStyleLight,
+                      InkWell(
+                        onTap: () {
+                          controller.updateUser();
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 5.h,
+                          width: 40.w,
+                          decoration: BoxDecoration(
+                            color: AppColors.darkBlue,
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                          child: Text(
+                            "Save Changes",
+                            style: AppTextStyles.infoTextStyleLight,
+                          ),
                         ),
                       ),
                     ],
                   ),
+
                   // SizedBox(
                   //   height: 3.h,
                   // ),

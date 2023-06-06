@@ -29,7 +29,6 @@ class SignupController extends GetxController {
   void onInit() {
     emailController = TextEditingController();
     passwordController = TextEditingController();
-    //loginFormKey = GlobalKey<FormState>();
     super.onInit();
   }
 

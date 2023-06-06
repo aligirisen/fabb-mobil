@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:fabb_mobil/app/general_app_datas/general_app_datas.dart';
 import 'package:fabb_mobil/app/models/user_model.dart';
+import 'package:fabb_mobil/app/services/user_service.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:http/http.dart' as http;
@@ -10,20 +11,6 @@ import '../../main.dart';
 class AuthService {
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   TextEditingController? emailController, passwordController;
-
-  Future<void> fetchUserData(String userId) async {
-    // get
-    final response = await http.get(Uri.parse('$baseUrl/user/$userId'));
-
-    if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
-
-      print(jsonData);
-    } else {
-      throw Exception(
-          'Failed to load user data from API: ${response.statusCode}');
-    }
-  }
 
   Future<bool> postRegister(User user) async {
     // register
@@ -61,6 +48,9 @@ class AuthService {
       String id = jsonData.keys.first;
       GeneralAppDatas.userId.value = id;
       GeneralAppDatas.userEmail.value = email;
+
+      UserService().getUserDatas(id);
+
       return true;
     } else {
       print(response.statusCode);

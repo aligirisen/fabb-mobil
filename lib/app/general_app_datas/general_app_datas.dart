@@ -1,3 +1,4 @@
+import 'package:fabb_mobil/app/services/user_service.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -21,7 +22,11 @@ class GeneralAppDatas {
 
   static RxString selectedIncidentType = "".obs;
 
-  static Rx<User> loggedInUser = User().obs;
+  //settings için geçici değerler
+
+  static RxString phoneNumberSettings = "".obs;
+  static RxString fullNameSettings = "".obs;
+  static RxString birthDateSettings = "".obs;
 
   static Rx<Position?> currentPosition = Position(
           longitude: 39.925533,

@@ -77,39 +77,9 @@ class IncidentService {
       print("Failed to Post Data. Error: ${response.statusCode}");
     }
   }*/
-/*
-  Future<bool> postIncident(IncidentModel incident, File image) async {
-    // Read image bytes
-    List<int> imageBytes = await image.readAsBytes();
-    String base64Image = base64Encode(imageBytes);
-
-    // Create the incident JSON
-    Map<String, dynamic> incidentData = incident.toJson();
-    incidentData['attachments'] = {'image': base64Image};
-    String incidentJson = jsonEncode(incidentData);
-
-    // Send the POST request
-    http.Response response = await http.post(
-      Uri.parse('$baseUrl/incident/create'),
-      headers: {'Content-Type': 'application/json'},
-      body: incidentJson,
-    );
-
-    if (response.statusCode == 200) {
-      // Success
-      print("Data Posted Successfully!");
-      return true;
-    } else {
-      // Failure
-      print("Failed to Post Data. Error: ${response.statusCode}");
-      return false;
-    }
-  }*/
 
   Future<List<IncidentModel>> getIncidents() async {
-    http.Response response = await http
-        .get(Uri.parse('$baseUrl/incident/'))
-        .timeout(const Duration(seconds: 1));
+    http.Response response = await http.get(Uri.parse('$baseUrl/incident/'));
     if (response != null) {
       Map<String, dynamic> value = json.decode(response.body);
       List<IncidentModel> list = [];
@@ -135,11 +105,11 @@ class IncidentService {
     // Handle the response
     if (response.statusCode == 200) {
       // Success
-      print("User deleted successfully");
+      print("Incident deleted successfully");
       return true;
     } else {
       // Failure
-      print("Failed to delete user. Error: ${response.statusCode}");
+      print("Failed to delete Incident. Error: ${response.statusCode}");
       return false;
     }
   }

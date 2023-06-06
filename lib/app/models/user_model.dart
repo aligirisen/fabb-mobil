@@ -2,7 +2,7 @@ import 'package:universal_html/html.dart';
 
 class User {
   final String? accountId;
-  final DateTime? dateOfBirth;
+  final String? dateOfBirth;
   final String? userId;
   final String? fullName;
   final String? phoneNumber;
@@ -28,7 +28,7 @@ class User {
   });
 
   String? get accountid => accountId;
-  DateTime? get dateofbirth => dateOfBirth;
+  String? get dateofbirth => dateOfBirth;
   String? get userid => userId;
   String? get fullname => fullName;
   String? get phonenumber => phoneNumber;
@@ -55,7 +55,7 @@ class User {
     );
   }
 
-  User setDateOfBirth(DateTime dateofBirth) {
+  User setDateOfBirth(String dateofBirth) {
     return User(
       accountId: accountId,
       dateOfBirth: dateofBirth,
