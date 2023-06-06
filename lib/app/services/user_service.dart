@@ -70,6 +70,9 @@ class UserService {
       'email': user.email,
       'phone_number': user.phoneNumber,
     };
+    if (user.password!.isNotEmpty) {
+      userJson['password'] = user.password;
+    }
     print(jsonEncode(userJson));
     http.Response response =
         await http.put(Uri.parse('$baseUrl/user/update'), body: userJson);

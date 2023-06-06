@@ -44,7 +44,6 @@ class SettingsController extends GetxController {
   }
 
   User createUser(String accountid) {
-    print("aaaa" + birthdate.value);
     if (fullname.value.isEmpty) {
       fullname.value = GeneralAppDatas.fullNameSettings.value;
     }
@@ -54,14 +53,25 @@ class SettingsController extends GetxController {
     if (phonenumber.value.isEmpty) {
       phonenumber.value = GeneralAppDatas.phoneNumberSettings.value;
     }
-    return User(
-        fullName: fullname.value,
-        dateOfBirth: birthdate.value,
-        phoneNumber: phonenumber.value,
-        email: email.value,
-        password: password.value,
-        userId: GeneralAppDatas.userId.value,
-        accountId: accountid);
+
+    if (password.value.isNotEmpty) {
+      return User(
+          fullName: fullname.value,
+          dateOfBirth: birthdate.value,
+          phoneNumber: phonenumber.value,
+          email: email.value,
+          password: password.value,
+          userId: GeneralAppDatas.userId.value,
+          accountId: accountid);
+    } else {
+      return User(
+          fullName: fullname.value,
+          dateOfBirth: birthdate.value,
+          phoneNumber: phonenumber.value,
+          email: email.value,
+          userId: GeneralAppDatas.userId.value,
+          accountId: accountid);
+    }
   }
 
   Future<bool> updateUser() async {

@@ -27,6 +27,7 @@ class GeneralAppDatas {
   static RxString phoneNumberSettings = "".obs;
   static RxString fullNameSettings = "".obs;
   static RxString birthDateSettings = "".obs;
+  static RxString passwordSettings = "".obs;
 
   static Rx<Position?> currentPosition = Position(
           longitude: 39.925533,

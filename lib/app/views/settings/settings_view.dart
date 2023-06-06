@@ -214,23 +214,25 @@ class SettingsView extends StatelessWidget {
                           child: TextField(
                             obscureText: controller.isPasswordHidden.value,
                             decoration: InputDecoration(
-                                icon: const Icon(Icons.lock),
-                                focusColor: AppColors.blue2,
-                                iconColor: AppColors.blue2,
-                                border: InputBorder.none,
-                                suffix: InkWell(
-                                  child: Icon(
-                                    controller.isPasswordHidden.value
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                    color: Colors.grey,
-                                    size: 5.w,
-                                  ),
-                                  onTap: () {
-                                    controller.isPasswordHidden.value =
-                                        !controller.isPasswordHidden.value;
-                                  },
-                                )),
+                              icon: const Icon(Icons.lock),
+                              focusColor: AppColors.blue2,
+                              iconColor: AppColors.blue2,
+                              border: InputBorder.none,
+                              suffix: InkWell(
+                                child: Icon(
+                                  controller.isPasswordHidden.value
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: Colors.grey,
+                                  size: 5.w,
+                                ),
+                                onTap: () {
+                                  controller.isPasswordHidden.value =
+                                      !controller.isPasswordHidden.value;
+                                },
+                              ),
+                              hintText: "*******",
+                            ),
                           ))
                     ],
                   ),
@@ -259,14 +261,34 @@ class SettingsView extends StatelessWidget {
                             color: Color.fromARGB(255, 235, 235, 235),
                           ),
                           child: TextField(
+                            obscureText: controller.isPasswordHidden.value,
                             decoration: InputDecoration(
+                              icon: const Icon(Icons.lock),
+                              focusColor: AppColors.blue2,
+                              iconColor: AppColors.blue2,
                               border: InputBorder.none,
+                              suffix: InkWell(
+                                child: Icon(
+                                  controller.isPasswordHidden.value
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: Colors.grey,
+                                  size: 5.w,
+                                ),
+                                onTap: () {
+                                  controller.isPasswordHidden.value =
+                                      !controller.isPasswordHidden.value;
+                                },
+                              ),
                               hintText: "*******",
                             ),
+                            onChanged: (value) {
+                              // Girilen değeri birthdateValue değişkenine atayın
+                              controller.password.value = value;
+                            },
                           ))
                     ],
                   ),
-
                   SizedBox(
                     height: 3.h,
                   ),
