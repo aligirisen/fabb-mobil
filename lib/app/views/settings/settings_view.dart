@@ -60,9 +60,11 @@ class SettingsView extends StatelessWidget {
                         height: 2.h,
                       ),
                       Container(
-                          padding: EdgeInsets.all(8),
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.symmetric(
+                              vertical: 0.5.h, horizontal: 3.w),
                           width: 100.w,
-                          height: 5.h,
+                          height: 7.h,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Color.fromARGB(255, 235, 235, 235),
@@ -92,9 +94,11 @@ class SettingsView extends StatelessWidget {
                         height: 2.h,
                       ),
                       Container(
-                          padding: EdgeInsets.all(8),
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.symmetric(
+                              vertical: 0.5.h, horizontal: 3.w),
                           width: 100.w,
-                          height: 5.h,
+                          height: 7.h,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Color.fromARGB(255, 235, 235, 235),
@@ -128,9 +132,11 @@ class SettingsView extends StatelessWidget {
                         height: 2.h,
                       ),
                       Container(
-                          padding: EdgeInsets.all(8),
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.symmetric(
+                              vertical: 0.5.h, horizontal: 3.w),
                           width: 100.w,
-                          height: 5.h,
+                          height: 7.h,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Color.fromARGB(255, 235, 235, 235),
@@ -161,9 +167,11 @@ class SettingsView extends StatelessWidget {
                         height: 2.h,
                       ),
                       Container(
-                          padding: EdgeInsets.all(8),
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.symmetric(
+                              vertical: 0.5.h, horizontal: 3.w),
                           width: 100.w,
-                          height: 5.h,
+                          height: 7.h,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Color.fromARGB(255, 235, 235, 235),
@@ -204,9 +212,11 @@ class SettingsView extends StatelessWidget {
                         height: 2.h,
                       ),
                       Container(
-                          padding: EdgeInsets.only(left: 2.w, right: 2.w),
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.symmetric(
+                              vertical: 0.5.h, horizontal: 3.w),
                           width: 100.w,
-                          height: 5.h,
+                          height: 7.h,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Color.fromARGB(255, 235, 235, 235),
@@ -253,14 +263,17 @@ class SettingsView extends StatelessWidget {
                         height: 2.h,
                       ),
                       Container(
-                          padding: EdgeInsets.all(8),
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.symmetric(
+                              vertical: 0.5.h, horizontal: 3.w),
                           width: 100.w,
-                          height: 5.h,
+                          height: 7.h,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Color.fromARGB(255, 235, 235, 235),
                           ),
                           child: TextField(
+                            textAlignVertical: TextAlignVertical.center,
                             obscureText: controller.isPasswordHidden.value,
                             decoration: InputDecoration(
                               icon: const Icon(Icons.lock),
@@ -332,6 +345,8 @@ class SettingsView extends StatelessWidget {
                               child: TextFormField(
                                 textAlign: TextAlign.center,
                                 decoration: InputDecoration(
+                                  hintText:
+                                      GeneralAppDatas.zoom.value.toString(),
                                   contentPadding: EdgeInsets.all(8.0),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(5.0),
@@ -416,26 +431,46 @@ class SettingsView extends StatelessWidget {
                       SizedBox(
                         height: 2.h,
                       ),
-                      Container(
-                          padding: EdgeInsets.all(8),
-                          width: 30.w,
-                          height: 5.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Color.fromARGB(255, 235, 235, 235),
-                          ),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "",
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'TR',
+                              style: TextStyle(
+                                fontWeight: controller.isEnglishSelected()
+                                    ? FontWeight.normal
+                                    : FontWeight.bold,
+                              ),
                             ),
-                          ))
+                            Switch(
+                              value: controller.isEnglishSelected(),
+                              onChanged: (value) {
+                                if (value) {
+                                  controller.changeLanguage('English');
+                                } else {
+                                  controller.changeLanguage('Turkish');
+                                }
+                              },
+                            ),
+                            Text(
+                              'EN',
+                              style: TextStyle(
+                                fontWeight: controller.isEnglishSelected()
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
 
                   SizedBox(
                     height: 3.h,
                   ),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

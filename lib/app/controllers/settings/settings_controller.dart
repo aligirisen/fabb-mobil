@@ -43,6 +43,16 @@ class SettingsController extends GetxController {
     Get.put(SettingsController());
   }
 
+  var selectedLanguage = 'English'.obs;
+
+  void changeLanguage(String language) {
+    selectedLanguage.value = language;
+  }
+
+  bool isEnglishSelected() {
+    return selectedLanguage.value == 'English';
+  }
+
   User createUser(String accountid) {
     if (fullname.value.isEmpty) {
       fullname.value = GeneralAppDatas.fullNameSettings.value;

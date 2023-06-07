@@ -27,7 +27,7 @@ class MapView extends StatelessWidget {
                     target: LatLng(
                         GeneralAppDatas.currentPosition.value!.latitude,
                         GeneralAppDatas.currentPosition.value!.longitude),
-                    zoom: 17.0),
+                    zoom: GeneralAppDatas.zoom.value),
                 mapType: controller.maptype.value,
                 markers: Set<Marker>.of(controller.markers),
                 myLocationEnabled: true,
