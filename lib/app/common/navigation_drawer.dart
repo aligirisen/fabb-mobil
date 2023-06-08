@@ -1,3 +1,4 @@
+import 'package:fabb_mobil/app/controllers/settings/settings_controller.dart';
 import 'package:fabb_mobil/app/general_app_datas/general_app_datas.dart';
 import 'package:fabb_mobil/app/theme/app_colors.dart';
 import 'package:fabb_mobil/app/theme/app_images.dart';
@@ -154,6 +155,8 @@ class CustomNavigationDrawer extends StatelessWidget {
       //  MyReportsController.to.initialize();
       Get.toNamed(Routes.myreports);
     } else if (index == 2) {
+      Get.put(SettingsController());
+      SettingsController.to.initialize();
       Get.toNamed(Routes.settings);
     } else if (index == 3) {
       Get.toNamed(Routes.contact);

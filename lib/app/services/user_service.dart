@@ -7,8 +7,6 @@ import 'package:http/http.dart' as http;
 
 class UserService {
   Future<String> fetchUserData(String userId) async {
-    //await Future.delayed(Duration(seconds: 2)); // 2 saniye gecikme
-
     final response = await http.get(Uri.parse('$baseUrl/user/$userId'));
 
     if (response.statusCode == 200) {
@@ -23,8 +21,6 @@ class UserService {
   }
 
   Future<void> getUserDatas(String userId) async {
-    //await Future.delayed(Duration(seconds: 2)); // 2 saniye gecikme
-
     final response = await http.get(Uri.parse('$baseUrl/user/$userId'));
 
     if (response.statusCode == 200) {
@@ -33,6 +29,8 @@ class UserService {
       GeneralAppDatas.birthDateSettings.value = jsonData['date_of_birth'];
       GeneralAppDatas.fullNameSettings.value = jsonData['full_name'];
       GeneralAppDatas.phoneNumberSettings.value = jsonData['phone_number'];
+      GeneralAppDatas.userEmail.value = jsonData['email'];
+      print(GeneralAppDatas.birthDateSettings);
     } else {
       throw Exception(
           'Failed to load user data from API: ${response.statusCode}');
@@ -62,7 +60,7 @@ class UserService {
   }
 
   Future<bool> updateUser(User user) async {
-    final Map<String, dynamic> userJson = {
+    Map<String, dynamic> userJson = {
       'account_id': user.accountId,
       'user_id': user.userId,
       'date_of_birth': user.dateOfBirth,
@@ -70,12 +68,19 @@ class UserService {
       'email': user.email,
       'phone_number': user.phoneNumber,
     };
-    if (user.password!.isNotEmpty) {
+    if (user.password != null && user.password!.isNotEmpty) {
       userJson['password'] = user.password;
     }
-    print(jsonEncode(userJson));
-    http.Response response =
-        await http.put(Uri.parse('$baseUrl/user/update'), body: userJson);
+
+    final encodedUserJson = jsonEncode(userJson);
+    print(encodedUserJson);
+    http.Response response = await http.put(
+      Uri.parse('$baseUrl/user/update'),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: encodedUserJson,
+    );
 
     if (response.statusCode == 200) {
       // Success
@@ -87,4 +92,34 @@ class UserService {
       return false;
     }
   }
+  /*
+  Future<bool> updateUser(User user) async {
+    final url = Uri.parse('$baseUrl/user/update');
+    final request = http.MultipartRequest('PUT', url);
+
+    // JSON verilerini form-data olarak eklemek
+    request.fields['account_id'] = user.accountId!;
+    request.fields['user_id'] = user.userId!;
+    request.fields['date_of_birth'] = user.dateOfBirth!;
+    request.fields['full_name'] = user.fullName!;
+    request.fields['email'] = user.email!;
+    request.fields['phone_number'] = user.phoneNumber!;
+    if (user.password != null && user.password!.isNotEmpty) {
+      request.fields['password'] = user.password!;
+    }
+    print(request.fields);
+    request.headers['Content-Type'] = 'text/html; charset=utf-8';
+
+    final response = await request.send();
+
+    if (response.statusCode == 200) {
+      // Success
+      print("User updated successfully");
+      return true;
+    } else {
+      // Failure
+      print("Failed to update user. Error: ${response.statusCode}");
+      return false;
+    }
+  }*/
 }

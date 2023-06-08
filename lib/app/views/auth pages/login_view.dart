@@ -75,7 +75,7 @@ class LoginView extends StatelessWidget {
                               Obx(
                                 () => passwordTextFormField(),
                               ),
-                              forgotPassword(),
+                              // forgotPassword(),
                               loginButton(),
                               orCreateAccountText()
                             ])))),

@@ -57,6 +57,8 @@ class GeneralAppDatas {
     GeneralAppDatas.userId.value = userId;
     GeneralAppDatas.box.write('isLoggedIn', isLoggedIn);
     GeneralAppDatas.box.write('userId', userId);
+    print("xxxxxxxxxxxx");
+    UserService().getUserDatas(userId);
   }
 
   static RxDouble zoom = 17.0.obs;

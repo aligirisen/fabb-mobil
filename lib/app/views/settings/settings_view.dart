@@ -36,272 +36,234 @@ class SettingsView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Account Information",
-                    style: TextStyle(
-                        color: AppColors.blue2,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(
-                    height: 3.h,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Full Name",
-                        style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey),
-                      ),
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      Container(
-                          alignment: Alignment.center,
-                          padding: EdgeInsets.symmetric(
-                              vertical: 0.5.h, horizontal: 3.w),
-                          width: 100.w,
-                          height: 7.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Color.fromARGB(255, 235, 235, 235),
-                          ),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: GeneralAppDatas.fullNameSettings.value,
+                  GeneralAppDatas.isLoggedIn == true
+                      ? Column(
+                          children: [
+                            Text(
+                              "Account Information",
+                              style: TextStyle(
+                                  color: AppColors.blue2,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600),
                             ),
-                          ))
-                    ],
-                  ),
-                  SizedBox(
-                    height: 3.h,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Birthdate",
-                        style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey),
-                      ),
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      Container(
-                          alignment: Alignment.center,
-                          padding: EdgeInsets.symmetric(
-                              vertical: 0.5.h, horizontal: 3.w),
-                          width: 100.w,
-                          height: 7.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Color.fromARGB(255, 235, 235, 235),
-                          ),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: GeneralAppDatas.birthDateSettings.value,
+                            SizedBox(
+                              height: 3.h,
                             ),
-                            onChanged: (value) {
-                              // Girilen değeri birthdateValue değişkenine atayın
-                              controller.birthdate.value = value;
-                            },
-                          ))
-                    ],
-                  ),
-                  SizedBox(
-                    height: 3.h,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Phone Number",
-                        style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey),
-                      ),
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      Container(
-                          alignment: Alignment.center,
-                          padding: EdgeInsets.symmetric(
-                              vertical: 0.5.h, horizontal: 3.w),
-                          width: 100.w,
-                          height: 7.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Color.fromARGB(255, 235, 235, 235),
-                          ),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText:
-                                  GeneralAppDatas.phoneNumberSettings.value,
-                            ),
-                          ))
-                    ],
-                  ),
-                  SizedBox(
-                    height: 3.h,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "E-mail",
-                        style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey),
-                      ),
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      Container(
-                          alignment: Alignment.center,
-                          padding: EdgeInsets.symmetric(
-                              vertical: 0.5.h, horizontal: 3.w),
-                          width: 100.w,
-                          height: 7.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Color.fromARGB(255, 235, 235, 235),
-                          ),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: GeneralAppDatas.userEmail.value,
-                            ),
-                          ))
-                    ],
-                  ),
-                  SizedBox(
-                    height: 3.h,
-                  ),
-                  Text(
-                    "Change Password",
-                    style: TextStyle(
-                        color: Color.fromARGB(115, 0, 0, 0),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500),
-                  ),
-
-                  SizedBox(
-                    height: 3.h,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "New Password",
-                        style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey),
-                      ),
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      Container(
-                          alignment: Alignment.center,
-                          padding: EdgeInsets.symmetric(
-                              vertical: 0.5.h, horizontal: 3.w),
-                          width: 100.w,
-                          height: 7.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Color.fromARGB(255, 235, 235, 235),
-                          ),
-                          child: TextField(
-                            obscureText: controller.isPasswordHidden.value,
-                            decoration: InputDecoration(
-                              icon: const Icon(Icons.lock),
-                              focusColor: AppColors.blue2,
-                              iconColor: AppColors.blue2,
-                              border: InputBorder.none,
-                              suffix: InkWell(
-                                child: Icon(
-                                  controller.isPasswordHidden.value
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
-                                  color: Colors.grey,
-                                  size: 5.w,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Full Name",
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.grey),
                                 ),
-                                onTap: () {
-                                  controller.isPasswordHidden.value =
-                                      !controller.isPasswordHidden.value;
-                                },
-                              ),
-                              hintText: "*******",
-                            ),
-                          ))
-                    ],
-                  ),
-                  SizedBox(
-                    height: 3.h,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Type Password Again",
-                        style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey),
-                      ),
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      Container(
-                          alignment: Alignment.center,
-                          padding: EdgeInsets.symmetric(
-                              vertical: 0.5.h, horizontal: 3.w),
-                          width: 100.w,
-                          height: 7.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Color.fromARGB(255, 235, 235, 235),
-                          ),
-                          child: TextField(
-                            textAlignVertical: TextAlignVertical.center,
-                            obscureText: controller.isPasswordHidden.value,
-                            decoration: InputDecoration(
-                              icon: const Icon(Icons.lock),
-                              focusColor: AppColors.blue2,
-                              iconColor: AppColors.blue2,
-                              border: InputBorder.none,
-                              suffix: InkWell(
-                                child: Icon(
-                                  controller.isPasswordHidden.value
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
-                                  color: Colors.grey,
-                                  size: 5.w,
+                                SizedBox(
+                                  height: 2.h,
                                 ),
-                                onTap: () {
-                                  controller.isPasswordHidden.value =
-                                      !controller.isPasswordHidden.value;
-                                },
-                              ),
-                              hintText: "*******",
+                                Container(
+                                    alignment: Alignment.center,
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 0.5.h, horizontal: 3.w),
+                                    width: 100.w,
+                                    height: 7.h,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Color.fromARGB(255, 235, 235, 235),
+                                    ),
+                                    child: TextField(
+                                      controller:
+                                          controller.fullnameTEController,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: GeneralAppDatas
+                                            .fullNameSettings.value,
+                                      ),
+                                    ))
+                              ],
                             ),
-                            onChanged: (value) {
-                              // Girilen değeri birthdateValue değişkenine atayın
-                              controller.password.value = value;
-                            },
-                          ))
-                    ],
-                  ),
+                            SizedBox(
+                              height: 3.h,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Birthdate",
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.grey),
+                                ),
+                                SizedBox(
+                                  height: 2.h,
+                                ),
+                                Container(
+                                    alignment: Alignment.center,
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 0.5.h, horizontal: 3.w),
+                                    width: 100.w,
+                                    height: 7.h,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Color.fromARGB(255, 235, 235, 235),
+                                    ),
+                                    child: TextField(
+                                      controller:
+                                          controller.birthdateTEController,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: GeneralAppDatas
+                                            .birthDateSettings.value,
+                                      ),
+                                    ))
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3.h,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Phone Number",
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.grey),
+                                ),
+                                SizedBox(
+                                  height: 2.h,
+                                ),
+                                Container(
+                                    alignment: Alignment.center,
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 0.5.h, horizontal: 3.w),
+                                    width: 100.w,
+                                    height: 7.h,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Color.fromARGB(255, 235, 235, 235),
+                                    ),
+                                    child: TextField(
+                                      controller:
+                                          controller.phoneNumberTEController,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: GeneralAppDatas
+                                            .phoneNumberSettings.value,
+                                      ),
+                                    ))
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3.h,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "E-mail",
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.grey),
+                                ),
+                                SizedBox(
+                                  height: 2.h,
+                                ),
+                                Container(
+                                    alignment: Alignment.center,
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 0.5.h, horizontal: 3.w),
+                                    width: 100.w,
+                                    height: 7.h,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Color.fromARGB(255, 235, 235, 235),
+                                    ),
+                                    child: TextField(
+                                      controller: controller.emailTEController,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText:
+                                            GeneralAppDatas.userEmail.value,
+                                      ),
+                                    ))
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3.h,
+                            ),
+                            Text(
+                              "Change Password",
+                              style: TextStyle(
+                                  color: Color.fromARGB(115, 0, 0, 0),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 3.h,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "New Password",
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.grey),
+                                ),
+                                SizedBox(
+                                  height: 2.h,
+                                ),
+                                Container(
+                                    alignment: Alignment.center,
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 0.5.h, horizontal: 3.w),
+                                    width: 100.w,
+                                    height: 7.h,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Color.fromARGB(255, 235, 235, 235),
+                                    ),
+                                    child: TextField(
+                                      controller:
+                                          controller.passwordTEController,
+                                      obscureText:
+                                          controller.isPasswordHidden.value,
+                                      decoration: InputDecoration(
+                                        icon: const Icon(Icons.lock),
+                                        focusColor: AppColors.blue2,
+                                        iconColor: AppColors.blue2,
+                                        border: InputBorder.none,
+                                        suffix: InkWell(
+                                          child: Icon(
+                                            controller.isPasswordHidden.value
+                                                ? Icons.visibility
+                                                : Icons.visibility_off,
+                                            color: Colors.grey,
+                                            size: 5.w,
+                                          ),
+                                          onTap: () {
+                                            controller.isPasswordHidden.value =
+                                                !controller
+                                                    .isPasswordHidden.value;
+                                          },
+                                        ),
+                                        hintText: "*******",
+                                      ),
+                                    ))
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3.h,
+                            ),
+                          ],
+                        )
+                      : Container(),
                   SizedBox(
                     height: 3.h,
                   ),
@@ -444,6 +406,7 @@ class SettingsView extends StatelessWidget {
                               ),
                             ),
                             Switch(
+                              activeColor: AppColors.blue2,
                               value: controller.isEnglishSelected(),
                               onChanged: (value) {
                                 if (value) {

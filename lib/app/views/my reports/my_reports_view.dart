@@ -56,10 +56,10 @@ class MyReportsView extends StatelessWidget {
                               children: [
                                 Obx(() =>
                                     myReportCount(AppColors.greyTextColor)),
-                                Divider(
-                                  height: 2.h,
-                                  thickness: 10,
+                                Icon(
+                                  Icons.circle,
                                   color: Colors.grey,
+                                  size: 7,
                                 ),
                                 solvedReportCount(Colors.green),
                                 Icon(
@@ -442,11 +442,11 @@ class MyReportsView extends StatelessWidget {
     return Column(
       children: [
         Text(
-          GeneralAppDatas.myIncidentList.length.toString(),
+          GeneralAppDatas.openedMyReport.toString(),
           style: TextStyle(color: color, fontSize: 30),
         ),
         Text(
-          "total reports",
+          "opened",
           style: TextStyle(color: color, fontSize: 12),
         )
       ],

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../general_app_datas/general_app_datas.dart';
+import '../../services/user_service.dart';
 
 class LoginController extends GetxController {
   RxString displayText = 'Enter a password'.obs;
@@ -86,6 +87,7 @@ class LoginController extends GetxController {
       GeneralAppDatas.isLoggedIn.value = true;
       GeneralAppDatas.box.write('isLoggedIn', true);
       GeneralAppDatas.box.write('userId', GeneralAppDatas.userId.value);
+
       return true;
     } else {
       return false;

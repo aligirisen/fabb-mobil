@@ -9,12 +9,16 @@ import 'package:sizer/sizer.dart';
 import 'app/bindings/all_bindings.dart';
 import 'app/general_app_datas/general_app_datas.dart';
 import 'app/routes/app_pages.dart';
+import 'app/services/user_service.dart';
 import 'app/theme/app_strings.dart';
 
 const baseUrl = BaseUrls.baseUrl;
 void main() async {
   await GetStorage.init();
   GeneralAppDatas().checkLoggedInStatus();
+  if (GeneralAppDatas.userId.isNotEmpty) {
+    UserService().getUserDatas(GeneralAppDatas.userId.value);
+  }
   print(GeneralAppDatas.isLoggedIn);
   runApp(const MyApp());
 }

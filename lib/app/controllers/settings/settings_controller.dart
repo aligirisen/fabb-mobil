@@ -15,7 +15,7 @@ class SettingsController extends GetxController {
   RxString userBirthDate = ''.obs;
   RxBool isPasswordHidden = true.obs;
 
-  late TextEditingController nameTEController,
+  late TextEditingController fullnameTEController,
       birthdateTEController,
       phoneNumberTEController,
       emailTEController,
@@ -25,7 +25,7 @@ class SettingsController extends GetxController {
 
   @override
   void onInit() {
-    nameTEController = TextEditingController();
+    fullnameTEController = TextEditingController();
     birthdateTEController = TextEditingController();
     phoneNumberTEController = TextEditingController();
     passwordTEController = TextEditingController();
@@ -34,11 +34,6 @@ class SettingsController extends GetxController {
   }
 
   void initialize() {
-    nameTEController = TextEditingController();
-    birthdateTEController = TextEditingController();
-    phoneNumberTEController = TextEditingController();
-    emailTEController = TextEditingController();
-    passwordTEController = TextEditingController();
     Get.delete<SettingsController>();
     Get.put(SettingsController());
   }
@@ -53,24 +48,35 @@ class SettingsController extends GetxController {
     return selectedLanguage.value == 'English';
   }
 
-  User createUser(String accountid) {
-    if (fullname.value.isEmpty) {
+  User newInfo(String accountid) {
+    if (fullnameTEController.text.isEmpty) {
       fullname.value = GeneralAppDatas.fullNameSettings.value;
+    } else {
+      fullname.value = fullnameTEController.text;
     }
-    if (email.value.isEmpty) {
+    if (birthdateTEController.text.isEmpty) {
+      birthdate.value = GeneralAppDatas.birthDateSettings.value;
+    } else {
+      birthdate.value = birthdateTEController.text;
+    }
+    if (emailTEController.text.isEmpty) {
       email.value = GeneralAppDatas.userEmail.value;
+    } else {
+      email.value = emailTEController.text;
     }
-    if (phonenumber.value.isEmpty) {
+    if (phoneNumberTEController.text.isEmpty) {
       phonenumber.value = GeneralAppDatas.phoneNumberSettings.value;
+    } else {
+      phonenumber.value = phoneNumberTEController.text;
     }
 
-    if (password.value.isNotEmpty) {
+    if (passwordTEController.text.isNotEmpty) {
       return User(
           fullName: fullname.value,
           dateOfBirth: birthdate.value,
           phoneNumber: phonenumber.value,
           email: email.value,
-          password: password.value,
+          password: passwordTEController.text,
           userId: GeneralAppDatas.userId.value,
           accountId: accountid);
     } else {
@@ -88,9 +94,11 @@ class SettingsController extends GetxController {
     String accountid =
         await UserService().fetchUserData(GeneralAppDatas.userId.value);
 
-    await Future.delayed(const Duration(milliseconds: 5));
+    await Future.delayed(const Duration(milliseconds: 50));
 
-    User user = createUser(accountid);
+    User user = newInfo(accountid);
+
+    await Future.delayed(const Duration(milliseconds: 50));
 
     bool isUpdated = await UserService().updateUser(user);
 
